@@ -1,0 +1,11 @@
+﻿Name: DarkSky.Commerce
+AntiForgery: enabled
+Author: DarkSky Development
+Website: http://darkskydevelopment.net
+Version: 1.6
+OrchardVersion: 1.6
+Description: Provides commerce features
+Features:
+    DarkSky.Commerce:
+        Description: Provides commerce features
+		Category: Commerce

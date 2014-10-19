@@ -1,0 +1,93 @@
+﻿@{
+	Style.Include("Account.min.css");
+	Layout.AsideFirst.Add(New.Account_SubMenu());
+	Layout.Title = T("My Account");
+}
+<fieldset>
+	<legend>@T("Account Information")</legend>
+	<div class="group">
+		<div class="column">
+			<div class="field-editor">
+				<label>@T("Username")</label>
+				<span>Skywalker</span>
+			</div>
+			<div class="field-editor">
+				<label>@T("Email")</label>
+				<span>skywalker@thedutchpirates.com</span>
+				<a class="button" href="#">Change email</a>
+			</div>
+			<div class="field-editor">
+				<label>@T("Password")</label>
+				<span>*******</span>
+				<a class="button" href="#">Change password</a>
+			</div>
+		</div>
+		<div class="column">
+			<div class="field-editor">
+				<label>@T("Logo")</label>
+				<div class="logo-wrapper">
+					<img src="@Url.Content("~/Modules/DarkSky.OrchardMarket/Content/logo-placeholder.png")" alt=""/>
+				</div>
+				<a class="button" href="#">Change logo</a>
+			</div>
+		</div>
+	</div>
+</fieldset>
+
+<fieldset>
+	<legend>Account Statistics</legend>
+	<div class="field-editor single-line">
+		<label>Rating</label>
+		<div class="value"><img src="@Url.Content("~/Modules/DarkSky.OrchardMarket/Content/rating.png")" alt=""/></div>
+	</div>
+	<div class="field-editor single-line">
+		<label>Total Sales</label>
+		<div class="value">12</div>
+	</div>
+	<div class="field-editor single-line">
+		<label>Total Purchases</label>
+		<div class="value">24</div>
+	</div>
+	<div class="field-editor single-line">
+		<label>Total Revenues</label>
+		<div class="value">$9.2653,87</div>
+	</div>
+	<div class="field-editor single-line">
+		<label>Account Balance</label>
+		<div class="value">$3.2653,87</div>
+	</div>
+	<div class="field-editor single-line">
+		<label>Last Login</label>
+		<div class="value">@DateTime.Now.AddDays(-2).ToString()</div>
+	</div>
+</fieldset>
+
+<fieldset>
+	<legend>Payment Details</legend>
+	<div class="field-editor">
+		<label>Preferred Payout Method</label>
+		<div class="value">PayPal</div>
+	</div>
+	<div class="group">
+		<div class="column">
+			<div class="field-editor">
+				<label>Account Holder Name</label>
+				<div class="value">ING</div>
+			</div>
+            <div class="field-editor">
+				<label>Credit Card Number</label>
+                <div class="value">xxx-xxx-xxx-1234</div>
+			</div>
+		</div>
+        <div class="column">
+			<div class="field-editor">
+				<label>Account Number</label>
+				<div class="value">24674346</div>
+			</div>
+            <div class="field-editor">
+				<label>Country</label>
+                <div class="value">Zuid Afrika</div>
+			</div>
+		</div>
+	</div>
+</fieldset>

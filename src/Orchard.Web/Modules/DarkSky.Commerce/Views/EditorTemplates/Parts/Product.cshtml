@@ -1,0 +1,16 @@
+﻿﻿@model DarkSky.Commerce.Models.ProductPart
+<fieldset>
+	<div>
+	    @Html.LabelFor(m => m.Price, T("Price"))
+	    @Html.TextBoxFor(m => m.Price, new { @class = "textMedium", maxlength = 8 })
+	    @Html.ValidationMessageFor(m => m.Price, "*")
+	    <span class="hint">@T("The unit price of this product, VAT exclusive")</span>
+    </div>
+    
+    <div>
+	    @Html.LabelFor(m => m.VatRateId, T("VAT Rate"))
+	    @Html.EditorFor(m => m.VatRateId)
+	    @Html.ValidationMessageFor(m => m.VatRateId, "*")
+	    <span class="hint">@T("The VAT rate for this product")</span>
+    </div>
+</fieldset>

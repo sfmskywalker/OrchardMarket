@@ -1,0 +1,10 @@
+﻿﻿@model DarkSky.Commerce.Models.CommerceSettingsPartRecord
+<fieldset>
+   <legend>@T("Commerce")</legend>
+   <div>
+       @Html.LabelFor(m => m.Currency, T("Currency"))
+       @Html.TextBoxFor(m => m.Currency, new { @class = "textMedium", maxlength = 3 })
+       @Html.ValidationMessage("Currency", "*")
+       <span class="hint">@T("The currency to use when displaying prices and the base currency to use when calculating exchange rates")</span>
+   </div>
+</fieldset>

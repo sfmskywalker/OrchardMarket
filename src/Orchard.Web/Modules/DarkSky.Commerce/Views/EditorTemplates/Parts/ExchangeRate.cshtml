@@ -1,0 +1,12 @@
+﻿﻿@model DarkSky.Commerce.ViewModels.ExchangeRateViewModel
+<fieldset>
+	@Html.LabelFor(m => m.Currency, T("For Currency"))
+    @Html.TextBoxFor(m => m.Currency, new { @class = "textMedium", maxlength = 3 })
+    @Html.ValidationMessageFor(m => m.Currency, "*")
+	<span class="hint">@T("The currency to define the exchange rate for against {0}", Model.BaseCurrency)</span>
+
+	@Html.LabelFor(m => m.Rate, T("Exchange Rate"))
+	@Html.TextBoxFor(m => m.Rate, new { @class = "textMedium", maxlength = 8 })
+	@Html.ValidationMessageFor(m => m.Rate, "*")
+	<span class="hint">@T("Enter the exchange rate in relation to the {0} base currency", Model.BaseCurrency)</span>
+</fieldset>

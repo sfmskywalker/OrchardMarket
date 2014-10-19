@@ -233,10 +233,6 @@
       <Project>{08191FCD-7258-4F19-95FB-AEC3DE77B2EB}</Project>
       <Name>Orchard.MediaProcessing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Orchard.Web\Modules\Orchard.Media\Orchard.Media.csproj">
-      <Project>{D9A7B330-CD22-4DA1-A95A-8DE1982AD8EB}</Project>
-      <Name>Orchard.Media</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Orchard.Web\Modules\Orchard.Modules\Orchard.Modules.csproj">
       <Project>{17F86780-9A1F-4AA1-86F1-875EEC2730C7}</Project>
       <Name>Orchard.Modules</Name>

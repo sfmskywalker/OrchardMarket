@@ -1,0 +1,19 @@
+﻿@{
+	Style.Include("Home.min.css");
+}
+<article class="most-popular">
+	<h3>Most Popular</h3>
+	<ul>
+		@for (var i = 0; i < 5; i++) {
+			<li class="group">
+				<div class="icon">
+					<a href="#"><img src="@Url.Content("~/Themes/OrchardMarket/Content/module-icon.png")" alt=""/></a>
+				</div>
+				<div class="details">
+					<div class="product"><a class="title">File Manager 1.1</a></div>
+					<div class="author">By <a href="#">Swanson</a></div>
+				</div>
+			</li>
+		}
+	</ul>
+</article>

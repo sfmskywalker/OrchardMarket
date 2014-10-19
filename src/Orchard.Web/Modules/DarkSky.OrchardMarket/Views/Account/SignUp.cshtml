@@ -1,0 +1,41 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.SignUpViewModel
+@{
+    Layout.Title = T("Sign Up");
+
+	Layout.AsideFirst.Add(New.Account_SignUp_Aside());
+}
+@using(Html.BeginFormAntiForgeryPost()) {
+	<fieldset>
+		<legend>@T("New User")</legend>
+		<div class="field-editor">
+			@Html.LabelFor(m => m.UserName, T("Username"))
+			@Html.EditorFor(m => m.UserName)
+			@Html.ValidationMessageFor(m => m.UserName)
+		</div>
+		<div class="field-editor">
+			@Html.LabelFor(m => m.Email, T("Emailaddress"))
+			@Html.EditorFor(m => m.Email)
+			@Html.ValidationMessageFor(m => m.Email)
+		</div>
+		<div class="field-editor">
+			@Html.LabelFor(m => m.RepeatEmail, T("Repeat Emailaddress"))
+			@Html.EditorFor(m => m.RepeatEmail)
+			@Html.ValidationMessageFor(m => m.RepeatEmail)
+		</div>
+		<div class="field-editor">
+			@Html.LabelFor(m => m.Password, T("Password"))
+			@Html.EditorFor(m => m.Password)
+			@Html.ValidationMessageFor(m => m.Password)
+		</div>
+		<div class="field-editor">
+			@Html.LabelFor(m => m.RepeatPassword, T("Repeat Password"))
+			@Html.EditorFor(m => m.RepeatPassword)
+			@Html.ValidationMessageFor(m => m.RepeatPassword)
+		</div>
+		<div class="commands">
+			<ul>
+				<li><a class="button-big submit" href="#">Create Account</a></li>
+			</ul>
+		</div>
+	</fieldset>
+}

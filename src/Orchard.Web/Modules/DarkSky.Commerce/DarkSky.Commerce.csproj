@@ -90,30 +90,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drivers\ProductPartDriver.cs" />
-    <Compile Include="Drivers\ExchangeRatePartDriver.cs" />
-    <Compile Include="Drivers\VatRatePartDriver.cs" />
     <Compile Include="Handlers\CommerceSettingsPartHandler.cs" />
     <Compile Include="Handlers\ProductPartHandler.cs" />
-    <Compile Include="Handlers\VatRatePartHandler.cs" />
     <Compile Include="Handlers\ExchangeRatePartHandler.cs" />
     <Compile Include="Migrations\CommerceMigrations.cs" />
     <Compile Include="Models\CommerceSettingsPart.cs" />
-    <Compile Include="Models\ExchangeRatePart.cs" />
     <Compile Include="Models\ProductPart.cs" />
-    <Compile Include="Models\VatRatePart.cs" />
+    <Compile Include="Models\ProductPartRecord.cs" />
     <Compile Include="ViewModels\ExchangeRateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\CommerceSettings.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts.CommerceSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\VatRate.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\ExchangeRate.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\Product.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts.Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Placement.info" />

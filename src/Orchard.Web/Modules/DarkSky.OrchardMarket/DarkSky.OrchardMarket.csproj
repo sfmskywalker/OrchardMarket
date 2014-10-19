@@ -75,12 +75,6 @@
     <Content Include="Content\logo-placeholder.png" />
     <Content Include="Content\module-icon.png" />
     <Content Include="Content\rating.png" />
-    <Content Include="Scripts\Common.js">
-      <DependentUpon>Common.coffee</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Common.min.js">
-      <DependentUpon>Common.coffee</DependentUpon>
-    </Content>
     <Content Include="Styles\Account.css">
       <DependentUpon>Account.scss</DependentUpon>
     </Content>
@@ -110,7 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Resources.cs" />
+    <Compile Include="Models\ExtensionPartRecord.cs" />
+    <Compile Include="Models\ExtensionReleasePartRecord.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="Migrations\MarketMigrations.cs" />
     <Compile Include="Models\ExtensionPart.cs" />
@@ -133,9 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\Common.coffee" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\Account.scss" />

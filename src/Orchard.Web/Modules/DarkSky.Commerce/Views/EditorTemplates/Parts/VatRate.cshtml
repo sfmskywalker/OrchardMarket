@@ -1,7 +1,0 @@
-﻿﻿@model DarkSky.Commerce.Models.VatRatePart
-<fieldset>
-    @Html.LabelFor(m => m.Rate, T("Vat Rate"))
-    @Html.TextBoxFor(m => m.Rate, new { @class = "textMedium", maxlength = 8 })
-    @Html.ValidationMessageFor(m => m.Rate, "*")
-    <span class="hint">@T("A value between 0 and 1")</span>
-</fieldset>

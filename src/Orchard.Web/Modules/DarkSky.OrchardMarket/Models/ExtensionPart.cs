@@ -1,6 +1,5 @@
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Aspects;
-using Orchard.ContentManagement.Records;
 
 namespace DarkSky.OrchardMarket.Models {
 	public class ExtensionPart : ContentPart<ExtensionPartRecord> {
@@ -22,11 +21,5 @@ namespace DarkSky.OrchardMarket.Models {
 		public string Name {
 			get { return this.As<ITitleAspect>().Title; }
 		}
-	}
-
-	public class ExtensionPartRecord : ContentPartRecord {
-		public virtual int PublisherId { get; set; }
-		public virtual int Downloads { get; set; }
-		public virtual int Sales { get; set; }
 	}
 }

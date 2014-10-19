@@ -8,4 +8,4 @@ Description: Provides commerce features
 Features:
     DarkSky.Commerce:
         Description: Provides commerce features
-		Category: Commerce
+        Category: Commerce

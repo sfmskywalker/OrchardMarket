@@ -81,6 +81,7 @@
     <Content Include="Content\module-icon.png" />
     <Content Include="Content\sprites.png" />
     <Content Include="Content\ui.png" />
+    <Content Include="Scripts\om-common.js" />
     <Content Include="Styles\Catalog.css">
       <DependentUpon>Catalog.scss</DependentUpon>
     </Content>
@@ -118,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shapes\" />
-    <Folder Include="Zones\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Layout.cshtml" />

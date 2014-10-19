@@ -1,172 +1,168 @@
 ﻿@functions {
-	string CalcuClassify(IEnumerable<string> zoneNames, string classNamePrefix) {
-		var zoneCounter = 0;
-		var zoneNumsFilled = string.Join("", zoneNames.Select(zoneName => { ++zoneCounter; return Model[zoneName] != null ? zoneCounter.ToString() : ""; }).ToArray());
-		return HasText(zoneNumsFilled) ? classNamePrefix + zoneNumsFilled : "";
-	}
+    string CalcuClassify(IEnumerable<string> zoneNames, string classNamePrefix) {
+        var zoneCounter = 0;
+        var zoneNumsFilled = string.Join("", zoneNames.Select(zoneName => { ++zoneCounter; return Model[zoneName] != null ? zoneCounter.ToString() : ""; }).ToArray());
+        return HasText(zoneNumsFilled) ? classNamePrefix + zoneNumsFilled : "";
+    }
 }
 @{
-	SetMeta("X-UA-Compatible", "IE=edge,chrome=1");
-	Style.Include("Style.min.css");
-	Style.Include("Layout.min.css");
-	Script.Require("OrchardMarket.Common");
+    SetMeta("X-UA-Compatible", "IE=edge,chrome=1");
+    Style.Include("Style.min.css");
+    Style.Include("Layout.min.css");
+    Script.Require("Orchard.jQuery");
+    Script.Include("om-common.js");
 
-	//Model.AsideFirst.Add(New.SubMenu());
-	//Model.TripleFirst.Add(New.MostPopular());
-	//Model.TripleSecond.Add(New.MostPopular());
-	//Model.TripleThird.Add(New.MostPopular());
+    var asideClass = CalcuClassify(new[] { "AsideFirst" }, "aside-");
+    if (HasText(asideClass)) {
+        Model.Classes.Add(asideClass);
+    }
+    
+    var tripleClass = CalcuClassify(new[] { "TripleFirst", "TripleSecond", "TripleThird" }, "triple-");
+    if (HasText(tripleClass)) {
+        Model.Classes.Add(tripleClass);
+    }
 
-	var asideClass = CalcuClassify(new[] { "AsideFirst" }, "aside-");
-	if (HasText(asideClass)) {
-		Model.Classes.Add(asideClass);
-	}
-	
-	var tripleClass = CalcuClassify(new[] { "TripleFirst", "TripleSecond", "TripleThird" }, "triple-");
-	if (HasText(tripleClass)) {
-		Model.Classes.Add(tripleClass);
-	}
+    var quadClass = CalcuClassify(new[] { "FooterQuadFirst", "FooterQuadSecond", "FooterQuadThird", "FooterQuadFourth" }, "quad-");
+    if (HasText(quadClass)) {
+        Model.Classes.Add(quadClass);
+    }
 
-	var quadClass = CalcuClassify(new[] { "FooterQuadFirst", "FooterQuadSecond", "FooterQuadThird", "FooterQuadFourth" }, "quad-");
-	if (HasText(quadClass)) {
-		Model.Classes.Add(quadClass);
-	}
+    var contentHeaderClass = CalcuClassify(new[] { "ContentHeader" }, "content-header-");
+    if (HasText(contentHeaderClass)) {
+        Model.Classes.Add(contentHeaderClass);
+    }
 
-	var contentHeaderClass = CalcuClassify(new[] { "ContentHeader" }, "content-header-");
-	if (HasText(contentHeaderClass)) {
-		Model.Classes.Add(contentHeaderClass);
-	}
-
-	Model.Id = "site-layout";
-	var tag = Tag(Model, "div");
+    Model.Id = "site-layout";
+    var tag = Tag(Model, "div");
 }
 @using (Script.Head()) {
-	<script type="text/javascript" src="http://fast.fonts.com/jsapi/b96769bc-9d4a-4066-b4e5-bda42c65ec76.js"></script>
+    <script type="text/javascript" src="http://fast.fonts.com/jsapi/b96769bc-9d4a-4066-b4e5-bda42c65ec76.js"></script>
 }
 @tag.StartElement
-	<div id="site-header" class="center-layout">
-		<div class="group">
-			<div id="main-nav">
-				<div class="bg-wrapper left">
-					<div class="bg-wrapper right">
-						<div class="navigation-wrapper">
-							<div class="main-navigation">
-								@Display(Model.Navigation)
-							</div>
-							<div class="user-navigation">
-								<ul class="group">
-								    <li><a href="#">Login</a></li>
-								    <li><a href="#">Register</a></li>
-								    <li><a href="#" class="welcome">Welcome <span class="username">Skywalker</span></a></li>
-							    </ul>
-							</div>
-						</div>
-					</div>    
-				</div>
-			</div>
-		</div>
-		<div class="group">
-			<div id="user-nav">
-				<div class="bg-wrapper left">
-					<div class="bg-wrapper right">
-						<div class="navigation-wrapper">
-							<ul class="group">
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">Shoppingcart</a></li>
-							</ul>
-						</div>
-				
-					</div>    
-				</div>
-			</div>
-		</div>
-		<div id="branding">
-			<a class="logo" href="@Url.Content("~/")"></a>
-		</div>
-	</div>
+    <div id="site-header" class="center-layout">
+        <div class="group">
+            <div id="main-nav">
+                <div class="bg-wrapper left">
+                    <div class="bg-wrapper right">
+                        <div class="navigation-wrapper">
+                            <div class="main-navigation">
+                                @Display(Model.Navigation)
+                            </div>
+                            <div class="user-navigation">
+                                <ul class="group">
+                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#">Register</a></li>
+                                    <li><a href="#" class="welcome">Welcome <span class="username">Skywalker</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div id="user-nav">
+                <div class="bg-wrapper left">
+                    <div class="bg-wrapper right">
+                        <div class="navigation-wrapper">
+                            <ul class="group">
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#">Shoppingcart</a></li>
+                            </ul>
+                        </div>
+                
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div id="branding">
+            <a class="logo" href="@Url.Content("~/")"></a>
+        </div>
+    </div>
 
-	<div id="before-content" class="center-layout">
-		@Display(Model.BeforeContent)
-	</div>
+    <div id="before-content" class="center-layout">
+        @Display(Model.BeforeContent)
+    </div>
 
-	<div id="site-content">
-		<div class="center-layout">
-			<div class="bg-wrapper left">
-				<div class="bg-wrapper right">
-					<div class="bg-wrapper center">
-						<div class="content-main">
-							<div id="content-header-wrapper" class="group">
-								<div class="title-wrapper">
+    <div id="site-content">
+        <div class="center-layout">
+            <div class="bg-wrapper left">
+                <div class="bg-wrapper right">
+                    <div class="bg-wrapper center">
+                        <div class="content-main">
+                            <div id="content-header-wrapper" class="group">
+                                <div class="title-wrapper">
                                     @Display(Model.TitleZone)
-								</div>
-								@if (Model.ContentHeader != null) { @Display(Model.ContentHeader) }
-							</div>
-							<div id="content-wrapper" class="group">
-								@if (Model.AsideFirst != null) { <div id="aside-first-zone-wrapper">@Display(Model.AsideFirst)</div> }
-								<div id="content-zone-wrapper">
-									@Display(Model.Content)
-								</div>
-							</div>
-							@if (Model.AfterContent != null) {
-								<div id="after-content-wrapper">
-									@Display(Model.AfterContent)
-								</div>
-							}
-							@if (Model.TripleFirst != null || Model.TripleSecond != null || Model.TripleThird != null) {
-								<div id="triples-wrapper" class="group">
-									@if (Model.TripleFirst != null) { @Display(Model.TripleFirst) }
-									@if (Model.TripleSecond != null) { @Display(Model.TripleSecond)}
-									@if (Model.TripleThird != null) { @Display(Model.TripleThird)}
-								</div>
-							}
-							@if (Model.FooterQuadFirst != null || Model.FooterQuadSecond != null || Model.FooterQuadThird != null || Model.FooterQuadFourth != null) {
-								<div id="footer-quads-wrapper" class="group">
-									@if (Model.FooterQuadFirst != null) { @Display(Model.FooterQuadFirst) }
-									@if (Model.FooterQuadSecond != null) { @Display(Model.FooterQuadSecond) }
-									@if (Model.FooterQuadThird != null) { @Display(Model.FooterQuadThird) }
-									@if (Model.FooterQuadFourth != null) { @Display(Model.FooterQuadFourth) }
-								</div>
-							}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                </div>
+                                @if (Model.ContentHeader != null) { @Display(Model.ContentHeader) }
+                            </div>
+                            <div id="content-wrapper" class="group">
+                                @if (Model.AsideFirst != null) { <div id="aside-first-zone-wrapper">@Display(Model.AsideFirst)</div> }
+                                <div id="content-zone-wrapper">
+                                    @Display(Model.Content)
+                                </div>
+                            </div>
+                            @if (Model.AfterContent != null) {
+                                <div id="after-content-wrapper">
+                                    @Display(Model.AfterContent)
+                                </div>
+                            }
+                            @if (Model.TripleFirst != null || Model.TripleSecond != null || Model.TripleThird != null) {
+                                <div id="triples-wrapper" class="group">
+                                    @if (Model.TripleFirst != null) { @Display(Model.TripleFirst) }
+                                    @if (Model.TripleSecond != null) { @Display(Model.TripleSecond)}
+                                    @if (Model.TripleThird != null) { @Display(Model.TripleThird)}
+                                </div>
+                            }
+                            @if (Model.FooterQuadFirst != null || Model.FooterQuadSecond != null || Model.FooterQuadThird != null || Model.FooterQuadFourth != null) {
+                                <div id="footer-quads-wrapper" class="group">
+                                    @if (Model.FooterQuadFirst != null) { @Display(Model.FooterQuadFirst) }
+                                    @if (Model.FooterQuadSecond != null) { @Display(Model.FooterQuadSecond) }
+                                    @if (Model.FooterQuadThird != null) { @Display(Model.FooterQuadThird) }
+                                    @if (Model.FooterQuadFourth != null) { @Display(Model.FooterQuadFourth) }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div id="site-footer">
-		<div class="center-layout">
-			<nav class="group">
-				<div class="column">
-					<h3>Orchard CMS</h3>
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Modules</a></li>
-					</ul>
-				</div>
-				<div class="column">
-					<h3>Customers</h3>
-					<ul>
-						<li><a href="#">Buy Modules</a></li>
-						<li><a href="#">Login</a></li>
-					</ul>
-				</div>
-				<div class="column">
-					<h3>Developers</h3>
-					<ul>
-						<li><a href="#">Sell Modules</a></li>
-						<li><a href="#">Documentation</a></li>
-					</ul>
-				</div>
-				<div class="column">
-					<h3>Company</h3>
-					<ul>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Contact</a></li>
-						<li><a href="#">Terms of Use</a></li>
-						<li><a href="#">Privacy Statement</a></li>
-					</ul>
-				</div>
-			</nav>
-		</div>
-	</div>
+    <div id="site-footer">
+        <div class="center-layout">
+            <nav class="group">
+                <div class="column">
+                    <h3>Orchard CMS</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Modules</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Customers</h3>
+                    <ul>
+                        <li><a href="#">Buy Modules</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Developers</h3>
+                    <ul>
+                        <li><a href="#">Sell Modules</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Statement</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
 @tag.EndElement

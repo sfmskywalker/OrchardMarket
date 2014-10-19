@@ -17,8 +17,7 @@
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
+    <UpgradeBackupLocation />
     <TargetFrameworkProfile />
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
@@ -50,16 +49,17 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
     </Reference>
@@ -68,15 +68,195 @@
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\button-creditcard.png" />
+    <Content Include="Content\Images\button-google.png" />
+    <Content Include="Placement.info" />
+    <Content Include="Service References\Services.PayPal.Soap\configuration91.svcinfo" />
+    <Content Include="Service References\Services.PayPal.Soap\configuration.svcinfo" />
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.AddressVerifyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BillAgreementUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BillOutstandingAmountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BillUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BMButtonSearchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BMCreateButtonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BMGetButtonDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BMGetInventoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BMManageButtonStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BMSetInventoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.BMUpdateButtonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.CancelRecoupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.CompleteRecoupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.CreateBillingAgreementResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.CreateMobilePaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.CreateRecurringPaymentsProfileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoAuthorizationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoCancelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoCaptureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoDirectPaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoExpressCheckoutPaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoMobileCheckoutPaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoNonReferencedCreditResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoReauthorizationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoReferenceTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoUATPAuthorizationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoUATPExpressCheckoutPaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.DoVoidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.EnterBoardingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.ExecuteCheckoutOperationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.ExternalRememberMeOptOutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetAccessPermissionDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetAuthDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetBillingAgreementCustomerDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetBoardingDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetExpressCheckoutDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetIncentiveEvaluationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetMobileStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetPalDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetRecurringPaymentsProfileDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.GetTransactionDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.InitiateRecoupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.ManagePendingTransactionStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.ManageRecurringPaymentsProfileStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.MassPayResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.RefundTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.ReverseTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.SetAccessPermissionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.SetAuthFlowParamResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.SetCustomerBillingAgreementResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.SetExpressCheckoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.SetMobileCheckoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.TransactionSearchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.UpdateAccessPermissionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.UpdateRecurringPaymentsProfileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
     <Content Include="Module.txt" />
+    <Content Include="Views\Parts\Invoice.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Transaction\Complete.cshtml" />
+    <Content Include="Views\PayPal\AlreadyPaid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -89,26 +269,161 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drivers\ProductPartDriver.cs" />
+    <Compile Include="Commands\VatCommands.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\CreatePaymentArgs.cs" />
+    <Compile Include="Controllers\PayPalController.cs" />
+    <Compile Include="Drivers\PurchasePartDriver.cs" />
+    <Compile Include="Drivers\ShopPartDriver.cs" />
+    <Compile Include="Drivers\InvoicePartDriver.cs" />
+    <Compile Include="Drivers\OrderPartDriver.cs" />
+    <Compile Include="Drivers\PayPalSettingPartDriver.cs" />
+    <Compile Include="Exceptions\DuplicatePaymentException.cs" />
     <Compile Include="Handlers\CommerceSettingsPartHandler.cs" />
-    <Compile Include="Handlers\ProductPartHandler.cs" />
-    <Compile Include="Migrations\CommerceMigrations.cs" />
+    <Compile Include="Handlers\PurchasePartHandler.cs" />
+    <Compile Include="Handlers\DefaultInvoiceEventHandler.cs" />
+    <Compile Include="Handlers\InvoicePartHandler.cs" />
+    <Compile Include="Handlers\OrderPartHandler.cs" />
+    <Compile Include="Helpers\UrlExtensions.cs" />
+    <Compile Include="Migrations\ShopMigrations.cs" />
+    <Compile Include="Migrations\OrdersMigrations.cs" />
     <Compile Include="Models\CommerceSettingsPart.cs" />
+    <Compile Include="Models\PurchasePart.cs" />
+    <Compile Include="Models\IShopAspect.cs" />
+    <Compile Include="Models\ShopPart.cs" />
+    <Compile Include="Permissions.cs" />
+    <Compile Include="Security\OrderAuthorizationEventHandler.cs" />
+    <Compile Include="Services\PurchaseManager.cs" />
+    <Compile Include="Services\DeliveryStatus.cs" />
+    <Compile Include="EventHandlers\IInvoiceEventHandler.cs" />
+    <Compile Include="Services\InvoiceManager.cs" />
+    <Compile Include="Models\InvoiceDetail.cs" />
+    <Compile Include="Models\InvoicePart.cs" />
+    <Compile Include="Models\InvoiceStatus.cs" />
+    <Compile Include="Services\OrderManager.cs" />
+    <Compile Include="Handlers\PayPalSettingsPartHandler.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Migrations\CheckoutMigrations.cs" />
+    <Compile Include="Migrations\PayPalMigrations.cs" />
+    <Compile Include="Models\PayPalLogEntry.cs" />
+    <Compile Include="Models\TransactionStatus.cs" />
+    <Compile Include="PaymentProviders\CreditCardProvider.cs" />
+    <Compile Include="PaymentProviders\GoogleCheckout.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="PaymentProviders\PaymentProvider.cs" />
+    <Compile Include="PaymentProviders\PayPal.cs" />
+    <Compile Include="Service References\Services.PayPal.Soap\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="EventHandlers\ICustomerHandler.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="EventHandlers\ITransactionHandler.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\OrderPart.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Services\PaymentService.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Services\PayPal\PayPalSettingsAccessor.cs" />
+    <Compile Include="Models\PayPalSettingsPart.cs" />
+    <Compile Include="Services\PayPal\PayPalClient.cs" />
+    <Compile Include="Shapes\PaymentProviderEditorShapes.cs" />
+    <Compile Include="ViewModels\CheckoutViewModel.cs" />
+    <Compile Include="Drivers\VatPartDriver.cs" />
+    <Compile Include="EventHandlers\IShoppingCartHandler.cs" />
+    <Compile Include="Handlers\DefaultShoppingCartHandler.cs" />
+    <Compile Include="Handlers\VatPartHandler.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Drivers\ProductPartDriver.cs" />
+    <Compile Include="Filters\ShoppingCartFilter.cs" />
+    <Compile Include="Handlers\ProductPartHandler.cs" />
+    <Compile Include="Helpers\CartTotalsExtensions.cs" />
+    <Compile Include="Migrations\ShoppingCartMigrations.cs" />
+    <Compile Include="Migrations\ProductsMigrations.cs" />
+    <Compile Include="Models\ProductQuantity.cs" />
+    <Compile Include="Models\VatPart.cs" />
+    <Compile Include="Models\IProductAspect.cs" />
     <Compile Include="Models\ProductPart.cs" />
-    <Compile Include="Models\ProductPartRecord.cs" />
+    <Compile Include="Models\ShoppingCartRecord.cs" />
+    <Compile Include="Models\ShoppingCartItem.cs" />
+    <Compile Include="Models\Totals.cs" />
+    <Compile Include="Services\CookieManager.cs" />
+    <Compile Include="Services\ProductHandler.cs" />
+    <Compile Include="Services\ProductManager.cs" />
+    <Compile Include="Models\ProductMetadata.cs" />
+    <Compile Include="Services\ShoppingCart.cs" />
+    <Compile Include="Services\ShoppingCartSettingsAccessor.cs" />
+    <Compile Include="Services\ShoppingCartService.cs" />
+    <Compile Include="Shapes\VatEditorShapes.cs" />
     <Compile Include="ViewModels\ExchangeRateViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts\Product.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts\Vat.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\VatPicker.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Editor.VatPicker.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Checkout\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\PaymentProvider.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Editor.PaymentProviderPicker.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CheckoutButton.PayPal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CheckoutButton.Google.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CheckoutButton.CreditCard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts\PayPalSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Services.PayPal.Soap\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service References\Services.PayPal.Soap\CoreComponentTypes.xsd">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\eBLBaseComponents.xsd">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\EnhancedDataTypes.xsd">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Service References\Services.PayPal.Soap\PayPalSvc.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Transaction\Cancel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\EditorTemplates\Parts.CommerceSettings.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\EditorTemplates\Parts.Product.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Placement.info" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -147,7 +462,7 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>True</UseCustomServer>
+          <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://orchard.codeplex.com</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>

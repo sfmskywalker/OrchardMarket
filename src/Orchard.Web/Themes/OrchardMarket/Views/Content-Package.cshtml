@@ -1,0 +1,279 @@
+﻿@using DarkSky.Commerce.Helpers
+@using DarkSky.Commerce.Models
+@using Orchard.ContentManagement
+@using Orchard.Utility.Extensions
+@{
+	Style.Include("Package.min.css");
+    Style.Include("~/Modules/Contrib.Reviews/Styles/Contrib.Stars.css");
+    Script.Require("jQuery");
+    Script.Require("jQueryUI");
+    Script.Require("jQueryUI_Dialog");
+    
+    Layout.Title = T("Package Details");
+    
+    var content = Model.ContentItem;
+    var package = content.PackagePart;
+    var product = content.ProductPart;
+    var logoUrl = !string.IsNullOrWhiteSpace((string)package.LogoUrl) ? (string)package.LogoUrl : ViewBag.DefaultModuleLogoUrl;
+    var releases = package.Releases;
+    var reviewsPart = content.ReviewsPart;
+    var averageRating = Math.Round(reviewsPart.Rating.CurrentVotingResult.Value, MidpointRounding.AwayFromZero);
+}
+<div class="package-details">
+    <fieldset>
+        <legend>@package.Name</legend>
+        
+        <div class="group">
+            <p class="description">@package.Description</p>
+            <div class="logo-wrapper">
+                <img src="@Url.Content(logoUrl)" alt=""/>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Details and Statistics</legend>
+        <div class="field-editor single-line">
+            <label>Rating</label>
+            <div class="value">
+                @Display.Rating(Rating: averageRating)
+            </div>
+        </div>
+        <div class="field-editor single-line">
+            <label>Tags</label>
+            <div class="value">
+                <a href="#">E-Learning</a>, 
+                <a href="#">Command Line</a>, 
+                <a href="#">Forms</a>, 
+                <a href="#">Commerce</a>, 
+            </div>
+        </div>
+        <div class="field-editor single-line">
+            <label>Price</label>
+            <div class="value">@Html.Price((decimal)product.UnitPrice)</div>
+        </div>
+        <div class="field-editor single-line">
+            <label>Total Sales</label>
+            <div class="value">@product.Sales</div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Releases</legend>
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Sold</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var release in releases) {
+                        var isPublished = ((IContent)release).IsPublished();
+                        var iconCss = isPublished ? "published" : "unpublished";
+                        var createdUtc = release.ContentItem.CommonPart.CreatedUtc;
+                        <tr>
+                            <td><span class="icon @iconCss">@release.Version</span></td>
+                            <td><a href="#">@release.Sales</a></td>
+                            <td>@createdUtc</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="commands">
+            <a class="add-button" href="@Url.AddCart((IProductAspect)content.ProductPart)">@T("Add to Cart")</a>
+        </div>
+    </fieldset>
+    
+    
+</div>
+
+<fieldset>
+    <legend>@T("Reviews")</legend>
+    <div class="reviews-content">
+        @if (!reviewsPart.UserHasReviewed) {
+            var reviewLinkText = "Write a review!";
+            var noReviewsYetText = "";
+            var reviewsExist = ((IEnumerable<Contrib.Reviews.Models.Review>)reviewsPart.Reviews).Any();
+            if (!reviewsExist) {
+                noReviewsYetText = "No reviews yet. ";
+                reviewLinkText = "Be the first to write a review!";
+            }
+
+            string showReviewUri = "#";
+            if (!Request.IsAuthenticated)
+            {
+                showReviewUri = Url.Action("LogOn", "Account", new { area = "Orchard.Users", ReturnUrl = Context.Request.RawUrl });
+            }
+            <header>
+            @if (ContentExtensions.IsPublished(content)) {
+                <div id="createReviewLinkDiv"><span id="createReviewLinkSpan">@noReviewsYetText<a id="showReviewFormLink" href="@showReviewUri">@reviewLinkText</a></span></div>
+                <div id="reviewFormDiv" style="display: none">
+                    <span class="my-rating">My Rating:</span> @Display.Parts_Stars_NoAverage(ContentPart: reviewsPart)
+                    <span class="my-review">My Review:</span>
+                        @using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Review", new { area = "Contrib.Reviews" }), FormMethod.Post))
+                    {
+                        @Html.TextArea("comment", (TempData["Comment"] ?? "").ToString(), new { maxLength = 1200, rows = 4 })
+                        @Html.Hidden("contentId", (int)reviewsPart.ContentItem.Id)
+                        @Html.Hidden("ReturnUrl", Context.Request.ToUrlString())
+                        <p class="review-character-limit"><span id="commentCharactersLeft"></span> character(s) remaining</p>
+                        <input id="createReviewButton" type="submit" value="Submit Review" />
+                        <a id="cancelCreateReviewLink" href="#">Cancel</a>
+                    }
+                </div>
+            } else if (!reviewsExist) {
+                <div id="createReviewLinkDiv"><span id="createReviewLinkSpan">@T("There are no reviews for this item.")</span></div>
+            }
+            </header>
+        }
+        <ul id="reviewsList">
+            @foreach (var review in reviewsPart.Reviews) {
+                double userRating = review.Rating.UserRating;
+                var userResultClass = string.Format("stars-value-{0}", userRating);
+                string liClass = review.IsCurrentUsersReview ? "mine" : "";
+                <li class="@liClass">
+                    <div class="stars-rating">
+                        <div class="stars-current-result @userResultClass">
+                            <span class="star-1 a-star">@(review.Rating.UserRating > 0 ? T("*").ToString() : T("-").ToString())</span>
+                            <span class="star-2 a-star">@(review.Rating.UserRating > 1 ? T("*").ToString() : T("-").ToString())</span>
+                            <span class="star-3 a-star">@(review.Rating.UserRating > 2 ? T("*").ToString() : T("-").ToString())</span>
+                            <span class="star-4 a-star">@(review.Rating.UserRating > 3 ? T("*").ToString() : T("-").ToString())</span>
+                            <span class="star-5 a-star">@(review.Rating.UserRating > 4 ? T("*").ToString() : T("-").ToString())</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="review-username">@review.UserName</span><span class="review-timestamp">@review.CreatedUtc</span>
+                        <p class="review-comment">@review.Comment
+                        @if (review.IsCurrentUsersReview) {
+                            <a href="#" id="deleteReviewLink" data-review-id="@review.Id">Delete</a>
+                        }
+                        </p>
+                    </div>
+                </li>
+            }
+        </ul>
+        <div><a id="showAllReviewsLink" href="#" style="display: none">Show All</a></div>
+    </div>
+</fieldset>
+
+<div id="deleteReviewConfirmationDialogDiv" title="Confirm Deletion" style="display:none">
+    <p>@T("Are you sure you wish to delete your review? Your Rating will also be deleted.")</p>
+    @using (Html.BeginFormAntiForgeryPost(Url.Action("Delete", "Review", new { area = "Contrib.Reviews" }), FormMethod.Post, new { id = "deleteReviewForm" }))
+    {
+        <input type="hidden" id="reviewId" name="reviewId" />
+        <input type="hidden" id="returnUrl" name="returnUrl" value="@Context.Request.ToUrlString()" />
+        <input type="submit" value="Yes" />
+        <input type="button" value="No" id="cancelDeleteReviewButton" />
+    }
+</div>
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+    //<![CDATA[
+    (function () {
+        var numberOfReviewsToShowByDefault = 5;
+        var $showAllReviewsLink = $('#showAllReviewsLink');
+        var $deleteReviewConfirmationDialogDiv = $('#deleteReviewConfirmationDialogDiv');
+
+        $(function () {
+            $deleteReviewConfirmationDialogDiv.dialog({ autoOpen: false, modal: true, resizable: false });
+            $('#deleteReviewLink').click(function () {
+                $('#reviewId').val($(this).attr("data-review-id"));
+                ShowDeleteReviewDialog();
+                return false;
+            });
+            @if (Request.IsAuthenticated)
+            {
+            <text>$('#showReviewFormLink').click(function () {
+                $('#createReviewLinkDiv').slideToggle('fast', function () { $('#reviewFormDiv').slideToggle('fast'); });
+                return false;
+            });
+            $('#cancelCreateReviewLink').click(function () {
+                $('#reviewFormDiv').slideToggle('fast', function() { $('#createReviewLinkDiv').slideToggle('fast'); });
+                return false;
+            });</text>
+            }
+            $('#deleteReviewForm').submit(function () {
+                $('input[type=submit]', this).attr('disabled', 'disabled');
+            });
+            $('#cancelDeleteReviewButton').click(function () {
+                CloseConfirmationDialogDiv();
+                return false;
+            });
+            var rowCount = $('#reviewsList li').length;
+            if (rowCount > numberOfReviewsToShowByDefault) {
+                SetupToggle();
+            }
+
+            if (document.location.hash === '#Reviews') {
+                var topPx = $('#reviews-heading').position().top;
+                $('body,html').animate({ scrollTop: topPx }, 'slow');
+            }
+
+            if ($("#comment").length) {
+                var characterCountUpdater = new CharacterCountUpdater($("#comment"), $("#commentCharactersLeft"));
+                setInterval(function() { characterCountUpdater.UpdateCharacterCount(); }, 100);
+                $("#comment").keypress(function() { characterCountUpdater.UpdateCharacterCount(); });
+
+                if ($("#comment").val().length) {
+                    $("#showReviewFormLink").trigger("click");
+                }
+            }
+        });
+
+        function CharacterCountUpdater(commentBox, charactersLeftBox)
+        {
+            this.commentBox = commentBox;
+            this.charactersLeftBox = charactersLeftBox;
+            this.maxLength = commentBox.attr("maxlength");
+            commentBox.removeAttr("maxlength");
+            return this;
+        }
+
+        CharacterCountUpdater.prototype.UpdateCharacterCount = function() {
+            var remainingLength = this.maxLength - this.commentBox.val().length;
+            this.charactersLeftBox.text(remainingLength);
+            if (remainingLength < 0) {
+                this.charactersLeftBox.addClass("negative");
+                this.charactersLeftBox.css('color', 'red');
+            } else {
+                this.charactersLeftBox.removeClass("negative");
+                this.charactersLeftBox.css('color', 'black');
+            }
+        }
+
+        function ShowDeleteReviewDialog() {
+            $deleteReviewConfirmationDialogDiv.dialog('open');
+            return false;
+        }
+
+        function CloseConfirmationDialogDiv() {
+            $deleteReviewConfirmationDialogDiv.dialog('close');
+            return false;
+        }
+
+        function SetupToggle() {
+            var rowsToHide = $('#reviewsList li').slice(numberOfReviewsToShowByDefault);
+            rowsToHide.addClass('reviewHidden').hide();
+            $showAllReviewsLink.css('display', 'block');
+            $showAllReviewsLink.click(ToggleExtraReviewRows);
+        }
+
+        function ToggleExtraReviewRows() {
+            $newText = 'Show All';
+            $showAllReviewsLink.toggleClass('less');
+            if ($showAllReviewsLink.text() === $newText) {
+                $newText = 'Show Less';
+            }
+            $showAllReviewsLink.text($newText);
+            $('#reviewsList li.reviewHidden').toggle();
+            return false;
+        }
+    })();
+    //]]>
+    </script>
+}

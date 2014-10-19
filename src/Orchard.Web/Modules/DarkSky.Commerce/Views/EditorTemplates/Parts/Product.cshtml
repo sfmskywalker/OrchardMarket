@@ -1,0 +1,23 @@
+﻿@model DarkSky.Commerce.ViewModels.ProductViewModel
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.UnitPrice, T("Unit Price"))
+        @Html.TextBoxFor(m => m.UnitPrice, new { @class = "text small" })
+        @Html.ValidationMessageFor(m => m.UnitPrice, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Currency, T("Currency"))
+        @Html.TextBoxFor(m => m.Currency, new { @class = "text small" })
+        @Html.ValidationMessageFor(m => m.Currency, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.VatId, T("Vat"))
+        @Html.EditorFor(m => m.VatId)
+        @Html.ValidationMessageFor(m => m.VatId, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ImageUrl, T("Image Url"))
+        @Html.EditorFor(m => m.ImageUrl)
+        @Html.ValidationMessageFor(m => m.ImageUrl, "*")
+    </div>
+</fieldset>

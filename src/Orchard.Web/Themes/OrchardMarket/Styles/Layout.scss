@@ -5,6 +5,7 @@
 .center-layout {
 	width: 1000px;
 	margin: 0 auto 0 auto;
+    position: relative;
 }
 
 #site-header {
@@ -16,13 +17,13 @@
 	float:right;
 
 	.bg-wrapper {
-		background:url('../content/ui.png');
+		background:url('../content/images/ui.png');
 
 		&.left { background-position: left 0; }
 		&.right { background-position: right -42px; }
 	}
 	.navigation-wrapper {
-		background:url('../content/ui.png') 0 -84px;
+		background:url('../content/images/ui.png') 0 -84px;
 		margin: 0px 13px 0 13px;
 		padding: 5px 0 0 0;
 		height:37px;
@@ -50,7 +51,7 @@
 
 				.welcome { 
 					color:#818181; 
-					background:url('../content/ui.png') 0 -214px;
+					background:url('../content/images/ui.png') 0 -214px;
 					padding-left:27px;
 				}
 
@@ -93,13 +94,13 @@
 	margin:-4px 15px 0 0;
 
 	.bg-wrapper {
-		background:url('../content/ui.png');
+		background:url('../content/images/ui.png');
 
 		&.left { background-position: left -153px; }
 		&.right { background-position: right -126px; }
 	}
 	.navigation-wrapper {
-		background:#cdcdcd url('../content/ui.png') 0 -180px;
+		background:#cdcdcd url('../content/images/ui.png') 0 -180px;
 		margin: 0 11px 0 11px;
 
 		ul {
@@ -122,32 +123,46 @@
 			}
 		}
 	}
+
+	a.shoppingcart-menuitem {
+		span.item-count {
+			display:inline-block;
+			width:22px;
+			height:25px;
+			line-height:25px;
+			background:url('../content/images/sprites.png') -8px -381px no-repeat;
+			text-align: center;
+			color:#2a8038;
+			font-family: 'Segoe UI';
+			font-size: 0.923em;
+		}
+	}
 }
 
 #branding {
 	a.logo {
 		display:block;
 		width:202px;
-		height:60px;
+		height:70px;
 		position:absolute;
 		top:31px;
 		left:14px;
-		background:url('../content/sprites.png');
+		background:url('../content/images/sprites.png');
 	}
 }
 
 #site-content {
-	background:url('../content/content-bg.png') repeat-x;
+	background:url('../content/images/content-bg.png') repeat-x;
 	margin-top:40px;
 
 	.bg-wrapper {
 
-		&.left { background:url('../content/content-ui-left.png') no-repeat left 0; }
-		&.right { background:url('../content/content-ui-right.png') no-repeat right 0; }
+		&.left { background:url('../content/images/content-ui-left.png') no-repeat left 0; }
+		&.right { background:url('../content/images/content-ui-right.png') no-repeat right 0; }
 		&.center { 
 			margin:0 28px 0 11px;
 			padding:25px 0 0 0;
-			background:url('../content/content-ui-top.png') repeat-x; 
+			background:url('../content/images/content-ui-top.png') repeat-x; 
 		}
 	}
 
@@ -168,7 +183,7 @@
 			font-size:2.461em;
 			line-height:40px;
 			margin:0;
-			background:url('../content/sprites.png') 0 -222px no-repeat;
+			background:url('../content/images/sprites.png') 0 -222px no-repeat;
 			padding:0 0 0 50px;
 		}
 	}
@@ -210,7 +225,7 @@
 }
 
 #site-footer {
-	background:#2e2e2e url('../content/ui.png') center bottom repeat-x;
+	background:#2e2e2e url('../content/images/ui.png') center bottom repeat-x;
 	height:245px;
 	overflow: hidden;
 	margin-top:100px;
@@ -239,7 +254,7 @@
 					color:#969696;
 					font-size:1.077em;
 					display:block;
-					background:url('../content/bullets.png') no-repeat;
+					background:url('../content/images/bullets.png') no-repeat;
 					padding:0 0 0 13px;
 				}
 			}

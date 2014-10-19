@@ -1,0 +1,68 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.OrganizationViewModel
+@{
+    var logoUrl = !string.IsNullOrWhiteSpace(Model.LogoUrl) ? Model.LogoUrl : ViewBag.DefaultOrganizationLogoUrl;
+}
+<fieldset>
+    @Html.HiddenFor(m => m.Id)
+    <legend>@T("Organization Details")</legend>
+    @Html.ValidationSummary() 
+    <div class="group">
+        <div class="column column1">
+            <div class="field-editor">
+                @Html.LabelFor(m => m.Name, T("Name"))
+                @Html.TextBoxFor(m => m.Name, new { @class = "textMedium" })
+                @Html.ValidationMessageFor(m => m.Name, "*")
+            </div>
+            <div class="field-editor">
+                @Html.LabelFor(m => m.Description, T("Description"))
+                @Html.TextAreaFor(m => m.Description, new { @class = "textMedium" })
+                @Html.ValidationMessageFor(m => m.Description, "*")
+            </div>
+            <div class="field-editor">
+                @Html.LabelFor(m => m.IndustryBranch, T("Branch of Industry"))
+                @Html.TextBoxFor(m => m.IndustryBranch, new { @class = "textMedium" })
+                @Html.ValidationMessageFor(m => m.IndustryBranch, "*")
+            </div>
+            <div class="field-editor">
+                <div class="logo-wrapper">
+                    <img src="@Url.Content(logoUrl)" alt=""/>
+                </div>
+            </div>
+            <div class="field-editor">
+                <label for="logo">@T("To change your logo, choose a new file")</label>
+                <input type="file" name="logo"/>
+            </div>
+        </div>
+        <div class="column column2">
+            <div class="field-editor">
+                @Html.LabelFor(m => m.Address.AddressLine1, T("Address Line 1"))
+                @Html.TextBoxFor(m => m.Address.AddressLine1, new { @class = "textMedium" })
+                @Html.ValidationMessageFor(m => m.Address.AddressLine1, "*")
+            </div>
+            <div class="field-editor">
+                @Html.LabelFor(m => m.Address.AddressLine2, T("Address Line 2"))
+                @Html.TextBoxFor(m => m.Address.AddressLine2, new { @class = "textMedium" })
+                @Html.ValidationMessageFor(m => m.Address.AddressLine2, "*")
+            </div>
+            <div class="field-editor">
+                @Html.LabelFor(m => m.Address.Zipcode, T("Zipcode"))
+                @Html.TextBoxFor(m => m.Address.Zipcode, new { @class = "textMedium" })
+                @Html.ValidationMessageFor(m => m.Address.Zipcode, "*")
+            </div>
+            <div class="field-editor">
+                @Html.LabelFor(m => m.Address.City, T("City"))
+                @Html.TextBoxFor(m => m.Address.City, new { @class = "textMedium" })
+                @Html.ValidationMessageFor(m => m.Address.City, "*")
+            </div>
+            <div class="field-editor">
+                @Html.LabelFor(m => m.Address.CountryId, T("Country"))
+                @Html.EditorFor(m => m.Address.CountryId)
+                @Html.ValidationMessageFor(m => m.Address.CountryId, "*")
+            </div>
+        </div>
+    </div>
+    <div class="commands">
+        <a class="button submit" href="#">Save</a>
+        <a class="button" href="@Url.Action("Index", "Organization")">Cancel</a>
+    </div>
+</fieldset>

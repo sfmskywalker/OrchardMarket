@@ -1,0 +1,15 @@
+﻿@{
+    var package = Model.ContentPart;
+    var logoUrl = !string.IsNullOrWhiteSpace((string)Model.LogoUrl) ? (string)Model.LogoUrl : "~/Modules/DarkSky.OrchardMarket/Content/default-package-logo.png";
+}
+<div class="package-details">
+    <fieldset>
+	    <legend>@package.Name</legend>
+        
+        <div class="group">
+            <div class="logo-wrapper">
+                <img src="@Url.Content(logoUrl)" alt=""/>
+            </div>
+        </div>
+    </fieldset>
+</div>

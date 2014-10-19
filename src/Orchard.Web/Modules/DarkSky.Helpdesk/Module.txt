@@ -1,0 +1,11 @@
+﻿Name: DarkSky Helpdesk
+AntiForgery: enabled
+Author: DarkSky Development / Sipke Schoorstra
+Website: https://darkskyhelpdesk.codeplex.com/
+Version: 1.0
+OrchardVersion: 1.6
+Description: Turns your Orchard application into a fully fledged Helpdesk system
+Features:
+    DarkSky.Helpdesk:
+        Description: Provides core services and objects required for any Helpdesk system.
+		Dependencies: Orchard.Comments

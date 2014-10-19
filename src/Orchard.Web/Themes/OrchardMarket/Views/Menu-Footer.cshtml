@@ -1,0 +1,17 @@
+﻿@{
+    var tag = Tag(Model, "ul");
+    var mainItems = (IList<dynamic>)Enumerable.Cast<dynamic>(Model.Items);
+}
+<nav class="group">
+    @foreach (var mainItem in mainItems) {
+        var subItems = (IList<dynamic>)Enumerable.Cast<dynamic>(mainItem.Items);
+        <div class="column">
+            <h3>@mainItem.Text</h3>
+            <ul>
+                @foreach (var subItem in subItems) {
+                @Display(subItem)               
+                }
+            </ul>
+        </div>
+    }
+</nav>

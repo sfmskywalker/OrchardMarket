@@ -1,6 +1,6 @@
-Name: Orchard Market
+Name: Orchard Market Theme
 Author: DarkSky Development
 Website: http://darkskydevelopment.net
 Description: Custom theme for Orchard Market
 Version: 1.6
-Zones: Navigation, BeforeContent, TitleZone, Content, ContentHeader, AsideFirst, AfterContent, TripleFirst, TripleSecond, TripleThird, FooterQuadFirst, FooterQuadSecond, FooterQuadThird, FooterQuadFourth
+Zones: Navigation, BeforeContent, TitleZone, Content, ContentHeader, AsideFirst, AfterContent, TripleFirst, TripleSecond, TripleThird, FooterQuadFirst, FooterQuadSecond, FooterQuadThird, FooterQuadFourth, Footer

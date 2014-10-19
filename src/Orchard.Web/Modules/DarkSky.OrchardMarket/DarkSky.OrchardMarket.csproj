@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -25,6 +26,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,7 +50,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr4.StringTemplate">
+      <HintPath>Lib\Antlr4.StringTemplate.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NuGet.Core, Version=1.6.30117.9648, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\nuget\NuGet.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -72,14 +81,70 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\account.signupbanner.png" />
+    <Content Include="Content\default-package-logo.png" />
     <Content Include="Content\logo-placeholder.png" />
     <Content Include="Content\module-icon.png" />
+    <Content Include="Content\organization-logo-placeholder.png" />
     <Content Include="Content\rating.png" />
+    <Content Include="EmailTemplates\Invitation.html" />
+    <Content Include="EmailTemplates\JoinConfirmation.html" />
+    <Content Include="EmailTemplates\JoinRequest.html" />
+    <Content Include="Recipes\orchardmarket.recipe.xml" />
+    <Content Include="Scripts\AddUser.js" />
+    <Content Include="Scripts\AddUser.min.js" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\Common.min.js">
+      <DependentUpon>Common.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\JoinOrganization.js" />
+    <Content Include="Scripts\JoinOrganization.min.js" />
     <Content Include="Styles\Account.css">
       <DependentUpon>Account.scss</DependentUpon>
     </Content>
     <Content Include="Styles\Account.min.css">
       <DependentUpon>Account.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Editors.css">
+      <DependentUpon>Editors.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Editors.min.css">
+      <DependentUpon>Editors.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Organization.css">
+      <DependentUpon>Organization.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Organization.min.css">
+      <DependentUpon>Organization.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Packages.css">
+      <DependentUpon>Packages.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Packages.min.css">
+      <DependentUpon>Packages.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\PayoutOptions.css">
+      <DependentUpon>PayoutOptions.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\PayoutOptions.min.css">
+      <DependentUpon>PayoutOptions.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Profile.css">
+      <DependentUpon>Profile.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Profile.min.css">
+      <DependentUpon>Profile.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Sales.css">
+      <DependentUpon>Sales.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Sales.min.css">
+      <DependentUpon>Sales.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Team.css">
+      <DependentUpon>Team.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Team.min.css">
+      <DependentUpon>Team.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
@@ -97,15 +162,151 @@
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Contrib.Reviews\Contrib.Reviews.csproj">
+      <Project>{f72680eb-12ee-482f-93c8-2f1279e2b710}</Project>
+      <Name>Contrib.Reviews</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contrib.Voting\Contrib.Voting.csproj">
+      <Project>{4da5f35f-e62c-4b49-b5a8-379503257b3a}</Project>
+      <Name>Contrib.Voting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DarkSky.Commerce\DarkSky.Commerce.csproj">
       <Project>{aed5b54e-d0a9-48ad-8f29-03059ea555bc}</Project>
       <Name>DarkSky.Commerce</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DarkSky.Helpdesk\DarkSky.Helpdesk.csproj">
+      <Project>{eb596e5f-e7a6-406c-85a3-454a68ac6d2f}</Project>
+      <Name>DarkSky.Helpdesk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Email\Orchard.Email.csproj">
+      <Project>{05660f47-d649-48bd-9ded-df4e01e7cff9}</Project>
+      <Name>Orchard.Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Forms\Orchard.Forms.csproj">
+      <Project>{642a49d7-8752-4177-80d6-bfbbcfad3de0}</Project>
+      <Name>Orchard.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Projections\Orchard.Projections.csproj">
+      <Project>{5531e894-d259-45a3-aa61-26dbe720c1ce}</Project>
+      <Name>Orchard.Projections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Roles\Orchard.Roles.csproj">
+      <Project>{d10ad48f-407d-4db5-a328-173ec7cb010f}</Project>
+      <Name>Orchard.Roles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Taxonomies\Orchard.Taxonomies.csproj">
+      <Project>{e649ea64-d213-461b-87f7-d67035801443}</Project>
+      <Name>Orchard.Taxonomies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Tokens\Orchard.Tokens.csproj">
+      <Project>{6f759635-13d7-4e94-bcc9-80445d63f117}</Project>
+      <Name>Orchard.Tokens</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
+      <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
+      <Name>Orchard.Users</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ContentCommands.cs" />
+    <Compile Include="Commands\CountryCommands.cs" />
+    <Compile Include="Commands\TaxonomyCommands.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BrowseController.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\PackageReleaseController.cs" />
+    <Compile Include="Controllers\PayoutOptionController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Drivers\AddressPartDriver.cs" />
+    <Compile Include="Drivers\FundedOrderPartDriver.cs" />
+    <Compile Include="Drivers\PackagePartDriver.cs" />
+    <Compile Include="Drivers\PackageReleasePartDriver.cs" />
+    <Compile Include="Drivers\TeamPartDriver.cs" />
+    <Compile Include="Drivers\UserProfilePartDriver.cs" />
+    <Compile Include="Filters\DefaultLogoFilter.cs" />
+    <Compile Include="Handlers\AddressPartHandler.cs" />
+    <Compile Include="Handlers\FundedOrderPartHandler.cs" />
+    <Compile Include="Handlers\GallerySettingsPartHandler.cs" />
+    <Compile Include="Handlers\InvoiceEventHandler.cs" />
+    <Compile Include="Handlers\MarketSettingsPartHandler.cs" />
+    <Compile Include="Handlers\OrganizationPartHandler.cs" />
+    <Compile Include="Handlers\PackagePartHandler.cs" />
+    <Compile Include="Handlers\PackageReleasePartHandler.cs" />
+    <Compile Include="Handlers\SupportTicketHandler.cs" />
+    <Compile Include="Handlers\UserEventHandler.cs" />
+    <Compile Include="Handlers\UserProfilePartHandler.cs" />
+    <Compile Include="Helpers\CurrencyHtmlHelpers.cs" />
+    <Compile Include="Helpers\PercentageHtmlHelpers.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Migrations\CommunityMigrations.cs" />
+    <Compile Include="Migrations\GalleryMigrations.cs" />
+    <Compile Include="Migrations\SiteWidgetsMigrations.cs" />
+    <Compile Include="Models\AddressPart.cs" />
+    <Compile Include="Models\Channels.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\ExtensionPartRecord.cs" />
     <Compile Include="Models\ExtensionReleasePartRecord.cs" />
+    <Compile Include="Models\FindPackagesArgs.cs" />
+    <Compile Include="Models\FundedOrderPart.cs" />
+    <Compile Include="Models\GallerySettingsPart.cs" />
+    <Compile Include="Models\Invitation.cs" />
+    <Compile Include="Models\JoinRequest.cs" />
+    <Compile Include="Models\MarketSettingsPart.cs" />
+    <Compile Include="Models\MessageTemplates.cs" />
+    <Compile Include="Models\OrganizationPart.cs" />
+    <Compile Include="Models\PackageCatalogPart.cs" />
+    <Compile Include="Models\PackageManifest.cs" />
+    <Compile Include="Models\PackagePart.cs" />
+    <Compile Include="Models\PackageReleasePart.cs" />
+    <Compile Include="Models\PackageSortKey.cs" />
+    <Compile Include="Models\PayoutOption.cs" />
+    <Compile Include="Models\Revenue.cs" />
+    <Compile Include="Models\SortOrder.cs" />
+    <Compile Include="Models\UserOrganization.cs" />
+    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\VersionRange.cs" />
+    <Compile Include="ModuleInfo.cs" />
+    <Compile Include="Permissions.cs" />
+    <Compile Include="Providers\Packaging\IPackageParser.cs" />
+    <Compile Include="Providers\Packaging\NugetPackageParser.cs" />
+    <Compile Include="Providers\Projections\FilterEditors\ExtensionTypeFilterEditor.cs" />
+    <Compile Include="Providers\Projections\FilterEditors\Forms\ExtensionTypeFilterForm.cs" />
+    <Compile Include="Providers\Projections\Filters\RoutedTermFilter.cs" />
+    <Compile Include="Providers\Projections\Filters\RoutedTermFilterForms.cs" />
+    <Compile Include="Providers\Tokens\PackageTokens.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="Routes.cs" />
+    <Compile Include="Security\PackageAuthorizationEventHandler.cs" />
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\EmailTemplateService.cs" />
+    <Compile Include="Services\FileSystemPackageStorageProvider.cs" />
+    <Compile Include="Services\IPackageStorageProvider.cs" />
+    <Compile Include="Services\OrganizationService.cs" />
+    <Compile Include="Services\PackageServices.cs" />
+    <Compile Include="Services\PayoutMethod.cs" />
+    <Compile Include="Services\PayoutService.cs" />
+    <Compile Include="Services\PayPalPayoutMethod.cs" />
+    <Compile Include="Services\RevenueService.cs" />
+    <Compile Include="Services\UserProfileManager.cs" />
+    <Compile Include="Shapes\EditorShapes.cs" />
+    <Compile Include="Shapes\TaxonomyMenuShapes.cs" />
+    <Compile Include="Shapes\UserNavigation.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\AddPayoutOptionViewModel.cs" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
+    <Compile Include="ViewModels\AddUserToOrganizationViewModel.cs" />
+    <Compile Include="ViewModels\CreatePackageViewModel.cs" />
+    <Compile Include="ViewModels\EditPayoutOptionViewModel.cs" />
+    <Compile Include="ViewModels\JoinOrganizationViewModel.cs" />
+    <Compile Include="ViewModels\OrganizationViewModel.cs" />
+    <Compile Include="ViewModels\PackageViewModel.cs" />
+    <Compile Include="ViewModels\PackageViewModelAdmin.cs" />
+    <Compile Include="ViewModels\PayPalPayoutMethodViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="Migrations\MarketMigrations.cs" />
     <Compile Include="Models\ExtensionPart.cs" />
@@ -133,7 +334,9 @@
     <Content Include="Styles\Account.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Handlers\" />
+    <Content Include="Styles\Team.css.map">
+      <DependentUpon>Team.css</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account.SubMenu.cshtml">
@@ -149,11 +352,126 @@
   <ItemGroup>
     <Content Include="Views\EditorTemplates\Parts\ExtensionsCatalog.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmailTemplates\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Common.min.js.map">
+      <DependentUpon>Common.min.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\Editors.scss" />
+    <Content Include="Styles\Organization.scss" />
+    <Content Include="Styles\Packages.scss" />
+    <Content Include="Styles\PayoutOptions.scss" />
+    <Content Include="Styles\Profile.scss" />
+    <Content Include="Styles\Sales.scss" />
+    <Content Include="Styles\Team.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\Editors.css.map">
+      <DependentUpon>Editors.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\Organization.css.map">
+      <DependentUpon>Organization.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\Packages.css.map">
+      <DependentUpon>Packages.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\PayoutOptions.css.map">
+      <DependentUpon>PayoutOptions.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\Profile.css.map">
+      <DependentUpon>Profile.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\Sales.css.map">
+      <DependentUpon>Sales.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\Account.css.map">
+      <DependentUpon>Account.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Browse\Browse.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Browse.Controls.cshtml" />
+    <Content Include="Views\Browse.Search.cshtml" />
+    <Content Include="Views\Browse.Sort.cshtml" />
+    <Content Include="Views\Editor.CategoriesCheckList.cshtml" />
+    <Content Include="Views\Editor.CountryDropDownList.cshtml" />
+    <Content Include="Views\Editor.OrganizationDropDownList.cshtml" />
+    <Content Include="Views\Editor.PayoutMethodPicker.cshtml" />
+    <Content Include="Views\EditorTemplates\Categories.cshtml" />
+    <Content Include="Views\EditorTemplates\Country.cshtml" />
+    <Content Include="Views\EditorTemplates\OrganizationPicker.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\Account.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\Address.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\GallerySettings.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\MarketSettings.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\Package.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\UserProfile.cshtml" />
+    <Content Include="Views\EditorTemplates\PayoutMethodPicker.cshtml" />
+    <Content Include="Views\EditorTemplates\YesNo.cshtml" />
+    <Content Include="Views\Organization\AcceptInvitation.cshtml" />
+    <Content Include="Views\Organization\AcceptRequest.cshtml" />
+    <Content Include="Views\Organization\AddUser.cshtml" />
+    <Content Include="Views\Organization\Create.cshtml" />
+    <Content Include="Views\Organization\Details.cshtml" />
+    <Content Include="Views\Organization\Edit.cshtml" />
+    <Content Include="Views\Organization\EditorTemplates\OrganizationViewModel.cshtml" />
+    <Content Include="Views\Organization\Index.cshtml" />
+    <Content Include="Views\Organization\InvitationAlreadyAccepted.cshtml" />
+    <Content Include="Views\Organization\Join.cshtml" />
+    <Content Include="Views\Organization\RequestAlreadyAccepted.cshtml" />
+    <Content Include="Views\Organization\Users.cshtml" />
+    <Content Include="Views\PackageCategories.cshtml" />
+    <Content Include="Views\PackageTags.cshtml" />
+    <Content Include="Views\Package\AddRelease.cshtml" />
+    <Content Include="Views\Package\Create.cshtml" />
+    <Content Include="Views\Package\Details.cshtml" />
+    <Content Include="Views\Package\Edit.cshtml" />
+    <Content Include="Views\Package\Index.cshtml" />
+    <Content Include="Views\Package\OrganizationRequired.cshtml" />
+    <Content Include="Views\Parts\ExtensionsCatalog - Copy.cshtml" />
+    <Content Include="Views\Parts\Package.cshtml" />
+    <Content Include="Views\Parts\Package.Summary.cshtml" />
+    <Content Include="Views\PayoutEditor.Default.cshtml" />
+    <Content Include="Views\PayoutEditor.PayPal.cshtml" />
+    <Content Include="Views\PayoutOption\Add.cshtml" />
+    <Content Include="Views\PayoutOption\Edit.cshtml" />
+    <Content Include="Views\PayoutOption\Index.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Purchase\Index.cshtml" />
+    <Content Include="Views\Rating.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lib\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

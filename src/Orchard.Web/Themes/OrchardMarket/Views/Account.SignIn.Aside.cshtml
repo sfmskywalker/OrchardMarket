@@ -1,0 +1,6 @@
+﻿@using DarkSky.OrchardMarket
+<div><img src="@Url.Content(string.Format("~/Modules/{0}/Content/account.signupbanner.png", ModuleInfo.ModuleName))" alt="" /></div>
+<p>
+	Don't have an account yet?<br />
+    @Html.ActionLink(T("Register today").Text, "Register", "Account", new { area = "Orchard.Users" }, null) and contribute.
+</p>

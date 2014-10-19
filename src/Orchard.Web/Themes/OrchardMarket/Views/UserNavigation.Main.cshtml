@@ -1,0 +1,17 @@
+﻿@using DarkSky.OrchardMarket
+@{
+    var isAuthenticated = (bool)Model.IsAuthenticated;
+    var user = Model.CurrentUser;
+}
+<div class="user-navigation">
+    <ul class="group">
+        @if(isAuthenticated) {
+            <li>@Html.ActionLink(T("Logoff").Text, "LogOff", "Account", new { area = "Orchard.Users" }, null)</li>
+            <li><a href="@Url.Action("Index", "Account", new { area = ModuleInfo.ModuleName })" class="welcome">Welcome <span class="username">@user.UserName</span></a></li>
+        }
+        else {
+            <li>@Html.ActionLink(T("Register").Text, "Register", "Account", new { area = "Orchard.Users" }, null)</li>
+            <li>@Html.ActionLink(T("Logon").Text, "LogOn", "Account", new { area = "Orchard.Users" }, null)</li>
+        }
+    </ul>
+</div>

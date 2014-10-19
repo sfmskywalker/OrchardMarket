@@ -1,18 +1,19 @@
-﻿@{
+﻿@using DarkSky.OrchardMarket.Models
+@{
     Style.Include("Home.min.css");
 }
 <article id="search-signup" class="group">
     <div class="column search">
         <h2><span class="strong">Find</span> Modules and Themes</h2>
-        <form method="GET" action="#">
-            <div class="search-wrapper">
-                <input type="text" />
-                <a href="#" class="search-button"></a>
-            </div>
-        </form>
+        @using(Html.BeginForm("Index", "Browse", new { ExtensionType = ExtensionType.Module, area = "DarkSky.OrchardMarket" }, FormMethod.Get)){
+        <div class="search-wrapper">
+            <input type="text" name="keyword" />
+            <a href="#" class="search-button submit"></a>
+        </div>
+        }
     </div>
     <div class="column signup">
         <h2><span class="strong">Sell</span> Modules and Themes</h2>
-        <a href="#" class="button-big">Create Account</a>
+        <a href="@Url.Action("Register", "Account", new { area = "Orchard.Users" })" class="button-big">@T("Create Account")</a>
     </div>
 </article>

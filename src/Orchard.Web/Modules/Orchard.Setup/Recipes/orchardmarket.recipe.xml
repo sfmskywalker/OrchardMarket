@@ -1,0 +1,45 @@
+﻿<?xml version="1.0"?>
+<Orchard>
+  <Recipe>
+    <Name>ORchard Market</Name>
+    <Description>The Orchard Market recipe to setup a full-blown Orchard Market site that includes pages, modules, themes, e-commerce, comments, tags, widgets and basic navigation.</Description>
+    <Author>IDeliverable</Author>
+    <WebSite>http://orchardmarket.net</WebSite>
+    <Tags></Tags>
+    <Version>1.0</Version>
+  </Recipe>
+
+  <Feature enable="Orchard.Comments,Orchard.Tags,Orchard.Alias,Orchard.Autoroute,
+                   TinyMce,Orchard.MediaLibrary,Orchard.ContentPicker,Orchard.PublishLater,
+                   Orchard.jQuery,Orchard.Widgets,Orchard.ContentTypes,
+                   Orchard.Scripting,Orchard.Scripting.Lightweight,PackagingServices,Orchard.Packaging,
+                   Orchard.Projections,Orchard.Fields,Orchard.OutputCache,Orchard.Taxonomies,Orchard.Workflows,
+                   Orchard.Taxonomies,
+                   DarkSky.Commerce, DarkSky.OrchardMarket,
+                   OrchardMarket" />
+
+  <Metadata>
+    <Types>
+      <Page ContentTypeSettings.Draftable="True" TypeIndexing.Indexes="Search">
+        <TagsPart />
+        <LocalizationPart />
+        <TitlePart/>
+        <AutoroutePart />
+        <MenuPart />
+      </Page>
+    </Types>
+    <Parts>
+      <BodyPart BodyPartSettings.FlavorDefault="html" />
+    </Parts>
+  </Metadata>
+
+  <Settings />
+
+  <Migration features="*" />
+
+  <Command>
+    site setting set baseurl
+    menu create /MenuName:"Main Menu"
+    theme activate "Orchard Market"
+  </Command>
+</Orchard>

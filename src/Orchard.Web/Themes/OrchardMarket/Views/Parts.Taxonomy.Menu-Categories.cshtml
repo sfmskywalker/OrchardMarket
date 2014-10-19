@@ -1,0 +1,38 @@
+﻿@using Contrib.Taxonomies.Models;
+@using Contrib.Taxonomies.Helpers;
+
+@{
+    var level=0;
+    var firstLevel = -1;
+    var categoryName = ((string) Request.RequestContext.RouteData.Values["category"]).Slugify();
+    var extensionType = ((string)Request.RequestContext.RouteData.Values["extensionType"]) ?? "Module";
+}
+
+<div class="taxonomy-menu">
+    <ul class="terms">
+        <li>@Html.ActionLink(T("All Categories").ToString(), "Index", "Browse", new { extensionType, area = "DarkSky.OrchardMarket" }, null)</li>
+	@foreach (TermPart term in Model.Terms) {
+     var currentClass = string.Equals(term.Name, categoryName, StringComparison.OrdinalIgnoreCase) ? "current" : null;
+     if(firstLevel == -1){
+         firstLevel = term.GetLevels();
+     }
+     var text = term.Name + T(" ({0})", term.Count).Text;
+		if(term.GetLevels() - firstLevel > level) {
+			level++;
+			@:<ul class="terms">
+		}
+		    @:</li>
+		
+		if(term.GetLevels() - firstLevel < level) {
+			level--;
+			@:</ul>
+		}
+
+		@:<li class="@currentClass">
+			@Html.ActionLink(text, "Index", "Browse", new { category = term.Name, extensionType, area = "DarkSky.OrchardMarket" }, null)
+ }
+	@for (var i = 0; i < level; i++) {
+	@:</ul>
+	}
+</ul>
+</div>

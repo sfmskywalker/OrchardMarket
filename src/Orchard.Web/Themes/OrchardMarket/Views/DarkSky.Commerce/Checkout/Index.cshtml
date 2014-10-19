@@ -1,0 +1,103 @@
+﻿@using DarkSky.Commerce.ViewModels
+@using DarkSky.OrchardMarket.Models
+@using Orchard.ContentManagement
+@using Orchard.Security
+@{
+    Style.Include("Checkout.min.css");
+    Style.Include("Checkout.min.css");
+    Script.Require("jQuery");
+    Script.Include("Checkout.js");
+    Layout.Title = T("Checkout");
+    Layout.TitleZone.Add(New.Content_Title());
+    
+    var items = (IList<dynamic>)Model.Items;
+    var profile = ((IUser) Model.User).As<UserProfilePart>();
+    var viewModel = (CheckoutViewModel) Model.ViewModel;
+    var vatRates = items.Select(x => (float) x.Vat.Rate).Distinct();
+}
+<div class="checkout-layout">
+    @Html.ValidationSummary()
+    <fieldset class="cart">
+        <legend>@T("Shopping Cart")</legend>
+        <table>
+            <thead>
+                <tr>
+                    <th>@T("Product")</th>
+                    <th>@T("Delivery Method")</th>
+                    <th>@T("Quantity")</th>
+                    <th>@T("Unit Price")</th>
+                    <th>@T("Total")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in items) {
+                    <tr>
+                        <td>@item.DisplayText</td>
+                        <td>@T("Download")</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.UnitPrice.ToString("c")</td>
+                        <td>@item.Totals.SubTotal.ToString("c")</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">@Html.ActionLink(T("Change").Text, "Index", "ShoppingCart", null, new { @class = "button" })</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>@T("Total products ({0})", 3)</td>
+                    <td></td>
+                    <td>@Model.Totals.SubTotal.ToString("c")</td>
+                </tr>
+                @foreach (var vatRate in vatRates) {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>@T("Vat ({0}%)", vatRate*100)</td>
+                        <td></td>
+                        <td>@((Model.Totals.SubTotal*(decimal)vatRate).ToString("c"))</td>
+                    </tr>
+                }
+                <tr class="total">
+                    <td colspan="2"></td>
+                    <td class="divider">@T("Total")</td>
+                    <td class="divider"></td>
+                    <td class="divider">@Model.Totals.Total.ToString("c")</td>
+                </tr>
+            </tfoot>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>@T("Personal Details")</legend>
+        <ul class="lines">
+            <li>@profile.FullName()</li>
+            <li>@profile.Address.AddressLine1</li>
+            @if (!string.IsNullOrWhiteSpace(profile.Address.AddressLine2)) {
+                <li>@profile.Address.AddressLine2</li>
+            }
+            <li>@profile.Address.Zipcode @profile.Address.City</li>
+            @if (!string.IsNullOrWhiteSpace(profile.Address.Country.Name)) {
+                <li>@profile.Address.Country.Name</li>
+            }
+        </ul>
+        @Html.ActionLink(T("Edit Details").Text, "Edit", "Profile", new { area = "DarkSky.OrchardMarket", returnUrl = Request.Path }, new { @class = "button" })
+    </fieldset>
+    <fieldset>
+        <legend>@T("Payment Method")</legend>
+        @using(Html.BeginFormAntiForgeryPost()) {
+            <div id="paymentProvidersGroup" class="group">
+                <div class="payment-providers">
+                    @Html.EditorFor(m => viewModel.CheckoutProvider)
+                </div>
+                <div class="payment-provider-logo-wrapper">
+                    @foreach(var paymentProvider in Model.PaymentProviders) {
+                        <div data-provider-id="@paymentProvider.Identity" data-provider-name="@paymentProvider.DisplayName" class="payment-provider-logo">
+                            @Display(paymentProvider.CheckoutButton)
+                        </div>
+                    }
+                </div>
+            </div>
+            <a id="checkoutButton" class="button submit" href="#">@T("Continue to Checkout")</a>
+        }
+    </fieldset>
+</div>

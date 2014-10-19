@@ -1,0 +1,19 @@
+﻿@using DarkSky.Commerce.Services
+@using DarkSky.OrchardMarket
+@{
+    var isAuthenticated = (bool)Model.IsAuthenticated;
+    var shoppingCart = (IShoppingCart) ViewBag.ShoppingCart;
+}
+<ul class="group">
+    @if(isAuthenticated) {
+        <li><a href="@Url.Action("Index", "Account", new { area = ModuleInfo.ModuleName })">My Account</a></li>
+    }
+    @if (shoppingCart != null) {
+        <li>
+            <a class="shoppingcart-menuitem" href="@Url.Action("Index", "ShoppingCart", new { area = "DarkSky.Commerce" })">
+                <span class="item-count">@shoppingCart.Items.Count()</span>
+                @T("Shopping Cart")
+            </a>
+        </li>
+    }
+</ul>

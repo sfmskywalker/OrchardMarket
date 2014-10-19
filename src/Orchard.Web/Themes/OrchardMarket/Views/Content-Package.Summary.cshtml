@@ -1,0 +1,37 @@
+﻿@using DarkSky.Commerce.Helpers
+@using DarkSky.Commerce.Models
+@using DarkSky.OrchardMarket.Models
+@using Orchard.ContentManagement
+@{
+    var contentItem = Model.ContentItem;
+    var packagePart = contentItem.PackagePart;
+    var profilePart = packagePart.User.UserProfilePart;
+    var productPart = contentItem.ProductPart;
+    var organization = packagePart.Organization;
+    var logoUrl = !string.IsNullOrWhiteSpace(packagePart.LogoUrl) ? packagePart.LogoUrl : ViewBag.DefaultModuleLogoUrlSmall;
+    var itemDisplayUrl = Url.ItemDisplayUrl((IContent) contentItem);
+    var tags = packagePart.Tags;
+    var categories = packagePart.Categories;
+}
+<div class="logo-wrapper">
+	<a href="@itemDisplayUrl"><img src="@Url.Content(logoUrl)" alt="@packagePart.DisplayName" /></a>
+</div>
+<div class="summary-wrapper">
+	<h1><a href="@itemDisplayUrl">@packagePart.DisplayName</a></h1>
+	<h2>By <a href="#">@organization.Name</a></h2>
+	<p>@packagePart.Description</p>
+    <a class="more" href="@Url.ItemDisplayUrl((IContent)contentItem)">@T("Read more")</a>
+    <div class="categories">
+        @T("Categories:")
+        @Display.PackageCategories(Categories: categories, ExtensionType: packagePart.ExtensionType)
+    </div>
+    <div class="tags">
+		@T("Tags:")
+		@Display.PackageTags(Tags: tags, ExtensionType: packagePart.ExtensionType)
+	</div>
+</div>
+<div class="product-details-wrapper group">
+	<div class="price">@Html.Price((decimal)productPart.UnitPrice)</div>
+    <div class="clear"></div>
+    <a class="add-button" href="@Url.AddCart((IProductAspect)contentItem.ProductPart)">@T("Add to Cart")</a>
+</div>

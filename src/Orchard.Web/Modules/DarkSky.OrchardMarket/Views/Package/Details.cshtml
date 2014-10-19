@@ -1,0 +1,100 @@
+﻿@using Contrib.Taxonomies.Models
+@{
+	Style.Include("Packages.min.css");
+	Layout.Title = T("Package Details");
+    Layout.TitleZone.Add(New.Content_Title());
+
+    var package = Model.Package;
+    var content = package.ContentItem;
+    var product = content.ProductPart;
+    var tags = (IList<TermPart>)Model.Tags;
+    var logoUrl = !string.IsNullOrWhiteSpace((string)Model.LogoUrl) ? (string)Model.LogoUrl : "~/Modules/DarkSky.OrchardMarket/Content/default-package-logo.png";
+    var rating = Model.Rating;
+    var averageRating = Math.Round(rating.Value, MidpointRounding.AwayFromZero);   
+}
+<div class="package-details">
+    <fieldset>
+	    <legend>@package.Name</legend>
+        
+        <div class="group">
+            <p class="description">@package.Description</p>
+            <div class="logo-wrapper">
+                <img src="@Url.Content(logoUrl)" alt=""/>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+	    <legend>Details and Statistics</legend>
+        <div class="field-editor single-line">
+            <label>Rating</label>
+            <div class="value">
+                @Display.Rating(Rating: averageRating)
+            </div>
+        </div>
+        <div class="field-editor single-line">
+            <label>Tags</label>
+            <div class="value">
+                @Display.PackageTags(Tags: tags)
+            </div>
+        </div>
+        <div class="field-editor single-line">
+		    <label>Price</label>
+            <div class="value">@Html.Price((decimal)product.UnitPrice)</div>
+	    </div>
+	    <div class="field-editor single-line">
+		    <label>Total Sales</label>
+		    <div class="value">@product.Sales</div>
+	    </div>
+	    <div class="field-editor single-line">
+		    <label>Package ID</label>
+		    <div class="value">1234-5678-1023-4567</div>
+	    </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Releases</legend>
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Sold</th>
+                        <th>Created</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var release in Model.Releases) {
+                        var isPublished = release.IsPublished();
+                        var iconCss = isPublished ? "published" : "unpublished";
+                        <tr>
+                            <td><span class="icon @iconCss">@release.Version</span></td>
+                            <td><a href="#">@release.Sales</a></td>
+                            <td>@release.CreatedUtc</td>
+                            <td>
+                                @if(isPublished) {
+                                    @Html.ActionLink("Unpublish", "Unpublish", "PackageRelease", new { id = release.Id }, new { @class = "button" })
+                                }
+                                else {
+                                    @Html.ActionLink("Publish", "Publish", "PackageRelease", new { id = release.Id }, new { @class = "button" })
+                                }
+                                @Html.ActionLink("Delete", "Delete", "PackageRelease", new { id = release.Id }, new { @class = "button" })
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="5">
+                            @Html.ActionLink(T("Add Release").Text, "AddRelease", new { id = Model.Package.Id }, new { @class = "add-button" })
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    
+    <div class="commands">
+        @Html.ActionLink(T("Edit").Text, "Edit", new { id = (int)package.Id }, new { @class = "button" })
+        @Html.ActionLink(T("Back").Text, "Index", null, new { @class = "button" })
+    </div>
+</div>

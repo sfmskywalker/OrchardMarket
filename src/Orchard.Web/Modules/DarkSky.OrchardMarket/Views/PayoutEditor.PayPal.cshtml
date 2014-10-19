@@ -1,0 +1,8 @@
+﻿@using DarkSky.OrchardMarket.ViewModels
+@{
+    var model = (PayPalPayoutMethodViewModel)Model.Model;
+}
+<div class="field-editor">
+	@Html.LabelFor(m => model.Email, T("PayPal Email"))
+    @Html.TextBoxFor(m => model.Email, new { @class = "textMedium" })
+</div>

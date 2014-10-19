@@ -1,0 +1,32 @@
+﻿@{
+    var invoices = (IList<dynamic>)Model.Invoices;
+}
+<h1>Order completed</h1>
+
+@foreach (var invoice in invoices) {
+    <fieldset>
+        <legend>@T("Invoice {0}", invoice.Id)</legend>
+        <div class="table-2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>@T("Item")</th>
+                        <th>@T("Unit Price")</th>
+                        <th>@T("Quantity")</th>
+                        <th>@T("Total")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in invoice.Details) {
+                    <tr>
+                        <td>@item.Description</td>
+                        <td>@item.UnitPrice.ToString("c")</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Total.ToString("c")</td>
+                    </tr>    
+                    }
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+}

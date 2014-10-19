@@ -1,0 +1,50 @@
+﻿@{
+	Style.Include("PayoutOptions.min.css");
+	Layout.Title = T("My Payout Options");
+    Layout.TitleZone.Add(New.Content_Title());
+    var paymentOptions = (IList<dynamic>)Model.PayoutOptions;
+}
+<div class="payoutoptions">
+    @if (paymentOptions.Any()) {
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Active</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var paymentOption in paymentOptions) {
+                        <tr>
+                            @if(paymentOption.IsActive){
+                            <td><span class="icon published" title="@T("Active")">@paymentOption.PayoutMethodName</span></td>
+                            }
+                            else{
+                            <td><span title="@T("Draft")">@paymentOption.PayoutMethodName</span></td>
+                            }
+                            <td>@paymentOption.IsActive</td>
+                            <td>
+                                @if (!paymentOption.IsActive) {
+                                    @Html.ActionLink(T("Activate").Text, "Activate", new {id = paymentOption.Id}, new {@class = "button"})
+                                    @Html.ActionLink(T("Edit").Text, "Edit", new {id = paymentOption.Id}, new {@class = "button"})
+                                    @Html.ActionLink(T("Delete").Text, "Delete", new {id = paymentOption.Id}, new {@class = "button"})
+                                }
+                                else {
+                                    @Html.ActionLink(T("Edit").Text, "Edit", new {id = paymentOption.Id}, new {@class = "button"})
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else {
+        <p>@T("You don't have any payment options yet")</p>
+    }
+    <div class="commands">
+        @Html.ActionLink(T("Add Option").Text, "Add", new { organizationId = (int)Model.OrganizationId }, new { @class = "add-button" })
+    </div>
+</div>

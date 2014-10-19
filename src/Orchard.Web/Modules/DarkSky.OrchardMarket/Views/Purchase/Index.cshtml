@@ -1,0 +1,46 @@
+﻿@using DarkSky.Commerce.Models
+@using DarkSky.OrchardMarket
+@using DarkSky.OrchardMarket.Models
+@using Orchard.ContentManagement
+@{
+	Layout.Title = T("My Purchases");
+    Layout.TitleZone.Add(New.Content_Title());
+    var purchases = (IList<dynamic>)Model.Purchases;
+}
+<div>
+    @if(purchases.Any()) {
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Package</th>
+                        <th>Developer</th>
+                        <th>Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var purchase in purchases) {
+                        var product = (IProductAspect) purchase.Product;
+                        var packagePart = product.As<PackagePart>();
+                        var logoUrl = !string.IsNullOrWhiteSpace(packagePart.LogoUrl) ? packagePart.LogoUrl : ViewBag.DefaultModuleLogoUrlSmall;
+                        <tr>
+                            <td><img src="@Url.Content(logoUrl)" alt="@packagePart.DisplayName" width="64" height="64" /></td>
+                            <td>@packagePart.DisplayName</td>
+                            <td>@Html.ItemDisplayText((IContent)purchase.Shop)</td>
+                            <td>@purchase.CreatedUtc</td>
+                            <td>
+                                <a class="button" href="@Url.Action("Download", "Package", new { area = ModuleInfo.ModuleName, id = packagePart.Id })">@T("Download")</a>
+                                <a class="button" href="@Url.Action("ListByContent", "SupportTicket", new { area = "DarkSky.Helpdesk", contentId = packagePart.Id })">@T("Support")</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else {
+        <p>@T("You don't have any purchases yet")</p>
+    }
+</div>

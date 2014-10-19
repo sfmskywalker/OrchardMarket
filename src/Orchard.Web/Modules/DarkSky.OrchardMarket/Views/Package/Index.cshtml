@@ -1,0 +1,49 @@
+﻿@using Orchard.ContentManagement
+@{
+	Style.Include("Packages.min.css");
+	Layout.Title = T("My Packages");
+    Layout.TitleZone.Add(New.Content_Title());
+    var packages = (IList<dynamic>)Model.Packages;
+}
+<div class="packages">
+    @if(packages.Any()) {
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>@T("Name")</th>
+                        <th>@T("Version")</th>
+                        <th>@T("Type")</th>
+                        <th>@T("Category")</th>
+                        <th>@T("Price")</th>
+                        <th>@T("Organization")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var package in packages) {
+                        var detailsUrl = Url.Action("Details", "Package", new {id = (int) package.PackageId, area = "DarkSky.OrchardMarket"});
+                        <tr>
+                            @if(package.IsPublished){
+                            <td><a href="@detailsUrl" class="icon published" title="@T("Published")">@package.Name</a></td>
+                            }
+                            else{
+                            <td><a href="@detailsUrl" class="icon unpublished" title="@T("Draft")">@package.Name</a></td>
+                            }
+                            <td>@package.Version</td>
+                            <td>@package.PackageType</td>
+                            <td>Category</td>
+                            <td>@package.UnitPrice.ToString("c")</td>
+                            <td><a href="@Url.ItemDisplayUrl((IContent)package.Organization)">@package.Organization.Name</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else {
+        <p>@T("You don't have any packages yet")</p>
+    }
+    <div class="commands">
+        @Html.ActionLink(T("Add Package").Text, "Create", null, new { @class = "add-button" })
+    </div>
+</div>

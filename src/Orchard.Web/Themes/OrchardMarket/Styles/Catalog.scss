@@ -1,3 +1,4 @@
+@import '_Common';
 .catalog-wrapper{
 	margin-top:40px;
 
@@ -8,17 +9,35 @@
 			border-top: 1px dotted #cfcfd0;
 			padding:22px 0 0 0;
 			margin:0 0 32px 0;
+
+            &.first, &.first-child {
+                border-top: none;
+            }
+
+			@include clearfix;
 		}
 	}
 
 	.logo-wrapper {
 		float: left;
 		width: 75px;
+
+        img {
+            width: 65px;
+        }
 	}
 
 	.summary-wrapper {
 		float:left;
 		width:395px;
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .categories {
+            margin-top: 1em;
+        }
 	}
 
 	.product-details-wrapper {
@@ -26,7 +45,7 @@
 		width:160px;
 	}
 
-	h1 {
+	h1, h1 a {
 		margin:0 0 8px 0;
 		color:#2a8038;
 		font-size:24px;
@@ -46,7 +65,7 @@
 		float:right;
 	}
 
-	a.button.add {
+	a.add-button {
 		display:block;
 		width:114px;
 		height:28px;
@@ -54,9 +73,9 @@
 		color:#3b3b3b;
 		font-size:14px;
 		line-height:25px;
-		background:url('../content/sprites.png') 0 -320px no-repeat;
 		text-align:center;
 		padding: 0 0 0 5px;
 		margin-top:45px;
+        border-radius: 0;
 	}
 }

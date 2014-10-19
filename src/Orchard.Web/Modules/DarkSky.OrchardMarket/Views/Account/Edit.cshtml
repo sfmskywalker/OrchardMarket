@@ -1,0 +1,55 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.AccountViewModel
+@{
+    Style.Include("Account.min.css");
+    Layout.Title = T("Edit Account");
+    Layout.TitleZone.Add(New.Content_Title());
+    var avatarUrl = !string.IsNullOrWhiteSpace(Model.LogoUrl) ? Model.LogoUrl : ViewBag.DefaultavatarUrl;
+}
+
+@using(Html.BeginFormAntiForgeryPost(Url.Action("Edit"), FormMethod.Post, new { enctype = "multipart/form-data" })) {
+	<fieldset>
+        <legend>@T("Account Details")</legend>
+        
+        @Html.ValidationSummary() 
+        
+        <div class="group">
+            <div class="column column1">
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.UserName, T("Username"))
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "textMedium" })
+                    @Html.ValidationMessageFor(m => m.UserName, "*")
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.Email, T("Email"))
+                    @Html.TextBoxFor(m => m.Email, new { @class = "textMedium" })
+                    @Html.ValidationMessageFor(m => m.Email, "*")
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.Password, T("Password"))
+                    @Html.PasswordFor(m => m.Password, new { @class = "textMedium", autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.Password, "*")
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.ConfirmPassword, T("Confirm Password"))
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textMedium", autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "*")
+                </div>
+            </div>
+            <div class="column column2">
+                <div class="field-editor">
+                    <div class="logo-wrapper">
+                        <img src="@Url.Content(avatarUrl)" alt=""/>
+                    </div>
+                </div>
+                <div class="field-editor">
+                    <label for="logo">@T("To change your avatar, choose a new file")</label>
+                    <input type="file" name="logo"/>
+                </div>
+            </div>
+        </div>
+		<div class="commands">
+            <a class="button submit" href="#">Save</a>
+            <a class="button" href="@Url.Action("Index")">Cancel</a>
+		</div>
+	</fieldset>
+}

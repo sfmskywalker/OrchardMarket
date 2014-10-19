@@ -1,0 +1,17 @@
+﻿@{
+    var currentValue = ViewData.TemplateInfo.FormattedModelValue as bool?;
+    var options = new[] {
+        new SelectListItem { Text = T("Yes").Text, Value = "true", Selected = currentValue == true }, 
+        new SelectListItem { Text = T("No").Text, Value = "false", Selected = currentValue == false }
+    };
+}
+<ul class="radio-list horizontal">
+    @foreach (var option in options) {
+        var id = ViewData.TemplateInfo.GetFullHtmlFieldId(option.Value);
+        var name = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+        <li>
+            <input type="radio" name="@name" id="@id" value="@option.Value" @if(option.Selected){<text>checked="checked"</text>}/>
+            <label for="@id">@option.Text</label>
+        </li>
+    }
+</ul>

@@ -1,0 +1,45 @@
+﻿@using Orchard.ContentManagement
+@{
+	Style.Include("Sales.min.css");
+	Layout.Title = T("My Sales");
+    Layout.TitleZone.Add(New.Content_Title());
+    var orders = (IList<dynamic>)Model.Orders;
+}
+<fieldset>
+	    <legend>@T("Revenues")</legend>
+        <div class="field-editor single-line">
+		    <label>@T("Revenue Rate")</label>
+		    <div class="value">@Html.Percentage((float)Model.RevenueRate)</div>
+	    </div>
+    </fieldset>
+<div class="orders">
+    @if(orders.Any()) {
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Customer</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in orders) {
+                        <tr>
+                            <td>@order.Id.ToString()</td>
+                            <td>@order.CreatedUtc</td>
+                            <td>@order.Totals.Total.ToString("c")</td>
+                            <td>@order.Customer.UserName</td>
+                            <td><a class="button" href="@Url.ItemDisplayUrl((IContent)order.Content)">@T("Details")</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else {
+        <p>@T("You don't have any sales yet")</p>
+    }
+</div>

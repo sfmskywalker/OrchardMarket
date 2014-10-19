@@ -1,0 +1,45 @@
+﻿@using DarkSky.OrchardMarket
+@{
+	Style.Include("Profile.min.css");
+	Layout.Title = T("My Profile");
+    Layout.TitleZone.Add(New.Content_Title());
+    
+    var organization = Model.Organization;
+    const string defaultLogoUrl = "~/Modules/DarkSky.OrchardMarket/Content/company-logo-placeholder.png";
+    var logoUrl = !string.IsNullOrWhiteSpace((string)organization.LogoUrl) ? organization.LogoUrl : defaultLogoUrl;
+}
+<div class="account-details">
+    <fieldset>
+	    <legend>@T("Organization Details")</legend>
+	    <div class="group">
+            <div class="column">
+                <div class="summary">
+                    <label>@organization.Name</label>
+                    <span>@organization.AddressLine1</span>
+                    <span>@string.Format("{0} {1}", organization.Zipcode, organization.City)</span>
+                    <span>@organization.Country</span>
+                </div>
+                <div class="summary">
+                    <label>@T("Branche of Industry")</label>
+                    <span>@organization.IndustryBranch</span>
+                </div>
+                <div class="summary">
+                    <label>@T("Tags")</label>
+                    <ul class="tags">
+                        <li><span>ICT/Development</span></li>
+                        <li><span>ASP.NET</span></li>
+                        <li><span>Azure</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column group">
+                <div class="logo-wrapper">
+                    <img src="@Url.Content(logoUrl)" alt=""/>
+                </div>
+            </div>
+        </div>
+        <div class="commands">
+            @Html.ActionLink(T("Edit Organization").Text, "Edit", "Organization", null, new { @class = "button", area = ModuleInfo.ModuleName })
+        </div>
+    </fieldset>
+</div>

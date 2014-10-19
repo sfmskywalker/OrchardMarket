@@ -1,0 +1,16 @@
+﻿@using DarkSky.OrchardMarket.Models
+@using Orchard.ContentManagement
+@{
+    var contentItem = (ContentItem)Model.ContentItem;
+    var metaData = contentItem.ContentManager.GetItemMetadata(contentItem);
+    var title = metaData.DisplayText;
+    var package = contentItem.As<PackagePart>();
+    var logoUrl = !string.IsNullOrWhiteSpace(package.LogoUrl) ? package.LogoUrl : ViewBag.DefaultModuleLogoUrlSmall;
+}
+<div class="package-icon">
+	<a href="#"><img src="@Url.Content(logoUrl)" alt="@title"/></a>
+</div>
+<div class="details">
+	<div class="product"><a class="title" href="@Url.ItemDisplayUrl(contentItem)">@title</a></div>
+	<div class="author">By <a href="@Url.ItemDisplayUrl(package.Organization)">@package.Organization.Name</a></div>
+</div>

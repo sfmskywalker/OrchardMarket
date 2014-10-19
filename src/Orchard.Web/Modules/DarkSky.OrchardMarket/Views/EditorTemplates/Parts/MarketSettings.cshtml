@@ -1,0 +1,10 @@
+﻿@model DarkSky.OrchardMarket.Models.MarketSettingsPartRecord
+<fieldset>
+    <legend>@T("Market Settings")</legend>
+    <div>
+        @Html.LabelFor(m => m.PayoutPercentage, T("Payout Percentage"))
+        @Html.TextBoxFor(m => m.PayoutPercentage, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.PayoutPercentage, "*")
+        <div class="hint">@T("The percentage (specified in decimals, e.g. 0.5 = 50%) a developer earns.")</div>
+    </div>
+</fieldset>

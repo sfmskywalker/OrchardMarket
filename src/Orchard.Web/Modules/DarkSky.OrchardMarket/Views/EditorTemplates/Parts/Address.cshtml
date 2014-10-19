@@ -1,0 +1,28 @@
+﻿@model DarkSky.OrchardMarket.Models.AddressPart
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.AddressLine1, T("Address Line 1"))
+        @Html.TextBoxFor(m => m.AddressLine1, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.AddressLine1, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.AddressLine2, T("Address Line 2"))
+        @Html.TextBoxFor(m => m.AddressLine2, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.AddressLine2, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Zipcode, T("Zipcode"))
+        @Html.TextBoxFor(m => m.Zipcode, new { @class = "text" })
+        @Html.ValidationMessageFor(m => m.Zipcode, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.City, T("City"))
+        @Html.TextBoxFor(m => m.City, new { @class = "textMedium" })
+        @Html.ValidationMessageFor(m => m.City, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Record.CountryId, T("Country"))
+        @Html.TextBoxFor(m => m.Record.CountryId, new { @class = "text" })
+        @Html.ValidationMessageFor(m => m.Record.CountryId, "*")
+    </div>
+</fieldset>

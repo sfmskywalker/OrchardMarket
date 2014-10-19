@@ -1,0 +1,23 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.JoinOrganizationViewModel
+@{
+    Style.Require("jQueryUI_Orchard");
+    Script.Require("jQueryUI_Autocomplete");
+    Script.Include("JoinOrganization.min.js");
+    
+    Layout.Title = T("Join an Organization");
+    Layout.TitleZone.Add(New.Content_Title());
+}
+
+@using(Html.BeginFormAntiForgeryPost()) {
+	<fieldset>
+        @Html.ValidationSummary() 
+        <div class="field-editor">
+            @Html.LabelFor(m => m.Name, T("Organization Name"))
+            @Html.TextBoxFor(m => m.Name, new RouteValueDictionary { { "id", "OrganizationName" }, { "class", "textMedium"}, {"data-source", Url.Action("OrganizationNames") }})
+        </div>
+        <div class="commands">
+            <a class="button submit" href="#">@T("Send Request")</a>
+            <a class="button" href="@Url.Action("Index", "Organization")">@T("Cancel")</a>
+        </div>
+    </fieldset>
+}

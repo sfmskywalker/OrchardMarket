@@ -1,0 +1,29 @@
+.checkout-layout fieldset.cart {
+  font-size: 1.077em; }
+  .checkout-layout fieldset.cart table {
+    width: 100%; }
+    .checkout-layout fieldset.cart table thead th {
+      font-weight: bold;
+      padding: 0 0 10px 0; }
+    .checkout-layout fieldset.cart table tfoot td {
+      padding: 5px 0 5px 0; }
+    .checkout-layout fieldset.cart table tr.total td.divider {
+      border-top: 1px solid #909090; }
+.checkout-layout #paymentProvidersGroup {
+  margin-bottom: 20px; }
+  .checkout-layout #paymentProvidersGroup .payment-providers {
+    float: left;
+    width: 280px; }
+    .checkout-layout #paymentProvidersGroup .payment-providers ul {
+      list-style: none;
+      margin: 0; }
+      .checkout-layout #paymentProvidersGroup .payment-providers ul label {
+        display: inline; }
+  .checkout-layout #paymentProvidersGroup .payment-provider-logo-wrapper {
+    float: left;
+    width: 270px; }
+    .checkout-layout #paymentProvidersGroup .payment-provider-logo-wrapper .payment-provider-logo {
+      display: none; }
+.checkout-layout #checkoutButton {
+  display: none; }
+

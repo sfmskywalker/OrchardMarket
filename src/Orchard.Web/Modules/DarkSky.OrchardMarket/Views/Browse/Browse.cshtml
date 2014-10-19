@@ -1,0 +1,15 @@
+﻿@using DarkSky.OrchardMarket.Models
+@{
+    Style.Include("Catalog.min.css");
+
+    var extensionType = Model.ExtensionType;
+    var title = extensionType == ExtensionType.Module ? "Modules" : " Themes";
+	Layout.Title = T(title);
+    Layout.TitleZone.Add(New.Content_Title());
+    Layout.ContentHeader.Add(New.Browse_Controls(ExtensionType: extensionType, Category: Model.Category, Tag: Model.Tag, Keyword: Model.Keyword));
+}
+
+<div class="catalog-wrapper">
+@Display(Model.List)
+</div>
+@Display(Model.Pager)

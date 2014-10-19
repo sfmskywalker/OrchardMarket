@@ -1,0 +1,25 @@
+﻿@using DarkSky.Commerce.Models
+@{
+    var invoicePart = (InvoicePart) Model.ContentPart;
+}
+<h1>@T("Invoice {0}", invoicePart.Id)</h1>
+<table>
+    <thead>
+        <tr>
+            <th>@T("Item")</th>
+            <th>@T("Unit Price")</th>
+            <th>@T("Quantity")</th>
+            <th>@T("Total")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in invoicePart.Details) {
+        <tr>
+            <td>@item.Description</td>
+            <td>@item.UnitPrice.ToString("c")</td>
+            <td>@item.Quantity</td>
+            <td>@item.Total</td>
+        </tr>    
+        }
+    </tbody>
+</table>

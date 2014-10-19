@@ -1,3 +1,15 @@
-<Placement>
-	<Place Parts_Product_Edit="Content:1" />
+﻿<Placement>
+  <Place Parts_Product_Edit="Content:1" />
+  <Place Parts_Vat_Edit="Content:1" />
+  <Place Parts_PayPalSettings_Edit="Content:0" />
+
+  <Match DisplayType="Detail">
+    <Place Parts_Invoice="Content:0" />
+    <Place Parts_Invoice_Summary="-" />
+  </Match>
+
+  <Match DisplayType="Summary">
+    <Place Parts_Invoice="-" />
+    <Place Parts_Invoice_Summary="Content:0" />
+  </Match>
 </Placement>

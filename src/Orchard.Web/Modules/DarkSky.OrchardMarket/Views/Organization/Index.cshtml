@@ -1,0 +1,41 @@
+﻿@{
+	Layout.Title = T("My Organizations");
+    Layout.TitleZone.Add(New.Content_Title());
+    var organizations = (IList<dynamic>)Model.Organizations;
+}
+<div>
+    @if(organizations.Any()) {
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Joined</th>
+                        <th>Users</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var organization in organizations) {
+                        <tr>
+                            <td>@organization.Name</td>
+                            <td>@organization.CurrentUserEntry.CreatedUtc.ToShortDateString()</td>
+                            <td>@organization.Users.Count</td>
+                            <td>
+                                @Html.ActionLink(T("Details").Text, "Details", new { id = (int)organization.OrganizationId }, new { @class = "button" })
+                                @Html.ActionLink(T("Manage Users").Text, "Users", new { id = (int)organization.OrganizationId }, new { @class = "button" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else {
+        <p>@T("You are not part of any organization yet.")</p>
+    }
+    <div class="commands">
+        @Html.ActionLink(T("Start New Organization").Text, "Create", null, new { @class = "add-button wide" })
+        @Html.ActionLink(T("Join Existing Organization").Text, "Join", null, new { @class = "add-button wide" })
+    </div>
+</div>

@@ -1,0 +1,8 @@
+﻿@{
+    var user = Model.User;
+    var organization = Model.Organization;
+
+    Layout.Title = T("Invitation Accepted");
+    Layout.TitleZone.Add(New.Content_Title());
+}
+<p>@T("Hi {0}, you have been added to {1}!", user.DisplayName, organization.Name)</p>

@@ -1,0 +1,91 @@
+﻿@{
+    Style.Include("ShoppingCart.min.css");
+
+    Layout.Title = T("Shopping Cart");
+    Layout.TitleZone.Add(New.Content_Title());
+
+    var items = (IList<dynamic>)Model.Items;
+    var vatRates = items.Select(x => (float) x.Vat.Rate).Distinct();
+}
+<div class="table-2 shoppingcart-layout">
+    @if(items.Any()) {
+        <table>
+            <thead>
+                <tr>
+                    <th>@T("Product")</th>
+                    <th>@T("Delivery")</th>
+                    <th>@T("Quantity")</th>
+                    <th>@T("Unit Price")</th>
+                    <th>@T("Total")</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in items) {
+                    var organization = item.Product.ContentItem.PackagePart.Organization;
+                    var logoUrl = !string.IsNullOrWhiteSpace((string)item.ImageUrl) ? item.ImageUrl : ViewBag.DefaultModuleLogoUrlSmall;
+                    <tr>
+                        <td>
+                            <div class="product-summary-wrapper">
+                                <div class="logo">
+                                    <img src="@Url.Content(logoUrl)" alt="@item.DisplayText"/>
+                                </div>
+                                <div class="summary">
+                                    <a href="#" class="title">@item.DisplayText</a>
+                                    @if (organization != null) {
+                                        <span>@T("By")</span>
+                                        <a href="#" class="author">@organization.Name</a>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td>@T("Download")</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.UnitPrice.ToString("c")</td>
+                        <td>@item.Totals.SubTotal.ToString("c")</td>
+                        <td>@Html.ActionLink(T("Remove").Text, "Remove", "ShoppingCart", new {id = item.Id}, new {@class = "remove-button"})</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>@T("Total products ({0})", 3)</td>
+                    <td></td>
+                    <td>@Model.Totals.SubTotal.ToString("c")</td>
+                    <td></td>
+                </tr>
+                @foreach (var vatRate in vatRates) {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>@T("Vat ({0}%)", vatRate*100f)</td>
+                        <td></td>
+                        <td>@((Model.Totals.SubTotal*(decimal)vatRate).ToString("c"))</td>
+                        <td></td>
+                    </tr>
+                }
+                <tr class="total">
+                    <td colspan="2"></td>
+                    <td class="divider">@T("Total")</td>
+                    <td class="divider"></td>
+                    <td class="divider">@Model.Totals.Total.ToString("c")</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <div class="group">
+                            <div class="commands">
+                                @Html.ActionLink(T("Continue Shopping").Text, "ContinueShopping", "ShoppingCart", null, new {@class = "button"})
+                                @Html.ActionLink(T("Continue to Checkout").Text, "Checkout", "ShoppingCart", null, new {@class = "button"})
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+    else {
+        <p>@T("There are no items in the shopping cart")</p>
+        @Html.ActionLink(T("Continue Shopping").Text, "ContinueShopping", "ShoppingCart", new {@class = "button"})
+    }
+</div>

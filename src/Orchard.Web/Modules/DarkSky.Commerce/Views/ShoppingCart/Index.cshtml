@@ -1,0 +1,37 @@
+﻿@{
+    var items = Model.Items;
+}
+<div class="table-2">
+    <table>
+        <thead>
+            <tr>
+                <th>@T("Product")</th>
+                <th>@T("Delivery")</th>
+                <th>@T("Quantity")</th>
+                <th>@T("Unit Price")</th>
+                <th>@T("Total")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in items) {
+                <tr>
+                    <td>
+                        <div class="product-summary-wrapper">
+                            <div class="logo">
+                                <img src="@item.ImageUrl" alt="@item.DisplayText"/>
+                            </div>
+                            <div class="summary">
+                                <h2>@item.DisplayText</h2>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@T("Download")</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.UnitPrice.ToString("c")</td>
+                    <td>@item.Total.ToString("c")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

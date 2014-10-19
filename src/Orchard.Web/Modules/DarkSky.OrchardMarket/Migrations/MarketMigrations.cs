@@ -1,121 +1,48 @@
-﻿using System.Data;
+﻿using System;
 using Orchard.ContentManagement.MetaData;
 using Orchard.Core.Contents.Extensions;
 using Orchard.Data.Migration;
 
 namespace DarkSky.OrchardMarket.Migrations {
-	public class MarketMigrations : DataMigrationImpl {
+    public class MarketMigrations : DataMigrationImpl {
+        
+        public int Create() {
 
-		public int Create() {
+            SchemaBuilder.CreateTable("MarketSettingsPartRecord", table => table
+                .ContentPartRecord()
+                .Column<float>("PayoutPercentage"));
 
-			ContentDefinitionManager.AlterPartDefinition("PublisherPart", part => part
-				.WithField("Logo", field => field
-					.OfType("MediaPickerField")
-					.WithSetting("MediaPickerFieldSettings.AllowedExtensions", "png jpg gif"))
-				.Attachable(false));
+            SchemaBuilder.CreateTable("FundedOrderPartRecord", table => table
+                .ContentPartRecord()
+                .Column<bool>("Funded", c => c.NotNull())
+                .Column<DateTime>("FundedUtc", c => c.Nullable()));
 
-			ContentDefinitionManager.AlterTypeDefinition("Publisher", type => type
-				.WithPart("CommonPart")
-				.WithPart("TitlePart")
-				.WithPart("AutoroutePart")
-				.WithPart("PublisherPart")
-				.Draftable(false)
-				.Creatable());
+            SchemaBuilder.CreateTable("PayoutOption", table => table
+                .Column<int>("Id", c => c.Identity().PrimaryKey())
+                .Column<int>("OrganizationId")
+                .Column<string>("PayoutMethodName", c => c.WithLength(256))
+                .Column<string>("Data", c => c.Unlimited())
+                .Column<bool>("IsActive", c => c.NotNull()));
 
-			ContentDefinitionManager.AlterPartDefinition("LicensePart", part => part
-				.WithField("StartDate", field => field
-					.OfType("DateTimeField")
-					.WithSetting("DateTimeFieldSettings.Display", "DateOnly"))
-				.Attachable(false));
+            SchemaBuilder.CreateTable("Revenue", table => table
+                .Column<int>("Id", c => c.Identity().PrimaryKey())
+                .Column<int>("OrganizationId")
+                .Column<int>("InvoiceDetailId")
+                .Column<float>("RevenuePercentage")
+                .Column<decimal>("SalesTotal")
+                .Column<decimal>("RevenueTotal")
+                .Column<bool>("Paid")
+                .Column<int>("PayoutOptionId", c => c.Nullable())
+                .Column<DateTime>("CreatedUtc")
+                .Column<DateTime>("PaidUtc", c => c.Nullable()));
 
-			ContentDefinitionManager.AlterTypeDefinition("License", type => type
-				.WithPart("CommonPart")
-				.WithPart("TitlePart")
-				.WithPart("BodyPart")
-				.WithPart("LicensePart")
-				.Draftable()
-				.Creatable());
+            ContentDefinitionManager.AlterPartDefinition("FundedOrderPart", part => part.Attachable(false));
+            ContentDefinitionManager.AlterTypeDefinition("Order", type => type
+                .WithPart("FundedOrderPart"));
 
-			SchemaBuilder.CreateTable("ExtensionPartRecord", table => table
-				.ContentPartRecord()
-				.Column("PublisherId", DbType.Int32, column => column.NotNull())
-				.Column("Downloads", DbType.Int32, column => column
-					.NotNull()
-					.WithDefault(0))
-				.Column("Sales", DbType.Int32, column => column
-					.NotNull()
-					.WithDefault(0)));
-
-			ContentDefinitionManager.AlterPartDefinition("ExtensionPart", part => part
-				.WithField("Licenses", field => field
-					.OfType("ContentPickerField")
-					.WithSetting("ContentPickerFieldSettings.Required", "true")
-					.WithSetting("ContentPickerFieldSettings.Multiple", "true"))
-				.Attachable(false));
-
-			ContentDefinitionManager.AlterTypeDefinition("Module", type => type
-				.WithPart("CommonPart")
-				.WithPart("TitlePart")
-				.WithPart("AutoroutePart")
-				.WithPart("BodyPart")
-				.WithPart("ExtensionPart")
-				.WithPart("ProductPart")
-				.Draftable()
-				.Creatable(false));
-
-			ContentDefinitionManager.AlterTypeDefinition("Theme", type => type
-				.WithPart("CommonPart")
-				.WithPart("TitlePart")
-				.WithPart("AutoroutePart")
-				.WithPart("BodyPart")
-				.WithPart("ExtensionPart")
-				.WithPart("ProductPart")
-				.Draftable()
-				.Creatable(false));
-
-			SchemaBuilder.CreateTable("ExtensionReleasePartRecord", table => table
-				.ContentPartRecord()
-				.Column("ExtensionId", DbType.Int32)
-				.Column("Downloads", DbType.Int32, column => column
-					.NotNull()
-					.WithDefault(0))
-				.Column("Sales", DbType.Int32, column => column
-					.NotNull()
-					.WithDefault(0)));
-
-			ContentDefinitionManager.AlterPartDefinition("ExtensionReleasePart", part => part
-				.WithField("ReleaseNotes", field => field
-					.OfType("TextField")
-					.WithSetting("Flavor", "html")
-					.WithSetting("Required", "true"))
-				.Attachable(false));
-
-			ContentDefinitionManager.AlterTypeDefinition("ExtensionRelease", type => type
-				.WithPart("CommonPart")
-				.WithPart("ExtensionReleasePart")
-				.Draftable()
-				.Creatable(false));
-
-			ContentDefinitionManager.AlterPartDefinition("ExtensionsCatalogPart", part => part.Attachable());
-			ContentDefinitionManager.AlterTypeDefinition("ModulesCatalog", type => type
-				.WithPart("CommonPart")
-				.WithPart("TitlePart")
-				.WithPart("AutoroutePart")
-				.WithPart("ExtensionsCatalogPart")
-				.Draftable(false)
-				.Creatable()
-				.DisplayedAs("Modules Catalog"));
-
-			ContentDefinitionManager.AlterTypeDefinition("ThemesCatalog", type => type
-				.WithPart("CommonPart")
-				.WithPart("TitlePart")
-				.WithPart("AutoroutePart")
-				.WithPart("ExtensionsCatalogPart")
-				.Draftable(false)
-				.Creatable()
-				.DisplayedAs("Themes Catalog"));
+            ContentDefinitionManager.AlterPartDefinition("MarketSettingsPart", part => part.Attachable(false));
 
 			return 1;
-		} 
-	}
+		}
+    }
 }

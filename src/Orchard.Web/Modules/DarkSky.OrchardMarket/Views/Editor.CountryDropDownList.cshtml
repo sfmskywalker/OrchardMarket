@@ -1,0 +1,8 @@
+﻿@using System.Linq
+@using DarkSky.OrchardMarket.Models
+@{
+    var countries = (IEnumerable<Country>)Model.Countries;
+    var currentValue = ViewData.TemplateInfo.FormattedModelValue as int?;
+    var options = countries.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = x.Id == currentValue });
+}
+@Html.DropDownList("", options, "Select Country")

@@ -1,0 +1,13 @@
+﻿Name: Contrib.Navigation
+Category: Navigation
+AntiForgery: enabled
+Author: DarkSky Development
+Website: http://contriborchardnav.codeplex.com/
+Version: 1.0.3
+OrchardVersion: 1.5.1
+Description: Adds a new ActionLink menu item type to the system that enables you to map controller actions to menu items. With support for tokenized RouteValues for maximum flexibility.
+Tags: navigation, menu, actionlink
+Features:
+    Contrib.Navigation:
+        Description: Adds a new ActionLink menu item type to the system.
+        Dependencies: Orchard.Tokens

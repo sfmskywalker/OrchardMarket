@@ -1,31 +1,31 @@
 ﻿@{
-    Style.Include("Catalog.min.css");
+	Style.Include("Catalog.min.css");
 }
 <div class="catalog-wrapper">
-    <ul>
-        @for (var i = 0; i < 10; i++ ) {
-            <li class="group">
-                <div class="logo-wrapper">
-                    <img src="@Url.Content("~/Modules/DarkSky.OrchardMarket/Content/module-icon.png")" alt="" />
-                </div>
-                <div class="summary-wrapper">
-                    <h1>E-Learning Suite</h1>
-                    <h2>By <a href="#">DarkSky Development</a></h2>
-                    <p>Description of the module. Description of the module. Description of the module. Description of the module. Description of the module. </p>
-                    <a class="more">Read more</a>
-                    <div class="categories">
-                        @T("Categories:")
-                        @for(var j = 0; j < 3; j++) {
-                            <a href="#">e-learning</a>
-                        }
-                    </div>
-                </div>
-                <div class="product-details-wrapper group">
-                    <div class="price">$45.00</div>
+	<ul>
+		@for (var i = 0; i < 10; i++ ) {
+			<li class="group">
+				<div class="logo-wrapper">
+					<img src="@Url.Content("~/Modules/DarkSky.OrchardMarket/Content/module-icon.png")" alt="" />
+				</div>
+				<div class="summary-wrapper">
+					<h1>E-Learning Suite</h1>
+					<h2>By <a href="#">DarkSky Development</a></h2>
+					<p>Description of the module. Description of the module. Description of the module. Description of the module. Description of the module. </p>
+					<a class="more">Read more</a>
+					<div class="categories">
+						@T("Categories:")
+						@for(var j = 0; j < 3; j++) {
+							<a href="#">e-learning</a>
+						}
+					</div>
+				</div>
+				<div class="product-details-wrapper group">
+					<div class="price">$45.00</div>
                     <div class="clear"></div>
                     <a href="#" class="add button">Add to Cart</a>
-                </div>
-            </li>
-        }
-    </ul>
+				</div>
+			</li>
+		}
+	</ul>
 </div>

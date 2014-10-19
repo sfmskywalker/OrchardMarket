@@ -1,0 +1,23 @@
+﻿@model DarkSky.OrchardMarket.Models.GallerySettingsPartRecord
+<fieldset>
+    <legend>@T("Package Storage Settings")</legend>
+    <div>
+        @Html.LabelFor(m => m.PackagesPath, T("Packages Path"))
+        @Html.TextBoxFor(m => m.PackagesPath, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.PackagesPath, "*")
+        <div class="hint">@T("The relative path where the uploaded packages should be stored")</div>
+    </div>
+</fieldset>
+<fieldset>
+    <legend>@T("Package Browser Settings")</legend>
+    <div>
+        @Html.LabelFor(m => m.ModulesQueryId, T("Modules Query"))
+        @Html.EditorFor(m => m.ModulesQueryId)
+        <div class="hint">@T("The query to use when browsing Modules")</div>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ThemesQueryId, T("Themes Query"))
+        @Html.EditorFor(m => m.ThemesQueryId)
+        <div class="hint">@T("The query to use when browsing Themes")</div>
+    </div>
+</fieldset>

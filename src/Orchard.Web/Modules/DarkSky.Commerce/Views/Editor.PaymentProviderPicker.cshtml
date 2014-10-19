@@ -1,0 +1,18 @@
+﻿@using DarkSky.Commerce.PaymentProviders
+@if (Model.PaymentProviders != null && Model.PaymentProviders.Count > 0) {
+    var providers = (IList<IPaymentProvider>)Model.PaymentProviders;
+    var currentValue = ViewData.TemplateInfo.FormattedModelValue as string;
+    var index = 0;
+    <ul>
+        @foreach (var provider in providers) {
+            var id = ViewData.TemplateInfo.GetFullHtmlFieldId(index++.ToString());
+            <li>
+                @Html.RadioButton("", provider.Name, provider.Name == currentValue, new {id})
+                <label for="@id">@provider</label>
+            </li>
+        }
+    </ul>
+}
+else {
+    <p>@T("there are no available payment providers configured")</p>
+}

@@ -1,0 +1,23 @@
+@using Orchard.ContentManagement
+@{
+    ContentItem customForm = Model.ContentItem;
+    string returnUrl = Model.ReturnUrl;
+    var title = Html.ItemDisplayText(customForm);
+    
+    // remove default Save/Publish buttons
+    Model.Zones["Sidebar"].Items.Clear();
+
+    Layout.Title = Html.TitleForPage(title.ToString());
+    Layout.TitleZone.Add(New.Content_Title());
+    Layout.AsideFirst.Add(New.Contact_Aside());
+}
+<div class="custom-form">
+    <p>@T("Please fill out the form below and we will get back shortly.")</p>
+    @using (Html.BeginFormAntiForgeryPost(returnUrl)) {
+        @Html.ValidationSummary()
+        @Display(Model)
+        <fieldset class="submit-button">
+            <button type="submit" name="submit.Save" value="submit.Save">@T("Submit")</button>
+        </fieldset>
+    }
+</div>

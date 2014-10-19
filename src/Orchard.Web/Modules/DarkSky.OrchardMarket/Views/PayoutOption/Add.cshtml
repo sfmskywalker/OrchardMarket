@@ -1,0 +1,20 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.AddPayoutOptionViewModel
+@{
+    Layout.Title = T("Add Payout Option");
+    Layout.TitleZone.Add(New.Content_Title());
+}
+@using(Html.BeginFormAntiForgeryPost()) {
+	<fieldset>
+        @Html.ValidationSummary() 
+        <div class="field-editor">
+            @Html.LabelFor(m => m.PayoutMethodName, T("Payout Method Name"))
+            @Html.EditorFor(m => m.PayoutMethodName)
+            @Html.ValidationMessageFor(m => m.PayoutMethodName, "*")
+        </div>
+        
+		<div class="commands">
+            <a class="button submit" href="#">@T("Next")</a>
+            <a class="button" href="@Url.Action("Index")">Cancel</a>
+		</div>
+	</fieldset>
+}

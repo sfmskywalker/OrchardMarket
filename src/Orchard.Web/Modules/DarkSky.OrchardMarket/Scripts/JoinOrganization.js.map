@@ -1,0 +1,1 @@
+{"version":3,"file":"JoinOrganization.js","sourceRoot":"","sources":["JoinOrganization.ts"],"names":[],"mappings":"AAAA,mCAAmC;AACnC,kDAAkD;AAClD,CAAC,CAAC;IACE,IAAI,iBAAiB,GAAG,CAAC,CAAC,mBAAmB,CAAC;IAC9C,iBAAiB,CAAC,YAAY,CAAC,EAAE,MAAM,EAAE,iBAAiB,CAAC,IAAI,CAAC,QAAQ,CAAC,EAAE,CAAC;AAChF,CAAC,CAAC"}

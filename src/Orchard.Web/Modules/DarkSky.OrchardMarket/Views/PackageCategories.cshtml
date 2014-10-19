@@ -1,0 +1,11 @@
+﻿@using Contrib.Taxonomies.Models
+@using DarkSky.OrchardMarket.Models
+@{
+    var categories = (IList<TermPart>)Model.Categories;
+    var extensionType = (ExtensionType) (Model.ExtensionType != null ? Model.ExtensionType : ExtensionType.Module);
+    var count = categories.Count;
+}
+@for (var i = 0; i < count; i++) {
+    var category = categories[i];
+    @Html.ActionLink(category.Name, "Index", "Browse", new { category = category.Name, extensionType }, null)if (i < count-1){<text>,</text>}
+}

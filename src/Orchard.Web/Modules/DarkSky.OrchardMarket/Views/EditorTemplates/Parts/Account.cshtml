@@ -1,0 +1,23 @@
+﻿@model DarkSky.OrchardMarket.Models.OrganizationPart
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.Name, T("Organization Name"))
+        @Html.TextBoxFor(m => m.Name, new { @class = "textMedium" })
+        @Html.ValidationMessageFor(m => m.Name, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Description, T("Organization Name"))
+        @Html.TextAreaFor(m => m.Description, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.Description, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.IndustryBranch, T("Industry Branch"))
+        @Html.TextBoxFor(m => m.IndustryBranch, new { @class = "textMedium" })
+        @Html.ValidationMessageFor(m => m.IndustryBranch, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.LogoUrl, T("Logo"))
+        @Html.TextBoxFor(m => m.LogoUrl, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.LogoUrl, "*")
+    </div>
+</fieldset>

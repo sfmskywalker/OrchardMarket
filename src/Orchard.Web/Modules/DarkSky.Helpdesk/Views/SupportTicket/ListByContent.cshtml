@@ -1,0 +1,50 @@
+﻿@using DarkSky.Helpdesk.Models
+@{
+    var content = Model.Content;
+    var contentId = (int)content.Id;
+    var contentDisplayText = Model.ContentDisplayText;
+    var tickets = (IList<SupportTicketPart>)Model.Tickets;
+
+	Layout.Title = T("My Support Tickets for {0}", contentDisplayText);
+    Layout.TitleZone.Add(New.Content_Title());
+}
+<div>
+    @if(tickets.Any()) {
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>@T("ID")</th>
+                        <th>@T("User")</th>
+                        <th>@T("Subject")</th>
+                        <th>@T("Severity")</th>
+                        <th>@T("Status")</th>
+                        <th>@T("Date")</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ticket in tickets) {
+                        <tr>
+                            <td>@ticket.Id</td>
+                            <td>@ticket.User.UserName</td>
+                            <td>@ticket.Subject</td>
+                            <td>@ticket.Severity</td>
+                            <td>@ticket.Status</td>
+                            <td>@ticket.TimeStamp</td>
+                            <td>
+                                @Html.ActionLink(T("Details").Text, "Details", new { id = (int)ticket.Id }, new { @class = "button" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else {
+        <p>@T("You don't have any tickets yet")</p>
+    }
+    <div class="commands">
+        @Html.ActionLink(T("Create Ticket").Text, "Create", new { contentId }, new { @class = "add-button" })
+    </div>
+</div>

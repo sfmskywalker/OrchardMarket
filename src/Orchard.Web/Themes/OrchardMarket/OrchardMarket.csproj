@@ -71,28 +71,77 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bg.jpg" />
-    <Content Include="Content\bullets.png" />
-    <Content Include="Content\content-bg.jpg" />
-    <Content Include="Content\content-bg.png" />
-    <Content Include="Content\content-ui-left.png" />
-    <Content Include="Content\content-ui-right.png" />
-    <Content Include="Content\content-ui-top.png" />
-    <Content Include="Content\module-icon.png" />
-    <Content Include="Content\sprites.png" />
-    <Content Include="Content\ui.png" />
-    <Content Include="Scripts\om-common.js" />
+    <Content Include="Content\Images\bg.jpg" />
+    <Content Include="Content\Images\bullets.png" />
+    <Content Include="Content\Images\content-bg.jpg" />
+    <Content Include="Content\Images\content-bg.png" />
+    <Content Include="Content\Images\content-ui-left.png" />
+    <Content Include="Content\Images\content-ui-right.png" />
+    <Content Include="Content\Images\content-ui-top.png" />
+    <Content Include="Content\Fonts\4021a3b9-f782-438b-aeb4-c008109a8b64.woff" />
+    <Content Include="Content\Fonts\530dee22-e3c1-4e9f-bf62-c31d510d9656.woff" />
+    <Content Include="Content\Fonts\669f79ed-002c-4ff6-965c-9da453968504.ttf" />
+    <Content Include="Content\Fonts\688ab72b-4deb-4e15-a088-89166978d469.ttf" />
+    <Content Include="Content\Fonts\6a0046e5-ec1e-4a57-b0d1-d80725a41a7e.woff" />
+    <Content Include="Content\Fonts\73805f15-38e4-4fb7-8a08-d56bf29b483b.ttf" />
+    <Content Include="Content\Fonts\7816f72f-f47e-4715-8cd7-960e3723846a.svg" />
+    <Content Include="Content\Fonts\8024396f-7071-4826-91f3-a6c74ac498a4.eot" />
+    <Content Include="Content\Fonts\874bbc4a-0091-49f0-93ef-ea4e69c3cc7a.svg" />
+    <Content Include="Content\Fonts\ae1656aa-5f8f-4905-aed0-93e667bd6e4a.eot" />
+    <Content Include="Content\Fonts\c5749443-93da-4592-b794-42f28d62ef72.woff" />
+    <Content Include="Content\Fonts\d17bc040-9e8b-4397-8356-8153f4a64edf.svg" />
+    <Content Include="Content\Fonts\e523fdb5-21af-407c-a6bf-0a5e86316650.svg" />
+    <Content Include="Content\Fonts\ea95b44a-eab7-4bd1-861c-e73535e7f652.eot" />
+    <Content Include="Content\Fonts\f70da45a-a05c-490c-ad62-7db4894b012a.eot" />
+    <Content Include="Content\Fonts\ffef6c19-060a-4d8b-9c04-ddc88a089c02.ttf" />
+    <Content Include="Content\Images\icons.png" />
+    <Content Include="Content\Images\module-icon.png" />
+    <Content Include="Content\Images\PaymentProviders\credit-card-provider.png" />
+    <Content Include="Content\Images\PaymentProviders\google-checkout.png" />
+    <Content Include="Content\Images\PaymentProviders\pay-pal.png" />
+    <Content Include="Content\Images\sprites.png">
+      <BrowseToURL>z</BrowseToURL>
+    </Content>
+    <Content Include="Content\Images\thead.png" />
+    <Content Include="Content\Images\ui.png" />
+    <TypeScriptCompile Include="Scripts\Checkout.ts" />
+    <Content Include="Scripts\Checkout.js">
+      <DependentUpon>Checkout.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Checkout.min.js">
+      <DependentUpon>Checkout.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Type\jquery.d.ts" />
+    <Content Include="Styles\Browse.css">
+      <DependentUpon>Browse.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Browse.min.css">
+      <DependentUpon>Browse.scss</DependentUpon>
+    </Content>
     <Content Include="Styles\Catalog.css">
       <DependentUpon>Catalog.scss</DependentUpon>
     </Content>
     <Content Include="Styles\Catalog.min.css">
       <DependentUpon>Catalog.scss</DependentUpon>
     </Content>
+    <Content Include="Styles\Checkout.css">
+      <DependentUpon>Checkout.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Checkout.min.css">
+      <DependentUpon>Checkout.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Fonts.css" />
     <Content Include="Styles\Home.css">
       <DependentUpon>Home.scss</DependentUpon>
     </Content>
     <Content Include="Styles\Home.min.css">
       <DependentUpon>Home.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Invoice.css">
+      <DependentUpon>Invoice.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Invoice.min.css">
+      <DependentUpon>Invoice.scss</DependentUpon>
     </Content>
     <Content Include="Styles\Layout.min.css">
       <DependentUpon>Layout.scss</DependentUpon>
@@ -100,13 +149,27 @@
     <Content Include="Styles\Layout.css">
       <DependentUpon>Layout.scss</DependentUpon>
     </Content>
+    <Content Include="Styles\Package.css">
+      <DependentUpon>Package.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Package.min.css">
+      <DependentUpon>Package.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\ShoppingCart.css">
+      <DependentUpon>ShoppingCart.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\ShoppingCart.min.css">
+      <DependentUpon>ShoppingCart.scss</DependentUpon>
+    </Content>
     <Content Include="Styles\Style.css">
       <DependentUpon>Style.scss</DependentUpon>
     </Content>
     <Content Include="Styles\Style.min.css">
       <DependentUpon>Style.scss</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -125,18 +188,59 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\Catalog.scss" />
-    <None Include="Styles\Home.scss">
+    <Content Include="Styles\Package.scss" />
+    <Content Include="Styles\Browse.scss" />
+    <Content Include="Styles\ShoppingCart.scss" />
+    <Content Include="Styles\Checkout.scss" />
+    <Content Include="Styles\Invoice.scss" />
+    <Content Include="Styles\Home.scss">
       <Compile>True</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
-    </None>
-    <None Include="Styles\Layout.scss" />
+    </Content>
+    <Content Include="Styles\Layout.scss" />
     <Content Include="Views\MostPopular.cshtml" />
     <Content Include="Views\Widget-HomeBeforeContent.cshtml" />
     <Content Include="Styles\Style.scss" />
     <Content Include="Views\Content.Title.cshtml" />
     <Content Include="Views\Parts.ExtensionsCatalog.cshtml" />
+    <Content Include="Views\Widget-ExtensionsList.cshtml" />
+    <Content Include="Views\SubMenu.cshtml" />
+    <Content Include="Views\Content-Package.ExtensionSummary.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\AccessDenied.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\ChallengeEmailFail.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\ChallengeEmailSent.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\ChallengeEmailSuccess.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\LostPassword.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\RegistrationPending.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\RequestLostPassword.cshtml" />
+    <Content Include="Views\UserNavigation.Main.cshtml" />
+    <Content Include="Views\LogOn.cshtml" />
+    <Content Include="Views\Account.SubMenu.cshtml" />
+    <Content Include="Views\Account.SignUp.Aside.cshtml" />
+    <Content Include="Views\Account.SignIn.Aside.cshtml" />
+    <Content Include="Views\Register.cshtml" />
+    <Content Include="Views\UserNavigation.Sub.cshtml" />
+    <Content Include="Views\Parts.Title.cshtml" />
+    <Content Include="Views\Browse.Search.cshtml" />
+    <Content Include="Views\Browse.Sort.cshtml" />
+    <Content Include="Views\Browse.Controls.cshtml" />
+    <Content Include="Views\Content-Package.Summary.cshtml" />
+    <Content Include="Views\Parts.Taxonomy.Menu-Categories.cshtml" />
+    <Content Include="Styles\_Common.scss" />
+    <Content Include="Views\DarkSky.Commerce\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\DarkSky.Commerce\Checkout\Index.cshtml" />
+    <Content Include="Views\Parts.Invoice.cshtml" />
+    <Content Include="Views\DarkSky.Commerce\Invoice\Index.cshtml" />
+    <Content Include="Views\DarkSky.Commerce\Transaction\Complete.cshtml" />
+    <Content Include="Views\Content-Package.cshtml" />
+    <Content Include="Views\Footer.cshtml" />
+    <Content Include="Views\Menu-Footer.cshtml" />
+    <Content Include="Views\Orchard.CustomForms\Item\Create.cshtml" />
+    <Content Include="Views\Contact.Aside.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -147,9 +251,32 @@
       <Project>{9916839c-39fc-4ceb-a5af-89ca7e87119f}</Project>
       <Name>Orchard.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Contrib.Reviews\Contrib.Reviews.csproj">
+      <Project>{f72680eb-12ee-482f-93c8-2f1279e2b710}</Project>
+      <Name>Contrib.Reviews</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Contrib.Voting\Contrib.Voting.csproj">
+      <Project>{4da5f35f-e62c-4b49-b5a8-379503257b3a}</Project>
+      <Name>Contrib.Voting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\DarkSky.Commerce\DarkSky.Commerce.csproj">
+      <Project>{4d128d14-fe61-4e35-b74e-6e35b4195e95}</Project>
+      <Name>DarkSky.Commerce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\DarkSky.OrchardMarket\DarkSky.OrchardMarket.csproj">
+      <Project>{f4e7360b-69c5-4e3f-9ae1-77a19b6215d9}</Project>
+      <Name>DarkSky.OrchardMarket</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Orchard.Users\Orchard.Users.csproj">
+      <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
+      <Name>Orchard.Users</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drivers\TitlePartDriver.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DarkSky.Commerce\Transaction\Cancel.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

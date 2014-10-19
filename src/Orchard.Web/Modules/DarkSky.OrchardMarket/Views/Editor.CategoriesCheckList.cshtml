@@ -1,0 +1,19 @@
+﻿@using System.Linq
+@using Contrib.Taxonomies.Models
+@{
+    Style.Include("Editors.min.css");
+    
+    var categoryTerms = (IList<TermPart>)Model.Categories;
+    var currentValues = ViewData.TemplateInfo.FormattedModelValue as int[] ?? new int[0];
+    var options = categoryTerms.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = currentValues.Contains(x.Id) }).ToList();
+}
+<ul class="checkbox-list">
+    @foreach(var option in options) {
+        var id = ViewData.TemplateInfo.GetFullHtmlFieldId(option.Value);
+        var checkedValue = option.Selected ? "checked" : null;
+        <li>
+            <input type="checkbox" id="@id" name="@ViewData.TemplateInfo.GetFullHtmlFieldName("")" value="@option.Value" checked="@checkedValue"/>
+            <label for="@id">@option.Text</label>
+        </li>
+    }
+</ul>

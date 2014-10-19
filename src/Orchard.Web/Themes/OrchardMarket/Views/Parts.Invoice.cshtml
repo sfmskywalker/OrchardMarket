@@ -1,0 +1,71 @@
+﻿@using DarkSky.Commerce.Models
+@{
+    Style.Include("ShoppingCart.min.css");
+    var invoicePart = (InvoicePart) Model.ContentPart;
+    var items = (IList<dynamic>)Model.Details;
+    var content = (dynamic) invoicePart.ContentItem;
+    var vatRates = invoicePart.Details.Select(x => x.VatRate).Distinct().ToList();
+    
+    Layout.Title = T("Invoice {0}", invoicePart.Id);
+    Layout.TitleZone.Add(New.Content_Title());
+}
+<fieldset>
+    <legend>@T("Invoice {0}", invoicePart.Id)</legend>
+    <div class="field-editor single-line">
+		<label>@T("Invoice Date")</label>
+		<div class="value">@content.CommonPart.CreatedUtc.ToString("d")</div>
+	</div>
+    <div class="field-editor single-line">
+		<label>@T("Order Number")</label>
+		<div class="value">@invoicePart.OrderId</div>
+	</div>
+</fieldset>
+<fieldset>
+    <div class="table-2">
+        <table>
+            <thead>
+                <tr>
+                    <th>@T("Item")</th>
+                    <th></th>
+                    <th>@T("Unit Price")</th>
+                    <th>@T("Quantity")</th>
+                    <th>@T("Total")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in items) {
+                    var logoUrl = !string.IsNullOrWhiteSpace(((IProductAspect)item.Product).ImageUrl) ? item.Product.ImageUrl : ViewBag.DefaultModuleLogoUrlSmall;
+                    <tr>
+                        <td><img src="@Url.Content(logoUrl)"/></td>
+                        <td>@item.Description</td>
+                        <td>@item.UnitPrice.ToString("c")</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.SubTotal.ToString("c")</td>
+                    </tr>    
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td>@T("Total products ({0})", invoicePart.Details.Count)</td>
+                    <td>@invoicePart.SubTotal.ToString("c")</td>
+                </tr>
+                @foreach (var vatRate in vatRates) {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td>@T("Vat ({0}%)", vatRate*100)</td>
+                        <td>@((invoicePart.SubTotal * (decimal)vatRate).ToString("c"))</td>
+                    </tr>
+                }
+                <tr class="total">
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td class="divider">@T("Total")</td>
+                    <td class="divider">@invoicePart.Total.ToString("c")</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</fieldset>

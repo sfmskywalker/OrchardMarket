@@ -1,0 +1,8 @@
+﻿@using System.Linq
+@using DarkSky.OrchardMarket.Services
+@{
+    var payoutMethods = (IEnumerable<IPayoutMethod>)Model.PayoutMethods;
+    var currentValue = ViewData.TemplateInfo.FormattedModelValue as string;
+    var options = payoutMethods.Select(x => new SelectListItem { Text = x.Name, Value = x.Name, Selected = x.Name == currentValue });
+}
+@Html.DropDownList("", options, T("Select Payout Method").Text)

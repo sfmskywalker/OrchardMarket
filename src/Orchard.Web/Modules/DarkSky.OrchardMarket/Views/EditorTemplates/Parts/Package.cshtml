@@ -1,0 +1,8 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.PackageViewModelAdmin
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.ExtensionType, T("Extension Type"))
+        @Html.EditorFor(m => m.ExtensionType)
+        @Html.ValidationMessageFor(m => m.ExtensionType, "*")
+    </div>
+</fieldset>

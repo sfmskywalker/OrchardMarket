@@ -1,0 +1,17 @@
+﻿@{
+    Style.Include("~/Modules/Contrib.Reviews/Styles/Contrib.Stars.css");
+    Script.Require("jQuery");
+    Script.Include("Contrib.Stars.js");
+    
+    var rating = (int)(Model.Rating ?? 0);
+    var cssClass = string.Format("stars-value-{0}", rating);
+}
+<div class="stars-rating">
+    <div class="stars-current-result @cssClass">
+        <span class="star-1 a-star">@(rating > 0 ? T("*").ToString() : T("-").ToString())</span>
+        <span class="star-2 a-star">@(rating > 1 ? T("*").ToString() : T("-").ToString())</span>
+        <span class="star-3 a-star">@(rating > 2 ? T("*").ToString() : T("-").ToString())</span>
+        <span class="star-4 a-star">@(rating > 3 ? T("*").ToString() : T("-").ToString())</span>
+        <span class="star-5 a-star">@(rating > 4 ? T("*").ToString() : T("-").ToString())</span>
+    </div>
+</div>

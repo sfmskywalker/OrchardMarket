@@ -1,0 +1,39 @@
+﻿@using DarkSky.Helpdesk.ViewModels
+@using Orchard.ContentManagement
+@{
+    var viewModel = (CreateSupportTicketViewModel)Model.Model;
+    var contentDisplayText = (string) Model.ContentDisplayText;
+    var content = (ContentItem)Model.Content;
+    var contentId = content != null ? content.Id : default(int?);
+
+    Layout.Title = contentDisplayText != null ? T("Create Support Ticket for {0}", contentDisplayText) : T("Create Support Ticket");
+    Layout.TitleZone.Add(New.Content_Title());
+}
+@using(Html.BeginFormAntiForgeryPost(Url.Action("Create"), FormMethod.Post, new { enctype = "multipart/form-data" })) {
+	<fieldset>
+        <legend>@T("Support Request Details")</legend>
+        @Html.ValidationSummary() 
+        <input type="hidden" name="@Html.NameFor(m => viewModel.ContentId)" value="@viewModel.ContentId"/>
+	    <div class="field-editor">
+	        <label>@T("Subject")</label>
+	        @Html.TextBoxFor(m => viewModel.Subject, new { @class = "textMedium" })
+	    </div>
+	    <div class="field-editor">
+	        <label>@T("Message")</label>
+	        @Html.TextAreaFor(m => viewModel.Message, new { @class = "textMedium" })
+	    </div>
+        <div class="field-editor">
+            <label>@T("Severity")</label>
+            @Html.EditorFor(m => viewModel.Severity)
+        </div>
+		<div class="commands">
+		    <a class="button submit" href="#">Save</a>           
+            @if (contentId != null) {
+                <a class="button" href="@Url.Action("ListByContent", new { contentId })">Cancel</a>
+            }
+            else {
+                <a class="button" href="@Url.Action("Index")">Cancel</a>
+            }
+		</div>
+	</fieldset>
+}

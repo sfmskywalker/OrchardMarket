@@ -1,12 +1,13 @@
-﻿Name: DarkSky.OrchardMarket
+﻿Name: Orchard Market Place
 AntiForgery: enabled
-Author: DarkSky Development
+Author: DarkSky / Sipke Schoorstra
 Website: http://darkskydevelopment.net
 Version: 1.6
 OrchardVersion: 1.6
 Description: Orchard Market
+SessionState: Required
 Features:
     DarkSky.OrchardMarket:
-        Description: Provides the primary features
+        Description: Provides primary features for Orchard Market
         Category: Orchard Market
-        Dependencies: Orchard.jQuery, Orchard.Fields, Orchard.Users, DarkSky.Commerce
+        Dependencies: Orchard.jQuery, Orchard.Fields, Orchard.Users, Orchard.Roles, Orchard.Tokens, Orchard.Autoroute, Orchard.Forms, Orchard.Projections, Orchard.Warmup, Orchard.Media, Orchard.Alias, Orchard.Rules, Orchard.Email, Contrib.Taxonomies, Contrib.Voting, Contrib.Reviews, DarkSky.Commerce, DarkSky.Commerce.Products, DarkSky.Commerce.ShoppingCart, DarkSky.Commerce.Checkout, DarkSky.Commerce.Orders, DarkSky.Commerce.PaymentProviders.PayPal, DarkSky.Helpdesk

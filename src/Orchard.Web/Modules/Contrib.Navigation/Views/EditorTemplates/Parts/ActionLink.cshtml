@@ -1,0 +1,24 @@
+﻿@model Contrib.Navigation.Models.ActionLinkPart
+@Display.TokenHint()
+<fieldset>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ActionName)">@T("Action")</label>
+        @Html.TextBoxFor(m => m.ActionName, new { @class = "text-box textMedium" })
+        <div class="hint">the name of the action</div>
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ControllerName)">@T("Controller")</label>
+        @Html.TextBoxFor(m => m.ControllerName, new { @class = "text-box textMedium" })
+        <div class="hint">the name of the controller</div>
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.AreaName)">@T("Area")</label>
+        @Html.TextBoxFor(m => m.AreaName, new { @class = "text-box textMedium" })
+        <div class="hint">the name of the area</div>
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.RouteValues)">@T("Route Values")</label>
+        @Html.TextBoxFor(m => m.RouteValues, new { @class = "large text tokenized text-box" })
+        <div class="hint">Specify zero or more key/value pairs separated by a comma. Both keys and values can be entered as tokens, i.e.: id = {Request.QueryString:id}, returnUrl = ~/ </div>
+    </div>
+</fieldset>

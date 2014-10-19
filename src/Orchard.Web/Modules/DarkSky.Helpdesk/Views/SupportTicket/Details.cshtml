@@ -1,0 +1,48 @@
+﻿@{
+    var ticket = Model.Ticket;
+    var ticketShape = Model.TicketShape;
+    
+	Layout.Title = T("Ticket {0} - {1}", ticket.Id, ticket.Subject);
+    //Layout.TitleZone.Add(New.Content_Title());
+}
+<div>
+    <fieldset>
+        <legend>@T("Ticket Details")</legend>
+        @if (ticket.Content != null) {
+            <div class="field-editor single-line">
+                <label>@T("Product")</label>
+                <div class="value">@ticket.Content.ContentManager.GetItemMetadata(ticket.Content).DisplayText</div>
+            </div>
+        }
+        <div class="field-editor single-line">
+            <label>@T("Severity")</label>
+            <div class="value">@ticket.Severity</div>
+        </div>
+        <div class="field-editor single-line">
+            <label>@T("Status")</label>
+            <div class="value">@ticket.Status</div>
+        </div>
+        <div class="field-editor single-line">
+            <label>@T("Subject")</label>
+            <div class="value">@ticket.Subject</div>
+        </div>
+        <div class="field-editor single-line">
+            <label>@T("Message")</label>
+            <div class="value">@ticket.Message</div>
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend>@T("Comments")</legend>
+        @Display(ticketShape)
+    </fieldset>
+
+    <div class="commands">
+        @if (ticket.Content != null) {
+            @Html.ActionLink(T("Back").Text, "ListByContent", new { contentId = (int)ticket.Content.Id }, new {@class = "button"})
+        }
+        else {
+            @Html.ActionLink(T("Back").Text, "Index", null, new {@class = "button"})
+        }
+    </div>
+</div>

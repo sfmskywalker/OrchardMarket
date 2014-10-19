@@ -1,0 +1,29 @@
+﻿@using DarkSky.OrchardMarket.ViewModels
+@{
+    Style.Include("PaymentDetails.min.css");
+    Layout.Title = T("Edit Payment Options");
+    Layout.TitleZone.Add(New.Content_Title());
+
+    var editorShape = Model.EditorShape;
+    var viewModel = (EditPayoutOptionViewModel) Model.ViewModel;
+}
+
+@using(Html.BeginFormAntiForgeryPost()) {
+	<fieldset>
+        <legend>@T("Payment Options")</legend>
+        
+        @Html.ValidationSummary() 
+        @Display(editorShape)
+        
+	    <div class="field-editor">
+	        @Html.HiddenFor(m => viewModel.Id)
+	        @Html.CheckBoxFor(m => viewModel.IsActive)
+	        @Html.LabelFor(m => viewModel.IsActive, T("Is Active").Text, new { @class = "forcheckbox" })
+	    </div>
+
+	    <div class="commands">
+            <a class="button submit" href="#">Save</a>
+            <a class="button" href="@Url.Action("Index")">Cancel</a>
+		</div>
+	</fieldset>
+}

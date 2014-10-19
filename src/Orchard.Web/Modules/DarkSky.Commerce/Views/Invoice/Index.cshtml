@@ -1,0 +1,28 @@
+﻿@using Orchard.Utility.Extensions
+@model IList<DarkSky.Commerce.Models.InvoicePart>
+@{
+    var invoices = Model;
+}
+<div class="table-1">
+    <table>
+        <thead>
+            <tr>
+                <th>@T("Invoice")</th>
+                <th>@T("Summary")</th>
+                <th>@T("Date")</th>
+                <th>@T("Total")</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var invoice in invoices) {
+                var content = (dynamic) invoice.ContentItem;
+                <tr>
+                    <td>@Html.ItemDisplayLink(invoice.Title, invoice)</td>
+                    <td>@string.Join(", ", invoice.Details.Select(x => string.Format("{0}x {1}", x.Quantity, x.Description))).Ellipsize(100)</td>
+                    <td>@content.CommonPart.CreatedUtc.ToString("d")</td>
+                    <td>@invoice.Total.ToString("c")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

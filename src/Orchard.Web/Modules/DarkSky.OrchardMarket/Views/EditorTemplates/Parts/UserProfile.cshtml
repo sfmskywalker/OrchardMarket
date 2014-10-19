@@ -1,0 +1,21 @@
+﻿@model DarkSky.OrchardMarket.Models.UserProfilePart
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.FirstName, T("First Name"))
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "textMedium" })
+        @Html.ValidationMessageFor(m => m.FirstName, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.LastName, T("Last Name"))
+        @Html.TextBoxFor(m => m.LastName, new { @class = "textMedium" })
+        @Html.ValidationMessageFor(m => m.LastName, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.AvatarUrl, T("Logo"))
+        @Html.TextBoxFor(m => m.AvatarUrl, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.AvatarUrl, "*")
+    </div>
+    <div>
+        @T("Last logged in at: {0}", Model.LastLoginUtc)
+    </div>
+</fieldset>

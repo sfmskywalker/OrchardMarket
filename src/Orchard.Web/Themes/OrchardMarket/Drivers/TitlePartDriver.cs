@@ -10,7 +10,8 @@ namespace OrchardMarket.Drivers {
 	    }
 
 	    protected override DriverResult Display(TitlePart part, string displayType, dynamic shapeHelper) {
-		    _services.WorkContext.Layout.TitleZone.Add(shapeHelper.Content_Title(Part: part));
+            if(displayType == "Detail")
+		        _services.WorkContext.Layout.TitleZone.Add(shapeHelper.Content_Title());
             return new DriverResult();
         }
     }

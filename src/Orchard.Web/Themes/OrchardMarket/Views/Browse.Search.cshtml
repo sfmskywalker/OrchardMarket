@@ -1,0 +1,19 @@
+﻿@{
+    Style.Include("Browse.min.css");
+    
+    var extensionType = Model.ExtensionType;
+    var category = Model.Category;
+    var tag = Model.Tag;
+    var keyword = Model.Keyword;
+}
+<div class="search-wrapper">
+    <fieldset class="search">
+        <div class="skin">
+            @using(Html.BeginForm("Index", "Browse", new { extensionType, category, tag, area = "DarkSky.OrchardMarket" }, FormMethod.Get)){
+            <input type="text" name="keyword" value="@keyword"/>
+            <a class="submit button" href="#"></a>
+            }
+        </div>
+    </fieldset>
+</div>
+<div class="clear"></div>

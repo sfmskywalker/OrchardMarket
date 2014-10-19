@@ -1,0 +1,49 @@
+﻿@using DarkSky.Commerce.Models
+@using Orchard.ContentManagement
+@{
+    Style.Include("Invoice.min.css");
+    Layout.Title = T("Order Completed");
+    Layout.TitleZone.Add(New.Content_Title());
+    
+    var invoices = (IList<dynamic>)Model.Invoices;
+}
+
+<div class="invoices-wrapper">
+@foreach (var invoice in invoices) {
+    var shop = invoice.Shop;
+    var status = (InvoiceStatus)invoice.Status;
+    <fieldset>
+        <legend>@T("Invoice {0}", invoice.Id)</legend>
+        <div class="invoice-summary">
+            <div>@T("Organization: {0}", Html.ItemDisplayText((IContent)shop))</div>
+            <div>@T("Date: {0}", invoice.CreatedUtc.ToString("d"))</div>
+            <div>@T("Status: {0}", invoice.Status)</div>
+            @if (status == InvoiceStatus.Paid) {
+            <div>@T("Paid with <strong>{0}</strong>", invoice.Transaction.PaymentMethodName)</div>    
+            }
+        </div>
+        <div class="table-2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>@T("Item")</th>
+                        <th>@T("Unit Price")</th>
+                        <th>@T("Quantity")</th>
+                        <th>@T("Total")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in invoice.Details) {
+                    <tr>
+                        <td>@item.Description</td>
+                        <td>@item.UnitPrice.ToString("c")</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Total.ToString("c")</td>
+                    </tr>    
+                    }
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+}
+</div>

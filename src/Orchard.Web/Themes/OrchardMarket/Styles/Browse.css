@@ -1,0 +1,58 @@
+#content-header-wrapper {
+  border-bottom: 1px dotted #cfcfd0; }
+  #content-header-wrapper .browse-controls {
+    width: 731px;
+    padding: 0 0 2px 0; }
+    #content-header-wrapper .browse-controls .search-wrapper {
+      float: right; }
+      #content-header-wrapper .browse-controls .search-wrapper .skin {
+        border: 1px solid #818181;
+        width: 335px;
+        height: 32px;
+        position: relative; }
+        #content-header-wrapper .browse-controls .search-wrapper .skin input[type='text'] {
+          border-radius: 0;
+          box-shadow: none;
+          transition: none;
+          border: none;
+          width: 317px;
+          height: 24px;
+          line-height: 24px; }
+        #content-header-wrapper .browse-controls .search-wrapper .skin a.button {
+          position: absolute;
+          width: 36px;
+          height: 30px;
+          background: url("../content/images/sprites.png") -68px -82px;
+          border-radius: 0;
+          padding: 0;
+          right: 1px;
+          top: 1px; }
+    #content-header-wrapper .browse-controls .sort-options-wrapper {
+      float: right; }
+      #content-header-wrapper .browse-controls .sort-options-wrapper label {
+        float: left;
+        padding: 0;
+        margin: 0 8px 0 0;
+        line-height: 1.538em;
+        color: #818181; }
+      #content-header-wrapper .browse-controls .sort-options-wrapper ul {
+        list-style: none;
+        float: left;
+        margin: 0;
+        padding: 0;
+        line-height: 1.538em; }
+        #content-header-wrapper .browse-controls .sort-options-wrapper ul li {
+          float: left;
+          padding-right: .25em; }
+          #content-header-wrapper .browse-controls .sort-options-wrapper ul li a {
+            color: #2a8038; }
+          #content-header-wrapper .browse-controls .sort-options-wrapper ul li span {
+            color: #3b3b3b; }
+          #content-header-wrapper .browse-controls .sort-options-wrapper ul li a:after, #content-header-wrapper .browse-controls .sort-options-wrapper ul li span:after {
+            content: " | ";
+            color: #818181; }
+          #content-header-wrapper .browse-controls .sort-options-wrapper ul li.last, #content-header-wrapper .browse-controls .sort-options-wrapper ul li:last-child {
+            padding-right: 0; }
+            #content-header-wrapper .browse-controls .sort-options-wrapper ul li.last a:after, #content-header-wrapper .browse-controls .sort-options-wrapper ul li.last span:after, #content-header-wrapper .browse-controls .sort-options-wrapper ul li:last-child a:after, #content-header-wrapper .browse-controls .sort-options-wrapper ul li:last-child span:after {
+              content: ""; }
+

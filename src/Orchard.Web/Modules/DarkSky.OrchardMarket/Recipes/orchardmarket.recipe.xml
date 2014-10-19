@@ -1,0 +1,271 @@
+﻿<?xml version="1.0"?>
+<Orchard>
+  <Recipe>
+    <Name>Orchard Market</Name>
+    <Description>This recipe will turn your Orchard instance into an Orchard Market Place</Description>
+    <Author>DarkSky Development</Author>
+    <WebSite>http://darkskydevelopment.net</WebSite>
+    <Tags></Tags>
+    <Version>1.0</Version>
+  </Recipe>
+
+  <Feature enable="Orchard.Blogs,Orchard.Comments,Orchard.Alias,Orchard.Autoroute,
+                   TinyMce,Orchard.Media,Orchard.MediaPicker,Orchard.ContentPicker,Orchard.PublishLater,
+                   Orchard.jQuery,Orchard.Widgets,Orchard.Widgets.PageLayerHinting,Orchard.ContentTypes,
+                   Orchard.Scripting,Orchard.Scripting.Lightweight,
+                   PackagingServices,Orchard.Packaging,Orchard.Warmup,Orchard.Projections,Orchard.Fields, Orchard.Rules, Orchard.CustomForms,
+                   Contrib.Taxonomies,
+                   Contrib.Navigation, DarkSky.Helpdesk, DarkSky.OrchardMarket, DarkSky.Commerce.ShoppingCart.DefaultNotifications,
+                   Orchard.Email,
+                   OrchardMarket" />
+
+  <Metadata>
+    <Types>
+      <Page ContentTypeSettings.Draftable="True" TypeIndexing.Included="true">
+        <LocalizationPart />
+        <TitlePart/>
+        <AutoroutePart />
+      </Page>
+      <BlogPost ContentTypeSettings.Draftable="True" TypeIndexing.Included="true">
+        <CommentsPart />
+        <LocalizationPart />
+        <TitlePart/>
+        <AutoroutePart />
+      </BlogPost>
+      <Query DisplayName="Query">
+        <QueryPart />
+        <TitlePart />
+        <IdentityPart />
+      </Query>
+      <CustomForm ContentTypeSettings.Draftable="True" ContentTypeSettings.Creatable="False" DisplayName="Custom Form">
+        <CommonPart DateEditorSettings.ShowDateEditor="False" OwnerEditorSettings.ShowOwnerEditor="True" />
+        <TitlePart />
+        <AutoroutePart AutorouteSettings.AllowCustomPattern="True" AutorouteSettings.AutomaticAdjustmentOnEdit="False" AutorouteSettings.PatternDefinitions="[{&quot;Name&quot;:&quot;Title&quot;,&quot;Pattern&quot;:&quot;{Content.Slug}&quot;,&quot;Description&quot;:&quot;my-form&quot;}]" AutorouteSettings.DefaultPatternIndex="0" AutorouteSettings.PerItemConfiguration="False" />
+        <MenuPart />
+        <CustomFormPart />
+      </CustomForm>
+      <ContactForm ContentTypeSettings.Creatable="False" ContentTypeSettings.Draftable="False" ContentTypeSettings.Placement.Editor="[{&quot;ShapeType&quot;:&quot;Parts_Common_Body_Edit&quot;,&quot;Zone&quot;:&quot;Content&quot;,&quot;Position&quot;:&quot;2.5&quot;,&quot;Differentiator&quot;:null},{&quot;ShapeType&quot;:&quot;Fields_Input_Edit&quot;,&quot;Zone&quot;:&quot;Content&quot;,&quot;Position&quot;:&quot;2&quot;,&quot;Differentiator&quot;:&quot;Email&quot;},{&quot;ShapeType&quot;:&quot;Fields_Common_Text_Edit&quot;,&quot;Zone&quot;:&quot;Content&quot;,&quot;Position&quot;:&quot;2.4&quot;,&quot;Differentiator&quot;:&quot;Subject&quot;}]" DisplayName="Contact Form">
+        <CommonPart DateEditorSettings.ShowDateEditor="False" OwnerEditorSettings.ShowOwnerEditor="False" />
+        <BodyPart BodyTypePartSettings.Flavor="text" />
+        <ContactForm />
+      </ContactForm>
+    </Types>
+    <Parts>
+      <CommonPart ContentPartSettings.Attachable="True" />
+      <QueryPart />
+      <TitlePart ContentPartSettings.Attachable="True" />
+      <IdentityPart ContentPartSettings.Attachable="True" />
+      <AutoroutePart ContentPartSettings.Attachable="True" />
+      <BodyPart BodyPartSettings.FlavorDefault="html" />
+      <MenuPart ContentPartSettings.Attachable="True" />
+      <CustomFormPart />
+      <ContactForm ContentPartSettings.Attachable="True">
+        <Email.InputField DisplayName="Email" InputFieldSettings.Type="Email" InputFieldSettings.Title="Email" InputFieldSettings.Required="True" InputFieldSettings.AutoFocus="False" InputFieldSettings.AutoComplete="False" InputFieldSettings.MaxLength="0" />
+        <Subject.TextField DisplayName="Subject" TextFieldSettings.Flavor="Large" TextFieldSettings.Required="True" />
+      </ContactForm>
+    </Parts>
+  </Metadata>
+  <Data>
+    <Query Id="/Identifier=b94620f02a94489095641719741d6b62" Status="Published">
+      <TitlePart Title="Modules" />
+      <QueryPart>
+        <FilterGroups>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;jKXaEjv6oEuavASQG4QshMlRyY7qYZPREt-3Ktc9Yi0ZrPK2YFnQCnizyUeYHENUR79tOujQm1wUAN4JxJTgzpT-H2-aJ0kziQeuMCZnjH0jsg5mMS-t5lCbn-R0VHuDM1eokBP6y10l2pm9nG-r8mTTNjlZD10qBKYeBdmwTcU1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Module&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;lOt-D8sJLY926xYatvWp_GHYelO9Er-Z1eInHFSomC_x2Bw9_Qo4nI-IBydivYzvoAmTjVP5XOKMTXHNpB8s8LpPjopFm58rRSB85hiuTZREVI0nfAbx4rgwZ_Cjwg-6ud5AVuqz57f8ZCyzTZa8mEOQ2mf_RYFSZN4VKhiXPbw1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+            <Filter Category="Taxonomy" Description="" Position="2" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;RouteValueName&gt;category&lt;/RouteValueName&gt;&lt;TaxonomyId&gt;4&lt;/TaxonomyId&gt;&lt;__RequestVerificationToken&gt;FTXwbQg4cqWSC2jugbkec4yafFMxEAKB35h0ipQf1kFez6OFN_WUdFFz7AqtzSTXsR9HCz_yIvZPIJGsKT84PUGiNZKrMxjMvUkHv1-2R5F3NXoeixeMM6PzRyUjLXhsz4R66wwTKmLZcmv_7cw-XUsqlBsimjqAwZH1uqQ7gGE1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="RoutedTerm" />
+            <Filter Category="TitlePartRecord" Description="" Position="3" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Operator&gt;Contains&lt;/Operator&gt;&lt;Value&gt;{Request.QueryString:keyword}&lt;/Value&gt;&lt;__RequestVerificationToken&gt;SnQBZXRFtjPnUfnIFzyg-8cLCfvbFZxu7yCZDd71tcDI7XzUo7YqbyMOzm32_qFBqHcdOR2ZU05XdeusqLXiHD-iWLsjP_W7vzq_1H4oLmQX1IqffnbhosoYktEU_HT5xVTTORAl_afv2cb_OGwK6Cbo7Bc5qP5_AO_e4aOGDGA1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Title" />
+          </FilterGroup>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;D6Khcafvg2usC7fBBjknrX8LERlGTd_0lWTloscm6VGXukJAATf8GrBDkU93iCkRnr_kEmJzLV1lJA86djm2GlsRpN_TsM-QaDRMPqinemuqjf4IuzIf38mPL46hFZbWepxpqVOQIw_nWckJwaxiFvpt_OtwVqEIKX0i-9WOlKg1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Module&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;DHDT_4iQwm_mEV1GrZvcwcD91l-ZWptKOk3DwaYa28TIOArXeP5kJIKexvxr3BzoBMn8ezTNkahKFWQ52GXOKGjBcO66LCHOcRGEllvABqdS9wirA3an-TkMNUhOjApjqw52FKXiB6k7Eg3uup81G5J5oWGLR0vPzfiR1G3UAnM1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+            <Filter Category="Taxonomy" Description="" Position="2" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;RouteValueName&gt;tag&lt;/RouteValueName&gt;&lt;TaxonomyId&gt;3&lt;/TaxonomyId&gt;&lt;__RequestVerificationToken&gt;ZXIq1u4UzsOxhvHdX2KUbw-T0erN5ZCDXVmFeRp-qboS9QC42Hp5RTWoBiwQqU4POVX4s26izfl8JrS9xj-J46vsEIlEtbL1Enj_ud2NM4fjok1GF871SbhMa9lSldxeantXlyU6_UtlI_8yGpoTwK5PD7S4aLwQq3PxCzhpGqg1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="RoutedTerm" />
+            <Filter Category="TitlePartRecord" Description="" Position="3" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Operator&gt;Contains&lt;/Operator&gt;&lt;Value&gt;{Request.QueryString:keyword}&lt;/Value&gt;&lt;__RequestVerificationToken&gt;RxLzt8mppRYHFJSuizraaPCxF2xwnvcgW9NFyvfaV7T03hr8URovg07Rh9S8M457Wkbh1HCsS2elACscBxD1ViXe6JWu7C36f1aobGlnM7ISUgm-5xeJxjUbAKittRD9yKulhTkMmc6mJ2FIZKj6O7asp_1yzDiPHM2FfH1cEJw1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Title" />
+          </FilterGroup>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;GeTBZ1A1HfoFn8dh8zwmMANU4n8zXDJPowHk0d_VQDgYABZfyX1uT1pCdkO6cTntHUSDXKNAZtboklJAbCDcD1NxPKSnxLnIlWEK3XMXz3GEYpiHvrSXdmZApeQL3rfqDZF9laxxxEEn-y9eL1f5WfkNLNOLjo5c0WTBeFVB9-c1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Module&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;yY-S-rTuT3bgG799jaybiuc0713KMFw_KwaQsdf_p7xZeFzNOHiwhMpZ6uwl6o3-ojze_lPvOw7ZR8TJYyut1piiw2tdqwtNqsP78ielCb5oWtFvX4VFte9aJAZitfWpid1WYPap9g1DAKb9TnctZkkVUpMSFStohZ9JfHiF0Po1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+            <Filter Category="Taxonomy" Description="" Position="2" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;RouteValueName&gt;category&lt;/RouteValueName&gt;&lt;TaxonomyId&gt;4&lt;/TaxonomyId&gt;&lt;__RequestVerificationToken&gt;ZZgh0B6clle3YXn6NjRRH00ELkdqG0usf2vGzNiBLZEwyybcRAJFa_45HBSNAqtRd_9f7sYPsF7U3EZoZOyMrdpzxEOc1msJpxLlDb2Kij6VJGS6XDanG7YBfP6RSzgrPA_T1lrvU1N-XcWaZsJbVNZ6l30UjTYN3vr8D0yJ11g1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="RoutedTerm" />
+            <Filter Category="BodyPartRecord" Description="" Position="3" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Operator&gt;Contains&lt;/Operator&gt;&lt;Value&gt;{Request.QueryString:keyword}&lt;/Value&gt;&lt;__RequestVerificationToken&gt;vJwLcB8f48vuByjoVCg_S_mUBiQkornCN2MRdfNdVPYhK13gPpJOeufMkDZnNS1vqEy5YCm9Q3sp0ojd8n2PcRq4sElG6nIdwjFXTSiR6B1ho4EfOdRHcQn1UBgQStzdk0AY8BLK93G2A-TnUB2bGRtFJB45aNsu26iddRufFYs1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Text" />
+          </FilterGroup>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;0XrQX5xrcMh3O-yZfBE0KPl5qxCgwC2PEf60rda3SZTt1oVBwZrrZ1Mlsl1lSISFl5cm1SDdSgHvhA57QBYgg9aRWmvbEpWLyoECiRi3EimfFuhFG-Vmsre9wXTAfdCdTNvmA3nTfNO-10ooOd3XC294mihx9dpjP9YdI750QcU1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Module&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;LL4Xlacvy-W4NxAPFuCTajc0dTvLyHTYujVOw-1eBMBUGD-T0Ux7qKQdQo9SuQNcKj5kcCBPgyFMGrrvoeARc31co-WcrcSfomxl9VlSC4X5sky-WtMl77RK-BZmsbNK0hzBCUUOhcDjGu5BCy3kiY_HYkgaHjU5_zFy3cl05SI1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+            <Filter Category="Taxonomy" Description="" Position="2" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;RouteValueName&gt;tag&lt;/RouteValueName&gt;&lt;TaxonomyId&gt;3&lt;/TaxonomyId&gt;&lt;__RequestVerificationToken&gt;YC0191qyi8-em0My0hjPfQLH95vp0v2R6Z7VUd_SkyUh63Mppy0gao4htse-JzJ0zheFRrAw5RxXPKiXfvvsgpH-MmVx5BYrsXFstw2GO20TkXsbApCyiJubuO4y52-jbFHGBKfflRbbyX97zFyNWtaoQBmBEGNNzyTEBfy4yTQ1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="RoutedTerm" />
+            <Filter Category="BodyPartRecord" Description="" Position="3" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Operator&gt;Contains&lt;/Operator&gt;&lt;Value&gt;{Request.QueryString:keyword}&lt;/Value&gt;&lt;__RequestVerificationToken&gt;P2wuDBoNf9rjGAmMvg_C0NBuyCYWMzDzkNiKCvzxxNpeBYLO85anbHIA-nx_Gz4gNayMP8Z_8CqjrkfW9nxonXwXBvba1RmIn089Yd6gamu6Qm0xY26MRIVJlbA4fSqKyZ3_CooVWqZg2KuxCrWvzGhC41rzVG2ZJHPJFvD44P01&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Text" />
+          </FilterGroup>
+        </FilterGroups>
+        <SortCriteria>
+          <SortCriterion Category="TitlePartRecord" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Sort&gt;true&lt;/Sort&gt;&lt;__RequestVerificationToken&gt;GiK--31lXkR-KAEv2ek-udUeaVXG8skeBtjlFCuzTjHFL7NSfTlg3utpnE3mVrYIaymVnQzAgIcS3v-6nEtOdQkyqaQ9LPQoXhWlo5ju2xKGgRtQDl_y82NWkc2CSAKbl3xZM043LP08e-UQg5_6BOPS8R-oyDdf50j_0GThSZg1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Title" />
+        </SortCriteria>
+        <Layouts />
+      </QueryPart>
+      <IdentityPart Identifier="b94620f02a94489095641719741d6b62" />
+    </Query>
+    <Query Id="/Identifier=b94620f02a94489095641719741d6b63" Status="Published">
+      <TitlePart Title="Themes" />
+      <QueryPart>
+        <FilterGroups>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;jKXaEjv6oEuavASQG4QshMlRyY7qYZPREt-3Ktc9Yi0ZrPK2YFnQCnizyUeYHENUR79tOujQm1wUAN4JxJTgzpT-H2-aJ0kziQeuMCZnjH0jsg5mMS-t5lCbn-R0VHuDM1eokBP6y10l2pm9nG-r8mTTNjlZD10qBKYeBdmwTcU1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Theme&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;lOt-D8sJLY926xYatvWp_GHYelO9Er-Z1eInHFSomC_x2Bw9_Qo4nI-IBydivYzvoAmTjVP5XOKMTXHNpB8s8LpPjopFm58rRSB85hiuTZREVI0nfAbx4rgwZ_Cjwg-6ud5AVuqz57f8ZCyzTZa8mEOQ2mf_RYFSZN4VKhiXPbw1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+            <Filter Category="Taxonomy" Description="" Position="2" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;RouteValueName&gt;category&lt;/RouteValueName&gt;&lt;TaxonomyId&gt;4&lt;/TaxonomyId&gt;&lt;__RequestVerificationToken&gt;FTXwbQg4cqWSC2jugbkec4yafFMxEAKB35h0ipQf1kFez6OFN_WUdFFz7AqtzSTXsR9HCz_yIvZPIJGsKT84PUGiNZKrMxjMvUkHv1-2R5F3NXoeixeMM6PzRyUjLXhsz4R66wwTKmLZcmv_7cw-XUsqlBsimjqAwZH1uqQ7gGE1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="RoutedTerm" />
+            <Filter Category="TitlePartRecord" Description="" Position="3" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Operator&gt;Contains&lt;/Operator&gt;&lt;Value&gt;{Request.QueryString:keyword}&lt;/Value&gt;&lt;__RequestVerificationToken&gt;SnQBZXRFtjPnUfnIFzyg-8cLCfvbFZxu7yCZDd71tcDI7XzUo7YqbyMOzm32_qFBqHcdOR2ZU05XdeusqLXiHD-iWLsjP_W7vzq_1H4oLmQX1IqffnbhosoYktEU_HT5xVTTORAl_afv2cb_OGwK6Cbo7Bc5qP5_AO_e4aOGDGA1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Title" />
+          </FilterGroup>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;D6Khcafvg2usC7fBBjknrX8LERlGTd_0lWTloscm6VGXukJAATf8GrBDkU93iCkRnr_kEmJzLV1lJA86djm2GlsRpN_TsM-QaDRMPqinemuqjf4IuzIf38mPL46hFZbWepxpqVOQIw_nWckJwaxiFvpt_OtwVqEIKX0i-9WOlKg1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Theme&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;DHDT_4iQwm_mEV1GrZvcwcD91l-ZWptKOk3DwaYa28TIOArXeP5kJIKexvxr3BzoBMn8ezTNkahKFWQ52GXOKGjBcO66LCHOcRGEllvABqdS9wirA3an-TkMNUhOjApjqw52FKXiB6k7Eg3uup81G5J5oWGLR0vPzfiR1G3UAnM1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+            <Filter Category="Taxonomy" Description="" Position="2" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;RouteValueName&gt;tag&lt;/RouteValueName&gt;&lt;TaxonomyId&gt;3&lt;/TaxonomyId&gt;&lt;__RequestVerificationToken&gt;ZXIq1u4UzsOxhvHdX2KUbw-T0erN5ZCDXVmFeRp-qboS9QC42Hp5RTWoBiwQqU4POVX4s26izfl8JrS9xj-J46vsEIlEtbL1Enj_ud2NM4fjok1GF871SbhMa9lSldxeantXlyU6_UtlI_8yGpoTwK5PD7S4aLwQq3PxCzhpGqg1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="RoutedTerm" />
+            <Filter Category="TitlePartRecord" Description="" Position="3" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Operator&gt;Contains&lt;/Operator&gt;&lt;Value&gt;{Request.QueryString:keyword}&lt;/Value&gt;&lt;__RequestVerificationToken&gt;RxLzt8mppRYHFJSuizraaPCxF2xwnvcgW9NFyvfaV7T03hr8URovg07Rh9S8M457Wkbh1HCsS2elACscBxD1ViXe6JWu7C36f1aobGlnM7ISUgm-5xeJxjUbAKittRD9yKulhTkMmc6mJ2FIZKj6O7asp_1yzDiPHM2FfH1cEJw1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Title" />
+          </FilterGroup>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;GeTBZ1A1HfoFn8dh8zwmMANU4n8zXDJPowHk0d_VQDgYABZfyX1uT1pCdkO6cTntHUSDXKNAZtboklJAbCDcD1NxPKSnxLnIlWEK3XMXz3GEYpiHvrSXdmZApeQL3rfqDZF9laxxxEEn-y9eL1f5WfkNLNOLjo5c0WTBeFVB9-c1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Theme&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;yY-S-rTuT3bgG799jaybiuc0713KMFw_KwaQsdf_p7xZeFzNOHiwhMpZ6uwl6o3-ojze_lPvOw7ZR8TJYyut1piiw2tdqwtNqsP78ielCb5oWtFvX4VFte9aJAZitfWpid1WYPap9g1DAKb9TnctZkkVUpMSFStohZ9JfHiF0Po1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+            <Filter Category="Taxonomy" Description="" Position="2" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;RouteValueName&gt;category&lt;/RouteValueName&gt;&lt;TaxonomyId&gt;4&lt;/TaxonomyId&gt;&lt;__RequestVerificationToken&gt;ZZgh0B6clle3YXn6NjRRH00ELkdqG0usf2vGzNiBLZEwyybcRAJFa_45HBSNAqtRd_9f7sYPsF7U3EZoZOyMrdpzxEOc1msJpxLlDb2Kij6VJGS6XDanG7YBfP6RSzgrPA_T1lrvU1N-XcWaZsJbVNZ6l30UjTYN3vr8D0yJ11g1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="RoutedTerm" />
+            <Filter Category="BodyPartRecord" Description="" Position="3" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Operator&gt;Contains&lt;/Operator&gt;&lt;Value&gt;{Request.QueryString:keyword}&lt;/Value&gt;&lt;__RequestVerificationToken&gt;vJwLcB8f48vuByjoVCg_S_mUBiQkornCN2MRdfNdVPYhK13gPpJOeufMkDZnNS1vqEy5YCm9Q3sp0ojd8n2PcRq4sElG6nIdwjFXTSiR6B1ho4EfOdRHcQn1UBgQStzdk0AY8BLK93G2A-TnUB2bGRtFJB45aNsu26iddRufFYs1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Text" />
+          </FilterGroup>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;0XrQX5xrcMh3O-yZfBE0KPl5qxCgwC2PEf60rda3SZTt1oVBwZrrZ1Mlsl1lSISFl5cm1SDdSgHvhA57QBYgg9aRWmvbEpWLyoECiRi3EimfFuhFG-Vmsre9wXTAfdCdTNvmA3nTfNO-10ooOd3XC294mihx9dpjP9YdI750QcU1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Theme&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;LL4Xlacvy-W4NxAPFuCTajc0dTvLyHTYujVOw-1eBMBUGD-T0Ux7qKQdQo9SuQNcKj5kcCBPgyFMGrrvoeARc31co-WcrcSfomxl9VlSC4X5sky-WtMl77RK-BZmsbNK0hzBCUUOhcDjGu5BCy3kiY_HYkgaHjU5_zFy3cl05SI1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+            <Filter Category="Taxonomy" Description="" Position="2" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;RouteValueName&gt;tag&lt;/RouteValueName&gt;&lt;TaxonomyId&gt;3&lt;/TaxonomyId&gt;&lt;__RequestVerificationToken&gt;YC0191qyi8-em0My0hjPfQLH95vp0v2R6Z7VUd_SkyUh63Mppy0gao4htse-JzJ0zheFRrAw5RxXPKiXfvvsgpH-MmVx5BYrsXFstw2GO20TkXsbApCyiJubuO4y52-jbFHGBKfflRbbyX97zFyNWtaoQBmBEGNNzyTEBfy4yTQ1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="RoutedTerm" />
+            <Filter Category="BodyPartRecord" Description="" Position="3" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Operator&gt;Contains&lt;/Operator&gt;&lt;Value&gt;{Request.QueryString:keyword}&lt;/Value&gt;&lt;__RequestVerificationToken&gt;P2wuDBoNf9rjGAmMvg_C0NBuyCYWMzDzkNiKCvzxxNpeBYLO85anbHIA-nx_Gz4gNayMP8Z_8CqjrkfW9nxonXwXBvba1RmIn089Yd6gamu6Qm0xY26MRIVJlbA4fSqKyZ3_CooVWqZg2KuxCrWvzGhC41rzVG2ZJHPJFvD44P01&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Text" />
+          </FilterGroup>
+        </FilterGroups>
+        <SortCriteria>
+          <SortCriterion Category="TitlePartRecord" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Sort&gt;true&lt;/Sort&gt;&lt;__RequestVerificationToken&gt;GiK--31lXkR-KAEv2ek-udUeaVXG8skeBtjlFCuzTjHFL7NSfTlg3utpnE3mVrYIaymVnQzAgIcS3v-6nEtOdQkyqaQ9LPQoXhWlo5ju2xKGgRtQDl_y82NWkc2CSAKbl3xZM043LP08e-UQg5_6BOPS8R-oyDdf50j_0GThSZg1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Title" />
+        </SortCriteria>
+        <Layouts />
+      </QueryPart>
+      <IdentityPart Identifier="b94620f02a94489095641719741d6b62" />
+    </Query>
+    <Query Id="/Identifier=550380c40736494b9539c3a397a59982" Status="Published">
+      <TitlePart Title="Latest Modules" />
+      <QueryPart>
+        <FilterGroups>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;NoMTLyeK83jSy33q4vLYIRv2aGNPKjxRi7vwxZ5iPGEc919oeOnNditNQzXY3jt5fiLRBmX2IzCnSfmiOdUsVPslPG4EZ_HW8cK9N57yoae-nTNoPQZ6ctaFkwaHjFTnkT0-c425bIbaV7drqeKuetDSl9FW7UBWqdDbxEf6N0I1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Module&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;8IDEyuPhRJsAW_YALjfUKQ2X-YdYHQn3Hfo9Fjydf_ynh3h8F2ByYuPey058PvuQ6HFyL60v8VEAiB1er5prDyOSqUnYPY6dCrKtNTcCGjxDRWQe-hNVrqI_EFo1-c-6-NPjAyLrl008vf1cQr5CqCZ8xKLhTtjaxelYO9jS4e01&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+          </FilterGroup>
+        </FilterGroups>
+        <SortCriteria>
+          <SortCriterion Category="CommonPartRecord" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Sort&gt;false&lt;/Sort&gt;&lt;__RequestVerificationToken&gt;dF7wUcZnAUUMilqJ3TWTDcTp4Rj1qQLfjhWELgGBgSz1ta_jo7y9L6zyGGZKd6iILoCtXukdAgKhXIj8nCQrfRj4sL_zOBfPogL_WRYEQLCJh142tkKjRGwXn1kYX6kfm6S8owEBBHewOGC_LoiigThioYwHyw9t8MW1ReEOvr41&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="PublishedUtc" />
+        </SortCriteria>
+        <Layouts>
+          <Layout Category="Html" Description="" State="&lt;Form&gt;&lt;QueryId&gt;91&lt;/QueryId&gt;&lt;Category&gt;Html&lt;/Category&gt;&lt;Type&gt;List&lt;/Type&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Display&gt;0&lt;/Display&gt;&lt;DisplayType&gt;ExtensionSummary&lt;/DisplayType&gt;&lt;Order&gt;unordered&lt;/Order&gt;&lt;ListId&gt;&lt;/ListId&gt;&lt;ListClass&gt;&lt;/ListClass&gt;&lt;ItemClass&gt;&lt;/ItemClass&gt;&lt;__RequestVerificationToken&gt;ZKV3htFGGzBA8lOqwNqqD8BbEcfvMAkimJWv7d3ZzDR2CquV0GT_2hl_QFEUhHNKlOeFGD0l4jbYyVM-85SlBETavox9iV-c0BolWgR2hAGI1fL5ep7r8XAcsTEKLsXzOEU3WGxN9ieEaRKqRMIR2f0YVBt-a9MSk3qfAbbESnk1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Display="0" DisplayType="ExtensionSummary" Type="List">
+            <Properties />
+            <Group />
+          </Layout>
+        </Layouts>
+      </QueryPart>
+      <IdentityPart Identifier="550380c40736494b9539c3a397a59982" />
+    </Query>
+    <Query Id="/Identifier=da8954d81a174d878031a7ab885aa9b4" Status="Published">
+      <TitlePart Title="Latest Themes" />
+      <QueryPart>
+        <FilterGroups>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;cN8xXF8LZEr6iPbDL9-Pa14iXRzlopZz83pJRxJ2ZP2Y4531583O85vPhNaKONDk3_cLgwEGCj8cHIxVeMUbL5mmj-hRfX-l8JkqTG3fn0wwbROjO3tvCzrzmuG2WEiXN807TtZCwl8t0prNv3uIYDPJqXO353kKBBZYaIpospk1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+            <Filter Category="PackagePartRecord" Description="" Position="1" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ExtensionType&gt;Theme&lt;/ExtensionType&gt;&lt;__RequestVerificationToken&gt;hG-yvy7STLOllnY69pJVp8KqrSKmB7cg0aoYxx1Xcftqg-YHZsERNO0K6pReecwEtqm_CN2Ie6pwBqEGelFx223i0PKgyhgCbBgWx6Dfb0xyr1RuD1FOAfbnnEWjbZKTHCBiOemn9-R-URd_wWAEXwC5_XwG180HDnGCn2zJGRA1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ExtensionType" />
+          </FilterGroup>
+        </FilterGroups>
+        <SortCriteria>
+          <SortCriterion Category="CommonPartRecord" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Sort&gt;false&lt;/Sort&gt;&lt;__RequestVerificationToken&gt;Pkj5i4oWB9OKjd2ydz5qqA6ZGjU1cSSXtvrd-EmisDbOfk-OGJxfXWKnlzcZ0oZdPNwk7LMQLho8qY6YYXA8cJgYI5kv6FaOyUpZOvxrJopgeD1C1ZfNPbI8W1ob5nJ8efpWEFLtEVgdb3xZtUZ-OsbvrsS_MGKoFJwcB2I9Ykg1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="PublishedUtc" />
+        </SortCriteria>
+        <Layouts>
+          <Layout Category="Html" Description="" State="&lt;Form&gt;&lt;QueryId&gt;95&lt;/QueryId&gt;&lt;Category&gt;Html&lt;/Category&gt;&lt;Type&gt;List&lt;/Type&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Display&gt;0&lt;/Display&gt;&lt;DisplayType&gt;ExtensionSummary&lt;/DisplayType&gt;&lt;Order&gt;unordered&lt;/Order&gt;&lt;ListId&gt;&lt;/ListId&gt;&lt;ListClass&gt;&lt;/ListClass&gt;&lt;ItemClass&gt;&lt;/ItemClass&gt;&lt;__RequestVerificationToken&gt;hKgilvhE944p_EVfm-kQJGdq-AgwrEkZ0KZbrK-QL0GawevaGnrA4D08KtN9ftu3Xj5jx-CmHYvqbPDpvK_TC8Eb-SxZqqNdgHIh28sfk2HJ1Hj9PYL_iQVAtEszqWiOJQ9VIS_t9jksW8fQMdx3MbZZoilFMBl_tmyUCzkGddk1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Display="0" DisplayType="ExtensionSummary" Type="List">
+            <Properties />
+            <Group />
+          </Layout>
+        </Layouts>
+      </QueryPart>
+      <IdentityPart Identifier="da8954d81a174d878031a7ab885aa9b4" />
+    </Query>
+    <Query Id="/Identifier=e0bc8c4005574c89b4f66ac21a8209b2" Status="Published">
+      <TitlePart Title="Most Popular Packages" />
+      <QueryPart>
+        <FilterGroups>
+          <FilterGroup>
+            <Filter Category="Content" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;ContentTypes&gt;Package&lt;/ContentTypes&gt;&lt;__RequestVerificationToken&gt;h4jCtefBRU33ttb2pNIEEnZTPRk2G1Clkax6Yy8eRtdSk5FH1lkDH7v7sRdI70vIbstXuMoSnt5v1XLQcDL4q-9jqGZxI3yvIpWZsHgCnPHus6frKwsLkdbgO7Vnn3lDTMb4Wyba1yWJNMHDlSnPYy32le7PHhqh9GM4v6u4ZTQ1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="ContentTypes" />
+          </FilterGroup>
+        </FilterGroups>
+        <SortCriteria>
+          <SortCriterion Category="PackagePartRecord" Description="" Position="0" State="&lt;Form&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Sort&gt;false&lt;/Sort&gt;&lt;__RequestVerificationToken&gt;6wi2QiNvmI6d-N9dHQsVPGjqH7tlNmas9NfT_56NhFJkHYDwi2OfZOqfBR-x598LFt_K_PBF1rLrhHLUHgDUxe4eck6hgip3HkGHPfa0EDFORhw325a3Veoda1qysE2GeOti7qNzBI7LUmTbFbsMXv8vRbxJGBAmMXguOfXPLNw1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Type="Downloads" />
+        </SortCriteria>
+        <Layouts>
+          <Layout Category="Html" Description="" State="&lt;Form&gt;&lt;QueryId&gt;98&lt;/QueryId&gt;&lt;Category&gt;Html&lt;/Category&gt;&lt;Type&gt;List&lt;/Type&gt;&lt;Description&gt;&lt;/Description&gt;&lt;Display&gt;0&lt;/Display&gt;&lt;DisplayType&gt;ExtensionSummary&lt;/DisplayType&gt;&lt;Order&gt;unordered&lt;/Order&gt;&lt;ListId&gt;&lt;/ListId&gt;&lt;ListClass&gt;&lt;/ListClass&gt;&lt;ItemClass&gt;&lt;/ItemClass&gt;&lt;__RequestVerificationToken&gt;WifT3MNO-aWQnLLcsab4CA6fwPHtGd0OI9UTTcyMqTUF6gmNbvEuMoPGx-i-_0mSHpBcuzVn9aYrReTNumdiWIN5LMYCXBLhkhe4si7cG6uimlbY6fNUQOkNSp5mm-Q0Fqn0xfJLyVXKiajn3VdEduKZ-ooUVv6vpdHOGwRWNVM1&lt;/__RequestVerificationToken&gt;&lt;/Form&gt;" Display="0" DisplayType="ExtensionSummary" Type="List">
+            <Properties />
+            <Group />
+          </Layout>
+        </Layouts>
+      </QueryPart>
+      <IdentityPart Identifier="e0bc8c4005574c89b4f66ac21a8209b2" />
+    </Query>
+  </Data>
+
+  <Settings>
+    <PayPalSettingsPart UserName="sipkes_1352951579_biz_api1.hotmail.com" Password="1352951599" MerchantSignature="AqgUb26h66oETsqy9jRK8-5S8sM7AZwO.CWf.G3G0igjyfrrg1hX7z.r" Sandbox="true"/>
+    <MediaSettingsPart UploadAllowedFileTypeWhitelist="jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp" />
+    <SiteSettingsPart PageTitleSeparator=" - " SiteName="Orchard Market" SuperUser="admin" SiteCulture="en-US" PageSize="50" SiteTimeZone="Pacific Standard Time" BaseUrl="http://localhost:30320/OrchardLocal" />
+    <SiteSettings2Part BaseUrl="http://localhost:30320/OrchardLocal" />
+    <RegistrationSettingsPart UsersCanRegister="true" UsersMustValidateEmail="true" ValidateEmailRegisteredWebsite="Orchard Market" ValidateEmailContactEMail="support@orchardmarket.net" UsersAreModerated="false" NotifyModeration="false" EnableLostPassword="true" />
+    <ThemeSiteSettingsPart CurrentThemeName="OrchardMarket" />
+    <SmtpSettingsPart Address="support@orchardmarket.net" Host="mail.sigtrium.net" Port="2525" EnableSsl="false" RequireCredentials="true" UserName="skywalker@thedutchpirates.com" Password="!Deepfor2" />
+    <WarmupSettingsPart Scheduled="false" Delay="90" OnPublish="false" />
+    <GallerySettingsPart PackagesPath="~/Packages" />
+  </Settings>
+
+  <Migration features="*" />
+
+  <Command>
+    layer create Default /LayerRule:"true" /Description:"The widgets in this layer are displayed on all pages"
+    layer create Authenticated /LayerRule:"authenticated" /Description:"The widgets in this layer are displayed when the user is authenticated"
+    layer create Anonymous /LayerRule:"not authenticated" /Description:"The widgets in this layer are displayed when the user is anonymous"
+    layer create Disabled /LayerRule:"false" /Description:"The widgets in this layer are never displayed"
+    layer create TheHomepage /LayerRule:"url '~/'" /Description:"The widgets in this layer are displayed on the home page"
+    layer create MyAccount /LayerRule:"url('~/my*') or url('~/invoice*')" /Description:"The widgets in this layer are displayed on all of the user account pages"
+    layer create "Module Catalog" /LayerRule:"url('~/browse/module*') or url('~/catalog/module*')" /Description:"The widgets in this layer are displayed on the Module Catalog page"
+    layer create "Theme Catalog" /LayerRule:"url('~/browse/theme*') or url('~/catalog/theme*')" /Description:"The widgets in this layer are displayed on the Theme Catalog page"
+    widget create HomeBeforeContent /Title:"Home Before content" /RenderTitle:false /Zone:"BeforeContent" /Position:"1" /Layer:"TheHomePage"
+    site setting set baseurl
+    menu create /MenuName:"Main"
+    menu create /MenuName:"Footer"
+    menu create /MenuName:"MyAccount"
+    page create /Slug:"welcome-to-orchard-market" /Title:"Welcome to the Orchard Market place!" /Path:"welcome-to-orchard-market" /Homepage:true /Publish:true /UseWelcomeText:true /MenuText:"Home" /MenuName:"Main"
+    menuitem create /MenuPosition:1 /MenuText:"Orchard CMS" /MenuName:"Footer"
+    menuitem create /MenuPosition:1.1 /MenuText:"Home" /MenuName:"Footer" /Url:"~/"
+    menuitem create /MenuPosition:1.2 /MenuText:"Modules" /MenuName:"Footer" /Url:"~/Browse/Modules"
+    menuitem create /MenuPosition:1.3 /MenuText:"Themes" /MenuName:"Footer" /Url:"~/Browse/Themes"
+    menuitem create /MenuPosition:2 /MenuText:"Customers" /MenuName:"Footer"
+    page create /Slug:"buy-modules" /Title:"Buy Modules" /Path:"buy-modules" /Publish:true /UseWelcomeText:true /MenuText:"Buy Modules" /MenuName:"Footer"
+    menuitem create /MenuPosition:2.2 /MenuText:"Login" /MenuName:"Footer" /Url:"~/Users/Account/LogOn"
+    menuitem create /MenuPosition:3 /MenuText:"Developers" /MenuName:"Footer"
+    page create /Slug:"sell-modules" /Title:"Sell Modules" /Path:"sell-modules" /Publish:true /UseWelcomeText:true /MenuText:"Sell Modules" /MenuName:"Footer"
+    page create /Slug:"documentation" /Title:"Documentation" /Path:"documentation" /Publish:true /UseWelcomeText:true /MenuText:"Documentation" /MenuName:"Footer"
+    menuitem create /MenuPosition:4 /MenuText:"Organization" /MenuName:"Footer"
+    page create /Slug:"about-us" /Title:"About Us" /Path:"about-us" /Publish:true /UseWelcomeText:true /MenuText:"About Us" /MenuName:"Footer"
+    page create /Slug:"contact" /Title:"Contact" /Path:"contact" /Publish:true /UseWelcomeText:true /MenuText:"Contact" /MenuName:"Footer"
+    page create /Slug:"terms-of-us" /Title:"Terms of Use" /Path:"terms-of-use" /Publish:true /UseWelcomeText:true /MenuText:"Terms of Use" /MenuName:"Footer"
+    page create /Slug:"privacy-statement" /Title:"Privacy Statement" /Path:"privacy-statement" /Publish:true /UseWelcomeText:true /MenuText:"Privacy Statement" /MenuName:"Footer"
+    menu actionlink create /MenuPosition:1 /MenuText:"My Account" /ActionName:"Index" /ControllerName:"Account" /AreaName:"DarkSky.OrchardMarket" /MenuName:"MyAccount"
+    menu actionlink create /MenuPosition:2 /MenuText:"My Organizations" /ActionName:"Index" /ControllerName:"Organization" /AreaName:"DarkSky.OrchardMarket" /MenuName:"MyAccount"
+    menu actionlink create /MenuPosition:4 /MenuText:"My Packages" /ActionName:"Index" /ControllerName:"Package" /AreaName:"DarkSky.OrchardMarket" /MenuName:"MyAccount"
+    menu actionlink create /MenuPosition:5 /MenuText:"My Purchases" /ActionName:"Index" /ControllerName:"Invoice" /AreaName:"DarkSky.Commerce" /MenuName:"My Purchases"
+    menu actionlink create /MenuPosition:5 /MenuText:"My Sales" /ActionName:"Index" /ControllerName:"Sales" /AreaName:"DarkSky.OrchardMarket" /MenuName:"MyAccount"
+    menu actionlink create /MenuPosition:6 /MenuText:"My Purchases" /ActionName:"Index" /ControllerName:"Purchase" /AreaName:"DarkSky.OrchardMarket" /MenuName:"MyAccount"
+    menu actionlink create /MenuPosition:2 /MenuText:"Modules" /ActionName:"Index" /ControllerName:"Browse" /AreaName:"DarkSky.OrchardMarket" /RouteValues:"extensionType = Module" /MenuName:"Main"
+    menu actionlink create /MenuPosition:3 /MenuText:"Themes" /ActionName:"Index" /ControllerName:"Browse" /AreaName:"DarkSky.OrchardMarket" /RouteValues:"extensionType = Theme" /MenuName:"Main"
+    menu actionlink create /MenuPosition:4 /MenuText:"Support" /ActionName:"Support" /ControllerName:"Browse" /AreaName:"DarkSky.OrchardMarket" /MenuName:"Main"
+    vat create 21 "VAT high (21%)"
+    vat create 6 "VAT low (6%)"
+    widget create MenuWidget /Title:"Main" /RenderTitle:false /Zone:"Navigation" /Position:"1" /Layer:"Default" /Identity:"MainMenuWidget" /MenuName:"Main"
+    widget create MenuWidget /Title:"My Account" /RenderTitle:false /Zone:"AsideFirst" /Position:"1" /Layer:"MyAccount" /Identity:"MyAccountMenuWidget" /MenuName:"MyAccount"
+    widget create MenuWidget /Title:"Footer" /Name:"FooterMenu" /RenderTitle:false /Zone:"Footer" /Position:"1" /Layer:"Default" /Identity:"FooterMenuWidget" /MenuName:"Footer"
+    widget create TaxonomyMenu /Title:"Categories" /Name:"ModuleCategoriesMenu" /RenderTitle:false /Zone:"AsideFirst" /Position:"1" /Layer:"Module Catalog" /Identity:"ModuleCategoriesMenu"
+    widget create TaxonomyMenu /Title:"Categories" /Name:"ThemeCategoriesMenu" /RenderTitle:false /Zone:"AsideFirst" /Position:"1" /Layer:"Theme Catalog" /Identity:"ThemeCategoriesMenu"
+    country create /Countries:"Netherlands, France, Germany, Belgium, Spain, United States, Brazil, Russia, Poland, Hungary, Italy, Sweden, Canada, Iceland, Greenland, Norwich, Austria, United Kingdom, Ireland, Turkey"
+    term create "Tags" "e-learning, commerce, developer"
+    term create "Categories" "Administration, Commerce, Blog, Content, E-Learning, Developer, CRM, BPM, Project Tools"
+    theme activate "Orchard Market Theme"
+    user create /UserName:"skywalker" /Password:"password" /Email:"skywalker@darkskydevelopment.net"
+  </Command>
+</Orchard>

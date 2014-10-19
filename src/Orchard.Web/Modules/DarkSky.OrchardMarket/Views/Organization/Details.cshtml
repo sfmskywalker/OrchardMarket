@@ -1,0 +1,135 @@
+﻿@using DarkSky.OrchardMarket
+@using Orchard.ContentManagement
+@{
+    Style.Include("Organization.min.css");
+    
+    var organization = Model.Organization;
+    var users = Model.Users;
+    var activePayoutOption = Model.ActivePayoutOption;
+    var logoUrl = (string)(!string.IsNullOrWhiteSpace((string)Model.LogoUrl) ? Model.LogoUrl : ViewBag.DefaultAvatarUrl);
+    
+	Layout.Title = organization.Name;
+    Layout.TitleZone.Add(New.Content_Title());
+}
+<div class="account-details">
+    <fieldset>
+        <legend>@T("Organization Details")</legend>
+        <div class="group">
+            <div class="column column1">
+                <div class="field-editor single-line">
+                    <label>@T("Name")</label>
+                    <span>@organization.Name</span>
+                </div>
+                <div class="field-editor single-line">
+                    <label>@T("Description")</label>
+                    <span>@organization.Description</span>
+                </div>
+                <div class="field-editor single-line">
+                    <label>@T("Branch of Industry")</label>
+                    <span>@organization.IndustryBranch</span>
+                </div>
+                <br/>
+                <div class="field-editor single-line">
+                    <label>@T("Address Line 1")</label>
+                    <span>@organization.Address.AddressLine1</span>
+                </div>
+                <div class="field-editor single-line">
+                    <label>@T("Address Line 2")</label>
+                    <span>@organization.Address.AddressLine2</span>
+                </div>
+                <div class="field-editor single-line">
+                    <label>@T("Zipcode")</label>
+                    <span>@organization.Address.Zipcode</span>
+                </div>
+                <div class="field-editor single-line">
+                    <label>@T("City")</label>
+                    <span>@organization.Address.City</span>
+                </div>
+                <div class="field-editor single-line">
+                    <label>@T("Country")</label>
+                    <span>@organization.Address.Country.Name</span>
+                </div>
+            </div>
+            <div class="column right">
+                
+                <div class="field-editor">
+                    <div class="logo-wrapper">
+                        <img src="@Url.Content(logoUrl)" alt="@organization.Name"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="commands">
+            @Html.ActionLink(T("Edit Details").Text, "Edit", "Organization", new { id = (int)organization.Id }, new { @class = "button", area = ModuleInfo.ModuleName })
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend>@T("Members")</legend>
+        <div class="members table-2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>@T("User Name")</th>
+                        <th>@T("Member Since")</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in users) {
+                        <tr>
+                            <td>@Html.ItemDisplayLink((string)user.User.UserName, (IContent)user.User)</td>
+                            <td>@user.CreatedUtc.ToShortDateString()</td>
+                            <td>@Html.ActionLink(T("Remove").ToString(), "RemoveUser", "Organization", new { organizationId = (int)organization.Id, userId = (int)user.User.Id }, null)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="commands">
+            @Html.ActionLink(T("Add User").Text, "AddUser", null, new { @class = "add-button" })
+        </div>
+    </fieldset>
+    
+    <fieldset class="statistics">
+	    <legend>@T("Account Statistics")</legend>
+        <div class="field-editor single-line">
+            <label>@T("Rating")</label>
+            <div class="value avatar-wrapper"><img src="@Url.Content("~/Modules/DarkSky.OrchardMarket/Content/rating.png")" alt=""/></div>
+        </div>
+        <div class="field-editor single-line">
+		    <label>@T("Revenue Rate")</label>
+		    <div class="value">@Html.Percentage((float)Model.RevenueRate)</div>
+	    </div>
+	    <div class="field-editor single-line">
+		    <label>@T("Total Revenue Commission")</label>
+		    <div class="value">@Model.TotalRevenues.ToString("c")</div>
+	    </div>
+        <div class="field-editor single-line">
+            <label>@T("Total Paid Out Revenues")</label>
+            <div class="value">@Model.PaidOutRevenues.ToString("c")</div>
+        </div>
+        <div class="field-editor single-line">
+		    <label>@T("Last Pay Out")</label>
+		    <div class="value">@string.Format("{0}", Model.LastPaidOut != null ? Model.LastPaidOut.ToShortDateString() : "n/a")</div>
+	    </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>@T("Payment Details")</legend>
+        <div class="field-editor">
+            <label>@T("Preferred Payout Method")</label>
+            <div class="value">
+                @if (!string.IsNullOrWhiteSpace((string)activePayoutOption.PayoutMethodName)) {
+                    @activePayoutOption.PayoutMethodName
+                }
+                else {
+                    <text>@T("No current payout method selected")</text>
+                }
+            </div>
+        </div>
+        <div class="commands">
+            @Html.ActionLink(T("Edit Payout Options").Text, "Index", "PayoutOption", new { organizationId = (int)organization.Id }, new { @class = "button", area = ModuleInfo.ModuleName })
+        </div>
+    </fieldset>
+</div>

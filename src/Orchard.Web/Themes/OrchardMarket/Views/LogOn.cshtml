@@ -1,0 +1,40 @@
+﻿@using Orchard.ContentManagement;
+@using DarkSky.OrchardMarket
+@{
+    var userCanRegister = WorkContext.CurrentSite.As<Orchard.Users.Models.RegistrationSettingsPart>().UsersCanRegister;
+    var enableLostPassword = WorkContext.CurrentSite.As<Orchard.Users.Models.RegistrationSettingsPart>().EnableLostPassword;
+    var returnUrl = Request.QueryString["ReturnUrl"] ?? Url.Action("Index", "Account", new {area = ModuleInfo.ModuleName});
+
+    Layout.Title = T("Sign In");
+    Layout.TitleZone.Add(New.Content_Title());
+    Layout.AsideFirst.Add(New.Account_SignIn_Aside());
+}
+<p>
+    @T("Please enter your username and password.") 
+    @if(userCanRegister) { @Html.ActionLink(T("Register").Text, "Register") @T(" if you don't have an account.") }
+    @if(enableLostPassword) { @Html.ActionLink(T("Lost your Password?").Text, "RequestLostPassword") }
+</p>
+@Html.ValidationSummary(T("Login was unsuccessful. Please correct the errors and try again.").ToString())
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", new { returnUrl }))) {
+<fieldset class="login-form group">
+    <legend>@T("Account Information")</legend>
+    <div class="field-editor">
+        <label for="username-email">@T("Username")</label>
+        @Html.TextBox("userNameOrEmail", "", new { id = "username-email", autofocus = "autofocus", @class = "textMedium" })
+        @Html.ValidationMessage("userNameOrEmail")
+    </div>
+    <div class="field-editor">
+        <label for="password">@T("Password")</label>
+        @Html.Password("password", null, new { @class = "textMedium" })
+        @Html.ValidationMessage("password")
+    </div>
+    <div class="field-editor">
+        @Html.CheckBox("rememberMe", new { id = "remember-me" })<label class="forcheckbox" for="remember-me">@T("Remember Me")</label>
+    </div>
+    <div class="commands">
+        <a class="button-big submit" href="#">Sign In</a>
+        @*<button type="submit">Sign In</button>*@
+	</div>
+</fieldset>
+}

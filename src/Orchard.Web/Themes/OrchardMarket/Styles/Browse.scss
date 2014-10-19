@@ -1,0 +1,92 @@
+#content-header-wrapper {
+
+	border-bottom: 1px dotted #cfcfd0;
+
+    .browse-controls {
+
+        width:731px;
+        padding: 0 0 2px 0;
+        
+        .search-wrapper {
+
+            float: right;
+
+            .skin {
+            
+                border: 1px solid #818181;
+                width:335px;
+                height: 32px;
+                position: relative;
+
+                input[type='text'] {
+                    border-radius: 0;
+                    box-shadow: none;
+                    transition: none;
+                    border: none;
+                    width:317px;
+                    height:24px;
+                    line-height:24px;
+                }
+
+                a.button {
+                    position:absolute;
+                    width: 36px;
+                    height: 30px;
+                    background: url('../content/images/sprites.png') -68px -82px;
+                    border-radius: 0;
+                    padding: 0;
+                    right: 1px;
+                    top: 1px;
+                }
+            }
+        }
+
+        .sort-options-wrapper {
+
+            float: right;
+
+            label {
+                float: left;
+                padding: 0;
+                margin: 0 8px 0 0;
+                line-height: 1.538em;
+                color: #818181;
+            }
+
+            ul {
+                list-style: none;
+                float: left;
+                margin: 0;
+                padding: 0;
+                line-height: 1.538em;
+
+                li {
+                    float: left;
+                    padding-right: .25em;
+
+                    a {
+                        color: #2a8038;
+                    }
+
+                    span {
+                        color: #3b3b3b;
+                    }
+
+                    a, span {
+                        &:after {
+                            content: " | ";
+                            color: #818181;
+                        }
+                    }
+                
+                    &.last, &:last-child {
+                        padding-right: 0;
+                        a, span {
+                            &:after { content: ""; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

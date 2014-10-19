@@ -1,0 +1,29 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.CreatePackageViewModel
+@{
+    Style.Include("Package.min.css");
+    Layout.Title = T("Create Package");
+    Layout.TitleZone.Add(New.Content_Title());
+}
+
+@using(Html.BeginFormAntiForgeryPost(Url.Action("Create"), FormMethod.Post, new { enctype = "multipart/form-data" })) {
+	<fieldset>
+        <legend>@T("Package Details")</legend>
+        
+        @Html.ValidationSummary() 
+        
+        <div class="field-editor">
+            <label>@T("Organization")</label>
+            @Html.EditorFor(m => m.OrganizationId)
+            <div class="hint">@T("Select the organization that owns the package")</div>
+        </div>
+	    <div class="field-editor">
+            <label>@T("Package file")</label>
+            <input type="file" name="PackageFile" />
+            <div class="hint">@T("Supported formats: .nupkg")</div>
+        </div>
+		<div class="commands">
+            <a class="button submit" href="#">Next</a>
+            <a class="button" href="@Url.Action("Index")">Cancel</a>
+		</div>
+	</fieldset>
+}

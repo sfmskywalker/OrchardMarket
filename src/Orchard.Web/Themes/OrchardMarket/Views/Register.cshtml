@@ -1,0 +1,39 @@
+﻿@{
+    Layout.Title = T("Sign Up");
+    Layout.TitleZone.Add(New.Content_Title());
+	Layout.AsideFirst.Add(New.Account_SignUp_Aside());
+}
+
+@using(Html.BeginFormAntiForgeryPost()) {
+	<fieldset>
+        <legend>@T("New User")</legend>
+        
+        @Html.ValidationSummary(T("Account creation was unsuccessful. Please correct the errors and try again.").ToString()) 
+        <p>@T("Use the form below to create a new account.")</p>
+        <p>@T("Passwords are required to be a minimum of {0} characters in length.", ViewData["PasswordLength"])</p>
+
+        <div class="field-editor">
+			<label for="username">@T("Username:")</label>
+			@Html.TextBox("username", null, new { @class = "textMedium" })
+			@Html.ValidationMessage("username")
+		</div>
+		<div class="field-editor">
+			<label for="email">@T("Email:")</label>
+			@Html.TextBox("email", null, new { @class = "textMedium" })
+			@Html.ValidationMessage("email")
+		</div>
+		<div class="field-editor">
+			<label for="password">@T("Password:")</label>
+			@Html.Password("password", null, new { @class = "textMedium" })
+			@Html.ValidationMessage("password")
+		</div>
+		<div class="field-editor">
+			<label for="confirmPassword">@T("Confirm password:")</label>
+			@Html.Password("confirmPassword", null, new { @class = "textMedium" })
+			@Html.ValidationMessage("confirmPassword")
+		</div>
+		<div class="commands">
+			<a class="button-big submit" href="#">Create Account</a>
+		</div>
+	</fieldset>
+}

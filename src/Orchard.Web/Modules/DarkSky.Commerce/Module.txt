@@ -1,11 +1,70 @@
-﻿Name: DarkSky.Commerce
+﻿Name: DarkSky Commerce
 AntiForgery: enabled
-Author: DarkSky Development
-Website: http://darkskydevelopment.net
-Version: 1.6
-OrchardVersion: 1.6
-Description: Provides commerce features
+Author: DarkSky Development / Sipke Schoorstra
+Website: http://darkskycommerce.codeplex.com
+Version: 1.0
+OrchardVersion: 1.9
+Description: Provides a generic and extensible set of core commerce features and services.
 Features:
     DarkSky.Commerce:
-        Description: Provides commerce features
+        Name: DarkSky Commerce
+        Description: Provides a generic and extensible set of core commerce features and services.
+    DarkSky.Commerce.Shops:
+        Name: DarkSky Shops
+        Description: Creates the Shop content type. This feature is optional and allows products to be part of a Shop. To implement your own Shop, simply attach the ShopPart.
+        Dependencies: DarkSky.Commerce
+    DarkSky.Commerce.Products:
+        Name: DarkSky Products
         Category: Commerce
+        Description: Provides product management services.
+        Dependencies: DarkSky.Commerce
+    DarkSky.Commerce.Customers:
+        Name: DarkSky Customers
+        Category: Commerce
+        Description: Provides customer management services.
+        Dependencies: DarkSky.Commerce
+    DarkSky.Commerce.ShoppingCart:
+        Name: DarkSky ShoppingCart
+        Category: Commerce
+        Description: Provides shopping cart services.
+        Dependencies: DarkSky.Commerce, DarkSky.Commerce.Products
+    DarkSky.Commerce.ShoppingCart.DefaultNotifications:
+        Name: DarkSky ShoppingCart Notifications
+        Category: Commerce
+        Description: Renders notifications related to shopping cart events
+        Dependencies: DarkSky.Commerce.ShoppingCart
+    DarkSky.Commerce.Checkout:
+        Name: DarkSky Checkout
+        Category: Commerce
+        Description: Provides checkout services.
+        Dependencies: DarkSky.Commerce, DarkSky.Commerce.Products
+    DarkSky.Commerce.PaymentProviders:
+        Name: DarkSky Payment Providers
+        Category: Commerce
+        Description: Provides core payment services.
+        Dependencies: DarkSky.Commerce, DarkSky.Commerce.Checkout, DarkSky.Commerce.Customers
+    DarkSky.Commerce.PaymentProviders.PayPal:
+        Name: PayPal
+        Category: Commerce
+        Description: Provides a PayPal payment service provider.
+        Dependencies: DarkSky.Commerce.PaymentProviders
+    DarkSky.Commerce.PaymentProviders.GoogleCheckout:
+        Name: Google Checkout
+        Category: Commerce
+        Description: Provides a Google Checkout payment service provider.
+        Dependencies: DarkSky.Commerce.PaymentProviders
+    DarkSky.Commerce.PaymentProviders.CreditCard:
+        Name: CreditCard
+        Category: Commerce
+        Description: Provides a CreditCard payment service provider.
+        Dependencies: DarkSky.Commerce.PaymentProviders
+    DarkSky.Commerce.Orders:
+        Name: DarkSky Commerce Orders
+        Category: Commerce
+        Description: Provides order management services.
+        Dependencies: DarkSky.Commerce, DarkSky.Commerce.Products
+    DarkSky.Commerce.Shipping:
+        Name: DarkSky Commerce Shipping
+        Category: Commerce
+        Description: Provides shipping services.
+        Dependencies: DarkSky.Commerce, DarkSky.Commerce.Products

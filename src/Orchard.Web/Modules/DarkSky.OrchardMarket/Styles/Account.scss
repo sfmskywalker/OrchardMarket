@@ -1,5 +1,20 @@
+.zone-content .account-details fieldset .column {
+    &.column1 { width:65%; }
+    &.column2 { width:35%; }
+    &.right { 
+        width:100px;
+        float:right;
+        text-align:right;
+    }
+}
+
 .logo-wrapper {
-	width:98px;
-	height:98px;
-	border:1px solid #ccc;
+    width:98px;
+    height:98px;
+    border:1px solid #ccc;
+
+    img {
+        width:98px;
+        height:98px;
+    }
 }

@@ -1,0 +1,19 @@
+﻿@model DarkSky.Commerce.Models.VatPart
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.Rate, T("Rate"))
+        @Html.TextBoxFor(m => m.Rate, new { @class = "text small" })
+        @Html.ValidationMessageFor(m => m.Rate, "*")
+        <div class="hint">@T("E.g. 0.21")</div>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Description, T("Description"))
+        @Html.TextBoxFor(m => m.Description, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.Description, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.IsActive, T("Active"))
+        @Html.EditorFor(m => m.IsActive)
+        <div class="hint">@T("Indicates whether this VAT value is still active. Inactive VAT values cannot be assigned to products")</div>
+    </div>
+</fieldset>

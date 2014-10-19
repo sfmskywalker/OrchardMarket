@@ -1,0 +1,7 @@
+﻿@using DarkSky.Commerce.Models
+@{
+    var currentValue = ViewData.TemplateInfo.FormattedModelValue as int?;
+    var vatItems = (IList<VatPart>)Model.VatItems;
+    var options = vatItems.Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString(), Selected = x.Id == currentValue});
+}
+@Html.DropDownList("", options)

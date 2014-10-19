@@ -1,0 +1,8 @@
+﻿@{
+    Layout.Title = T("Create Or Join An Organization");
+    Layout.TitleZone.Add(New.Content_Title());
+}
+<p>Before you can start uploading and selling your packages, you need to be part of an Organization.</p>
+<br/>
+@Html.ActionLink(T("Start New Organization").Text, "Create", "Organization", null, new { @class = "add-button wide" })
+@Html.ActionLink(T("Join Existing Organization").Text, "Join", "Organization", null, new { @class = "add-button wide" })

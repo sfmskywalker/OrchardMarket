@@ -1,0 +1,27 @@
+﻿@using DarkSky.OrchardMarket.ViewModels
+@{
+    Style.Require("jQueryUI_Orchard");
+    Script.Require("jQueryUI_Autocomplete");
+    Script.Include("AddUser.min.js");
+    
+    var organization = Model.Organization;
+    var model = (AddUserToOrganizationViewModel)Model.Model;
+    
+    Layout.Title = T("Invite User to join {0}", organization.Name);
+    Layout.TitleZone.Add(New.Content_Title());
+}
+
+@using(Html.BeginFormAntiForgeryPost()) {
+	<fieldset>
+        @Html.HiddenFor(m => model.Id)
+        @Html.ValidationSummary() 
+        <div class="field-editor">
+            @Html.LabelFor(m => model.UserName, T("User Name"))
+            @Html.TextBoxFor(m => model.UserName, new RouteValueDictionary { { "id", "UserName" }, { "class", "textMedium"}, {"data-source", Url.Action("UserNames") }})
+        </div>
+        <div class="commands">
+            <a class="button submit" href="#">@T("Send Invitation")</a>
+            <a class="button" href="@Url.Action("Users", "Organization", new { id = organization.Id })">@T("Cancel")</a>
+        </div>
+    </fieldset>
+}

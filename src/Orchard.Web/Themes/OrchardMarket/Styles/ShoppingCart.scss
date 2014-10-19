@@ -1,0 +1,45 @@
+@import '_Common';
+
+.shoppingcart-layout {
+
+	.product-summary-wrapper {
+		
+		.logo {
+			float:  left;
+			width:74px;
+
+			img {
+				width: 50px;
+				height:50px;
+			}
+		}
+
+		.summary {
+			float: left;
+			width: 175px;
+		}
+
+		.title {
+			color: #2a8038;
+			font-size:1.385em;
+			font-family: 'Helvetica W01 Roman';
+			display: block;
+		}
+
+		.author {
+			color: #2a8038;
+		}
+
+		@include clearfix;
+	}
+
+	tr.total {
+		td {
+			font-size: 1.538em;
+
+			&.divider {
+				border-top: 1px solid #909090;
+			}
+		}
+	}
+}

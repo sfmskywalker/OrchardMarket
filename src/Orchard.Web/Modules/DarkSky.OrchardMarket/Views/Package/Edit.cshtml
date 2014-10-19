@@ -1,0 +1,82 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.PackageViewModel
+@{
+    Style.Include("Packages.min.css");
+    Layout.Title = T("Create Package");
+    Layout.TitleZone.Add(New.Content_Title());
+}
+
+@using(Html.BeginFormAntiForgeryPost(Url.Action("Edit"), FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    <fieldset>
+        <legend>@T("Package Details")</legend>
+        
+        @Html.ValidationSummary() 
+        
+        <div class="group">
+            <div class="column column1">
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.Name, T("Name"))
+                    @Html.TextBoxFor(m => m.Name, new { @class = "textMedium" })
+                    @Html.ValidationMessageFor(m => m.Name, "*")
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.Description, T("Description"))
+                    @Html.TextAreaFor(m => m.Description, new { @class = "textMedium" })
+                    @Html.ValidationMessageFor(m => m.Description, "*")
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.Price, T("Price in USD"))
+                    @Html.TextBoxFor(m => m.Price, "{0:n}", new { @class = "textMedium" })
+                    @Html.ValidationMessageFor(m => m.Price, "*")
+                </div>
+            </div>
+            <div class="column column2">
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.ExtensionType, T("Extension Type"))
+                    @Html.EditorFor(m => m.ExtensionType)
+                    @Html.ValidationMessageFor(m => m.ExtensionType, "*")
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.Categories, T("Categories"))
+                    @Html.EditorFor(m => m.Categories)
+                    @Html.ValidationMessageFor(m => m.Categories, "*")
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.Version, T("Version"))
+                    @Html.TextBoxFor(m => m.Version, new { @class = "textMedium" })
+                    @Html.ValidationMessageFor(m => m.Version, "*")
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.SupportedOrchardVersions, T("Orchard Compatible Versions"))
+                    @Html.TextBoxFor(m => m.SupportedOrchardVersions, new { @class = "textMedium" })
+                    @Html.ValidationMessageFor(m => m.SupportedOrchardVersions, "*")
+                    <div class="hint">
+                        See <a href="http://docs.nuget.org/docs/reference/versioning">NuGet docs</a> for version range specifications
+                    </div>
+                </div>
+                <div class="field-editor">
+                    @Html.LabelFor(m => m.Tags, T("Tags"))
+                    @Html.TextAreaFor(m => m.Tags, new { @class = "textMedium" })
+                    @Html.ValidationMessageFor(m => m.Tags, "*")
+                </div>
+            </div>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.LogoUrl)) {
+            <div class="field-editor">
+                <div class="logo-wrapper">
+                    <img src="@Url.Content(Model.LogoUrl)" alt=""/>
+                </div>
+            </div>
+        }
+        <div class="field-editor">
+            @Html.HiddenFor(m => m.LogoUrl)
+            <label for="LogoFile">@T("Module Logo")</label>
+            <input type="file" id="LogoFile" name="LogoFile"/>
+            <div class="hint">@T("Uploading a logo is optional. If you don't upload one, your company's logo will be used")</div>
+        </div>
+        <div class="commands">
+            <a class="button submit" href="#" data-name="submit.Save">Save</a>
+            <a class="button submit" href="#" data-name="submit.Publish">Publish</a>
+            @Html.ActionLink(T("Cancel").Text, "Details", new { id = Model.Id }, new { @class = "button" })
+        </div>
+    </fieldset>
+}

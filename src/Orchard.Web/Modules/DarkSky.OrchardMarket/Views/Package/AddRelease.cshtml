@@ -1,0 +1,23 @@
+﻿@{
+    Style.Include("Package.min.css");
+    Layout.Title = T("Add Release to {0}", Model.Package.Name);
+    Layout.TitleZone.Add(New.Content_Title());
+}
+
+@using(Html.BeginFormAntiForgeryPost(Url.Action("AddRelease", new { PackageId = (int)Model.Package.Id }), FormMethod.Post, new { enctype = "multipart/form-data" })) {
+	<fieldset>
+        <legend>@T("Package Details")</legend>
+        
+        @Html.ValidationSummary() 
+        
+        <div class="field-editor">
+            <label>@T("Package file")</label>
+            <input type="file" name="PackageFile" />
+            <div class="hint">@T("Supported formats: .nupkg")</div>
+        </div>
+		<div class="commands">
+            <a class="button submit" href="#">Next</a>
+            <a class="button" href="@Url.Action("Index")">Cancel</a>
+		</div>
+	</fieldset>
+}

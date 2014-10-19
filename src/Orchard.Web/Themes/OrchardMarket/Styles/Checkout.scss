@@ -1,0 +1,59 @@
+@import '_Common';
+
+.checkout-layout {
+	fieldset.cart {
+		
+		font-size:1.077em;
+
+		table {
+			width: 100%;
+
+			thead {
+				th {
+					font-weight: bold;
+					padding: 0 0 10px 0;
+				}
+			}
+			tfoot {
+				td { padding:5px 0 5px 0; }
+			}
+
+			tr.total {
+				td {
+					
+					&.divider {
+						border-top: 1px solid #909090;
+					}
+				}
+			}
+		}
+	}
+
+	#paymentProvidersGroup {
+		margin-bottom: 20px;
+		.payment-providers {
+			float: left;
+			width: 280px;
+
+			ul {
+				list-style: none;
+				margin: 0;
+
+				label {
+					display: inline;
+				}
+			}
+		}
+
+		.payment-provider-logo-wrapper {
+			float: left;
+			width:270px;
+
+			.payment-provider-logo {
+				display:none;
+			}
+		}
+	}
+
+	#checkoutButton { display: none; }
+}

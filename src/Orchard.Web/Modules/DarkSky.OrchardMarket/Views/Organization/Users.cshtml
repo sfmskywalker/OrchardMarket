@@ -1,0 +1,40 @@
+﻿@using DarkSky.OrchardMarket.Models
+@using DarkSky.OrchardMarket.Services
+@{
+    var organization = (OrganizationPart)Model.Organization;
+    var users = (IList<UserInOrganization>)Model.Users;
+    
+	Layout.Title = T("Users in {0}", organization.Name);
+    Layout.TitleZone.Add(New.Content_Title());
+    
+}
+<div>
+    <div class="table-1">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Joined</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in users) {
+                    <tr>
+                        <td>@user.User.UserName</td>
+                        <td>@user.CreatedUtc.ToShortDateString()</td>
+                        <td>
+                            <a href="@Url.ItemDisplayUrl(user.User)" class="button">@T("Profile")</a>
+                            @Html.ActionLink(T("Remove").Text, "RemoveUser", new { organizationId = organization.Id, userId = user.User.Id }, new { @class = "button" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="commands">
+        @Html.ActionLink(T("Add User").Text, "AddUser", null, new { @class = "add-button" })
+        <br/><br/><br/><br/><br/>
+        @Html.ActionLink(T("Back").Text, "Index", null, new { @class = "button" })
+    </div>
+</div>

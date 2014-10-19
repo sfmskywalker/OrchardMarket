@@ -1,0 +1,9 @@
+﻿@model DarkSky.OrchardMarket.ViewModels.OrganizationViewModel
+@{
+    Layout.Title = T("Edit Organization");
+    Layout.TitleZone.Add(New.Content_Title());
+}
+
+@using(Html.BeginFormAntiForgeryPost(Url.Action("Edit"), FormMethod.Post, new { enctype = "multipart/form-data" })) {
+	@Html.EditorForModel()
+}

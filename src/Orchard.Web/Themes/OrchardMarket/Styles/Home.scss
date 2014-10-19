@@ -44,7 +44,7 @@
 					right:1px;
 					width:36px;
 					height:30px;
-					background:#42be3b url('../content/sprites.png') 0 -82px;
+					background:#42be3b url('../content/images/sprites.png') 0 -82px;
 				}
 			}
 		}
@@ -73,12 +73,17 @@ article.most-popular {
 			margin-bottom:16px;
 			border-bottom:1px dotted #cfcfd0;
 
-			.icon { 
+			.package-icon { 
 				float:left;
 				width:35px;
 				height:35px;
 				overflow:none;
 				margin:0 12px 0 0;
+
+				img {
+					width: 35px;
+					height: 35px;
+				}
 			}
 
 			.details {

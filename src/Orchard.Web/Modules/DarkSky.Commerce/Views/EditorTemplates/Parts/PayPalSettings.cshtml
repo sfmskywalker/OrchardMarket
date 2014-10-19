@@ -1,0 +1,26 @@
+﻿@model DarkSky.Commerce.Models.PayPalSettingsPart
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.UserName, T("User Name"))
+        @Html.TextBoxFor(m => m.UserName, new { @class = "textMedium" })
+        @Html.ValidationMessageFor(m => m.UserName, "*")
+        <div class="hint">@T("The user name.")</div>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Password, T("Password"))
+        @Html.TextBoxFor(m => m.Password, new { @class = "textMedium" })
+        @Html.ValidationMessageFor(m => m.Password, "*")
+        <div class="hint">@T("The password.")</div>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.MerchantSignature, T("Merchant Signature"))
+        @Html.TextBoxFor(m => m.MerchantSignature, new { @class = "textMedium" })
+        @Html.ValidationMessageFor(m => m.MerchantSignature, "*")
+        <div class="hint">@T("The merchant signature.")</div>
+    </div>
+    <div>
+        @Html.CheckBoxFor(m => m.Sandbox)
+        @Html.LabelFor(m => m.Sandbox, T("Sandbox").Text, new { @class = "forcheckbox" })
+        <div class="hint">@T("Check to run PayPal in the sandbox.")</div>
+    </div>
+</fieldset>

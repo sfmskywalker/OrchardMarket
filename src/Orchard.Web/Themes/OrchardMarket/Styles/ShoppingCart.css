@@ -1,0 +1,27 @@
+.shoppingcart-layout .product-summary-wrapper .logo {
+  float: left;
+  width: 74px; }
+  .shoppingcart-layout .product-summary-wrapper .logo img {
+    width: 50px;
+    height: 50px; }
+.shoppingcart-layout .product-summary-wrapper .summary {
+  float: left;
+  width: 175px; }
+.shoppingcart-layout .product-summary-wrapper .title {
+  color: #2a8038;
+  font-size: 1.385em;
+  font-family: 'Helvetica W01 Roman';
+  display: block; }
+.shoppingcart-layout .product-summary-wrapper .author {
+  color: #2a8038; }
+.shoppingcart-layout .product-summary-wrapper:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+.shoppingcart-layout tr.total td {
+  font-size: 1.538em; }
+  .shoppingcart-layout tr.total td.divider {
+    border-top: 1px solid #909090; }
+

@@ -1,4 +1,21 @@
 <Placement>
-	<Place Parts_ExtensionsCatalog="Content:0" />
-	<Place Parts_ExtensionsCatalog_Edit="Content:0" />
+  <Place Parts_ExtensionsCatalog="Content:0" />
+  <Place Parts_ExtensionsCatalog_Edit="Content:0" />
+  <Place Parts_Account_Edit="Content:1" />
+  <Place Parts_UserProfile_Edit="Content:1" />
+  <Place Parts_Address_Edit="Content:0" />
+  <Place Parts_Package_Edit="Content:0" />
+
+  <Match DisplayType="Detail">
+    <Place Parts_Package="Content:0" />
+  </Match>
+
+  <Match DisplayType="Summary">
+    <Place Parts_Package_Summary="Content:0" />
+  </Match>
+
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_ExtensionsCatalog="-" />
+  </Match>
+  
 </Placement>

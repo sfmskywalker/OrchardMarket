@@ -1,0 +1,76 @@
+﻿@{
+    var package = Model.ContentPart;
+    var logoUrl = !string.IsNullOrWhiteSpace((string)Model.LogoUrl) ? (string)Model.LogoUrl : "~/Modules/DarkSky.OrchardMarket/Content/default-package-logo.png";
+}
+<div class="package-details">
+    <fieldset>
+	    <legend>@package.Name</legend>
+        
+        <div class="group">
+            <div class="logo-wrapper">
+                <img src="@Url.Content(logoUrl)" alt=""/>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+	    <legend>Details and Statistics</legend>
+        <div class="field-editor single-line">
+            <label>Rating</label>
+            <div class="value">
+                <div class="logo-wrapper">
+                    <img src="@Url.Content("~/Modules/DarkSky.OrchardMarket/Content/rating.png")" alt=""/>
+                </div>
+            </div>
+        </div>
+        <div class="field-editor single-line">
+            <label>Tags</label>
+            <div class="value">
+                <a href="#">E-Learning</a>, 
+                <a href="#">Command Line</a>, 
+                <a href="#">Forms</a>, 
+                <a href="#">Commerce</a>, 
+            </div>
+        </div>
+        <div class="field-editor single-line">
+		    <label>Price</label>
+            <div class="value">@Html.Price((decimal)product.UnitPrice)</div>
+	    </div>
+	    <div class="field-editor single-line">
+		    <label>Total Sales</label>
+		    <div class="value">@product.Sales</div>
+	    </div>
+	    <div class="field-editor single-line">
+		    <label>Package ID</label>
+		    <div class="value">1234-5678-1023-4567</div>
+	    </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Releases</legend>
+        <div class="table-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Sold</th>
+                        <th>Created</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var release in Model.Releases) {
+                        var isPublished = release.IsPublished();
+                        var iconCss = isPublished ? "published" : "unpublished";
+                        <tr>
+                            <td><span class="icon @iconCss">@release.Version</span></td>
+                            <td><a href="#">@release.Sales</a></td>
+                            <td>@release.CreatedUtc</td>
+                            <td><img src="@Url.Content("~/Modules/DarkSky.OrchardMarket/Content/rating.png")" alt=""/></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>

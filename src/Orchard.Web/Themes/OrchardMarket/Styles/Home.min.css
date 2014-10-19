@@ -1,15 +1,1 @@
-#search-signup{border-top:1px dotted #d3d3d3;padding:39px 0 0 0;margin:0 0 0 14px}
-#search-signup h2{font-size:2.461em;color:#5d5d5d;margin:0 0 12px 0;text-align:center}
-#search-signup h2 .strong{color:#3b3b3b}
-#search-signup .column.search{float:left;width:480px}
-#search-signup .column.search .search-wrapper{width:355px;height:32px;border:1px solid #818181;margin:25px auto 0 auto;position:relative;background:#fff;-moz-box-shadow:1px 2px 4px #818181;-webkit-box-shadow:1px 2px 4px #818181;box-shadow:1px 2px 4px #818181}
-#search-signup .column.search .search-wrapper input[type='text']{width:316px;height:32px;padding:0 0 0 .65em;line-height:32px;font-size:1.385em;border:0}
-#search-signup .column.search .search-wrapper a.search-button{display:block;position:absolute;top:1px;right:1px;width:36px;height:30px;background:#42be3b url("../content/sprites.png") 0 -82px}
-#search-signup .column.signup{float:right;width:436px}
-#search-signup .column .button-big{margin:0 auto 0 auto}
-article.most-popular h3{font-size:30px;color:#4b4b4b}
-article.most-popular ul{list-style:none;margin:0}
-article.most-popular ul li{padding:0 0 14px 0;margin-bottom:16px;border-bottom:1px dotted #cfcfd0}
-article.most-popular ul li .icon{float:left;width:35px;height:35px;overflow:none;margin:0 12px 0 0}
-article.most-popular ul li .details .product a.title{color:#2a8038;font-size:1.077em;line-height:1.077em}
-article.most-popular ul li .details .author{color:#818181;font-family:'Segoe UI';font-size:.923em;line-height:.923em}
+#search-signup{border-top:1px dotted #d3d3d3;padding:39px 0 0 0;margin:0 0 0 14px}#search-signup h2{font-size:2.461em;color:#5d5d5d;margin:0 0 12px 0;text-align:center}#search-signup h2 .strong{color:#3b3b3b}#search-signup .column.search{float:left;width:480px}#search-signup .column.search .search-wrapper{width:355px;height:32px;border:1px solid #818181;margin:25px auto 0 auto;position:relative;background:#fff;-moz-box-shadow:1px 2px 4px #818181;-webkit-box-shadow:1px 2px 4px #818181;box-shadow:1px 2px 4px #818181}#search-signup .column.search .search-wrapper input[type='text']{width:316px;height:32px;padding:0 0 0 .65em;line-height:32px;font-size:1.385em;border:0}#search-signup .column.search .search-wrapper a.search-button{display:block;position:absolute;top:1px;right:1px;width:36px;height:30px;background:#42be3b url("../content/images/sprites.png") 0 -82px}#search-signup .column.signup{float:right;width:436px}#search-signup .column .button-big{margin:0 auto 0 auto}article.most-popular h3{font-size:30px;color:#4b4b4b}article.most-popular ul{list-style:none;margin:0}article.most-popular ul li{padding:0 0 14px 0;margin-bottom:16px;border-bottom:1px dotted #cfcfd0}article.most-popular ul li .package-icon{float:left;width:35px;height:35px;overflow:none;margin:0 12px 0 0}article.most-popular ul li .package-icon img{width:35px;height:35px}article.most-popular ul li .details .product a.title{color:#2a8038;font-size:1.077em;line-height:1.077em}article.most-popular ul li .details .author{color:#818181;font-family:'Segoe UI';font-size:.923em;line-height:.923em}

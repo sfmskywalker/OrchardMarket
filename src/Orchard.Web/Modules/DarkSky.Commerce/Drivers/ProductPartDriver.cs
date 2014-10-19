@@ -1,27 +1,34 @@
-﻿using System.Xml;
-using DarkSky.Commerce.Models;
+﻿using DarkSky.Commerce.Models;
+using DarkSky.Commerce.ViewModels;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
-using Orchard.ContentManagement.Handlers;
+using Orchard.Environment.Extensions;
 
 namespace DarkSky.Commerce.Drivers {
-	public class ProductPartDriver : ContentPartDriver<ProductPart> {
+    [OrchardFeature("DarkSky.Commerce.Products")]
+    public class ProductPartDriver : ContentPartDriver<ProductPart> {
 
-		protected override DriverResult Editor(ProductPart part, dynamic shapeHelper) {
-			return ContentShape("Parts_Product_Edit", () => shapeHelper.EditorTemplate(TemplateName: "Parts/Product", Model: part, Prefix: Prefix));
-		}
+        protected override string Prefix {
+            get { return "Product"; }
+        }
 
-		protected override DriverResult Editor(ProductPart part, IUpdateModel updater, dynamic shapeHelper) {
-			updater.TryUpdateModel(part, Prefix, null, null);
-			return Editor(part, shapeHelper);
-		}
+        protected override DriverResult Editor(ProductPart part, dynamic shapeHelper) {
+            var viewModel = new ProductViewModel {
+                Currency = part.Currency,
+                UnitPrice = part.UnitPrice,
+                VatId = part.Record.VatId
+            };
+            return ContentShape("Parts_Product_Edit", () => shapeHelper.EditorTemplate(TemplateName: "Parts/Product", Model: viewModel, Prefix: Prefix));
+        }
 
-		protected override void Importing(ProductPart part, ImportContentContext context) {
-			context.ImportAttribute(part.PartDefinition.Name, "Price", x => part.Price = XmlConvert.ToDecimal(x));
-		}
-
-		protected override void Exporting(ProductPart part, ExportContentContext context) {
-			context.Element(part.PartDefinition.Name).SetAttributeValue("Price", part.Price);
-		}
-	}
+        protected override DriverResult Editor(ProductPart part, IUpdateModel updater, dynamic shapeHelper) {
+            var viewModel = new ProductViewModel();
+            if(updater.TryUpdateModel(viewModel, Prefix, null, null)) {
+                part.Currency = viewModel.Currency;
+                part.UnitPrice = viewModel.UnitPrice;
+                part.Record.VatId = viewModel.VatId;
+            }
+            return Editor(part, shapeHelper);
+        }
+    }
 }

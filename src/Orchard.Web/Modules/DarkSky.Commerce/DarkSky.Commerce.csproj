@@ -92,7 +92,6 @@
     <Compile Include="Drivers\ProductPartDriver.cs" />
     <Compile Include="Handlers\CommerceSettingsPartHandler.cs" />
     <Compile Include="Handlers\ProductPartHandler.cs" />
-    <Compile Include="Handlers\ExchangeRatePartHandler.cs" />
     <Compile Include="Migrations\CommerceMigrations.cs" />
     <Compile Include="Models\CommerceSettingsPart.cs" />
     <Compile Include="Models\ProductPart.cs" />

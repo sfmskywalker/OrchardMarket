@@ -1,16 +1,13 @@
 ﻿using DarkSky.Commerce.Models;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Handlers;
-using Orchard.Data;
 using Orchard.Localization;
 
 namespace DarkSky.Commerce.Handlers {
 	public class CommerceSettingsPartHandler : ContentHandler {
-		public CommerceSettingsPartHandler(IRepository<CommerceSettingsPartRecord> repository) {
+		public CommerceSettingsPartHandler() {
 			T = NullLocalizer.Instance;
 			Filters.Add(new ActivatingFilter<CommerceSettingsPart>("Site"));
-			Filters.Add(StorageFilter.For(repository));
-			Filters.Add(new TemplateFilterForRecord<CommerceSettingsPartRecord>("CommerceSettings", "Parts/CommerceSettings", "commerce"));
 		}
 
 		public Localizer T { get; set; }

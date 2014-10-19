@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:ed="urn:ebay:apis:EnhancedDataTypes" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:cc="urn:ebay:apis:CoreComponentTypes" xmlns:ns="urn:ebay:api:PayPalAPI" xmlns:ebl="urn:ebay:apis:eBLBaseComponents" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ns:version="94.0" targetNamespace="urn:ebay:api:PayPalAPI" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:ed="urn:ebay:apis:EnhancedDataTypes" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:cc="urn:ebay:apis:CoreComponentTypes" xmlns:ns="urn:ebay:api:PayPalAPI" xmlns:ebl="urn:ebay:apis:eBLBaseComponents" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ns:version="119.0" targetNamespace="urn:ebay:api:PayPalAPI" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:ebay:api:PayPalAPI">
       <xsd:import schemaLocation="CoreComponentTypes.xsd" namespace="urn:ebay:apis:CoreComponentTypes" />
@@ -2160,6 +2160,11 @@ Character length and limits: &lt;18 characters alphanumeric characters
 									</xsd:documentation>
                 </xsd:annotation>
               </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" ref="ebl:MerchantData">
+                <xsd:annotation>
+                  <xsd:documentation>This holds key-value pair which merchants wants to pass it to the open wallet-PLCC processor<br /><br /><b>Optional</b></xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
             </xsd:sequence>
           </xsd:extension>
         </xsd:complexContent>
@@ -2335,11 +2340,118 @@ Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. De
 </xsd:documentation>
                 </xsd:annotation>
               </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" ref="ebl:ShipToAddress">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Address the order will be shipped to.
+										<br /><br />
+										Optional
+										<br /><br /></xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="unbounded" ref="ebl:PaymentDetailsItem">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Information about the individual purchased items
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="ItemTotal" type="cc:BasicAmountType">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Sum of cost of all items in this order.
+										You must set the currencyID attribute to one of the three-character currency codes for any of the supported PayPal currencies.
+										<br /><br />
+										Optional
+										<br /><br />Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. Decimal separator must be a period (.), and the thousands separator must be a comma (,).
+										<br /></xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="ShippingTotal" type="cc:BasicAmountType">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Total shipping costs for this order.
+										You must set the currencyID attribute to one of the three-character currency codes for any of the supported PayPal currencies.
+										<br /><br />
+										Optional
+										<br /><br />Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. Decimal separator must be a period (.), and the thousands separator must be a comma (,).
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="HandlingTotal" type="cc:BasicAmountType">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Total handling costs for this order.
+										You must set the currencyID attribute to one of the three-character currency codes for any of the supported PayPal currencies.
+										<br /><br />
+										Optional
+										<br /><br />Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. Decimal separator must be a period (.), and the thousands separator must be a comma (,).
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="TaxTotal" type="cc:BasicAmountType">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Sum of tax for all items in this order.
+										You must set the currencyID attribute to one of the three-character currency codes for any of the supported PayPal currencies.
+										<br /><br />
+										Optional
+										<br /><br />Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. Decimal separator must be a period (.), and the thousands separator must be a comma (,).
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="InsuranceTotal" type="cc:BasicAmountType">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Total shipping insurance costs for this order.<br />
+										Optional<br /></xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="ShippingDiscount" type="cc:BasicAmountType">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Shipping discount for this order, specified as a negative number.<br />
+										Optional<br /></xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="OrderDescription" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Description of items the customer is purchasing.
+										<br /><br />
+										Optional
+										<br /><br />Character length and limitations: 127 single-byte alphanumeric characters
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="Custom" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>
+										A free-form field for your own use.
+										<br /><br />
+										Optional
+										<br /><br />Character length and limitations: 256 single-byte alphanumeric characters
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
               <xsd:element minOccurs="0" maxOccurs="1" name="MsgSubID" type="xsd:string">
                 <xsd:annotation>
                   <xsd:documentation>Unique id for each API request to prevent duplicate payments.
 										<br /><br /><b>Optional</b><br />Character length and limits: 38 single-byte characters maximum.
 									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="IPAddress" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>
+										IP Address of the buyer
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="ShipToStore" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>A flag indicating that this transaction is a Ship to Store transaction.
+									<br /><br /><b>Optional</b></xsd:documentation>
                 </xsd:annotation>
               </xsd:element>
             </xsd:sequence>
@@ -2358,10 +2470,11 @@ Character length and limits: 19 single-byte characters
 </xsd:documentation>
                 </xsd:annotation>
               </xsd:element>
-              <xsd:element minOccurs="1" maxOccurs="1" name="Amount" type="cc:BasicAmountType">
+              <xsd:element minOccurs="0" maxOccurs="1" name="Amount" type="cc:BasicAmountType">
                 <xsd:annotation>
-                  <xsd:documentation>The amount and currency you specified in the request. 
-</xsd:documentation>
+                  <xsd:documentation>
+									The amount and currency you specified in the request. 
+									</xsd:documentation>
                 </xsd:annotation>
               </xsd:element>
               <xsd:element minOccurs="0" maxOccurs="1" ref="ebl:AuthorizationInfo" />
@@ -2370,6 +2483,67 @@ Character length and limits: 19 single-byte characters
                   <xsd:documentation>Return msgsubid back to merchant</xsd:documentation>
                 </xsd:annotation>
               </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:element name="UpdateAuthorizationRequest" type="ns:UpdateAuthorizationRequestType" />
+      <xsd:element name="UpdateAuthorizationResponse" type="ns:UpdateAuthorizationResponseType" />
+      <xsd:element name="UpdateAuthorizationReq">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns:UpdateAuthorizationRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="UpdateAuthorizationRequestType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="ebl:AbstractRequestType">
+            <xsd:sequence>
+              <xsd:element minOccurs="1" maxOccurs="1" name="TransactionID" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>The value of the authorizationâtransaction identification number returned by a PayPal product.
+										<br /><br /><b>Required</b><br /><br />Character length and limits: 19 single-byte characters maximum
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" ref="ebl:ShipToAddress">
+                <xsd:annotation>
+                  <xsd:documentation>
+										Shipping Address for this transaction.
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="IPAddress" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>
+										IP Address of the buyer
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="ShipToStore" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>A flag indicating that this transaction is a Ship to Store transaction.
+									<br /><br /><b>Optional</b></xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateAuthorizationResponseType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="ebl:AbstractResponseType">
+            <xsd:sequence>
+              <xsd:element minOccurs="1" maxOccurs="1" name="TransactionID" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>An authorization identification number.
+										<br /><br />
+										Character length and limits: 19 single-byte characters
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" ref="ebl:AuthorizationInfo" />
             </xsd:sequence>
           </xsd:extension>
         </xsd:complexContent>
@@ -2504,6 +2678,12 @@ Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. De
               <xsd:element minOccurs="1" maxOccurs="1" name="IsActivated" type="xsd:integer">
                 <xsd:annotation>
                   <xsd:documentation>Indicates whether the phone is activated for mobile payments
+<br /><br /></xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="1" maxOccurs="1" name="IsPasswordSet" type="xsd:integer">
+                <xsd:annotation>
+                  <xsd:documentation>Indicates whether the password is enabled for particular account
 <br /><br /></xsd:documentation>
                 </xsd:annotation>
               </xsd:element>
@@ -3229,6 +3409,12 @@ Character length and limitations: 20 single-byte characters
   <wsdl:message name="DoAuthorizationResponse">
     <wsdl:part name="DoAuthorizationResponse" element="ns:DoAuthorizationResponse" />
   </wsdl:message>
+  <wsdl:message name="UpdateAuthorizationRequest">
+    <wsdl:part name="UpdateAuthorizationRequest" element="ns:UpdateAuthorizationReq" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAuthorizationResponse">
+    <wsdl:part name="UpdateAuthorizationResponse" element="ns:UpdateAuthorizationResponse" />
+  </wsdl:message>
   <wsdl:message name="DoUATPAuthorizationRequest">
     <wsdl:part name="DoUATPAuthorizationRequest" element="ns:DoUATPAuthorizationReq" />
   </wsdl:message>
@@ -3517,6 +3703,10 @@ Character length and limitations: 20 single-byte characters
     <wsdl:operation name="DoAuthorization">
       <wsdl:input message="ns:DoAuthorizationRequest" />
       <wsdl:output message="ns:DoAuthorizationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAuthorization">
+      <wsdl:input message="ns:UpdateAuthorizationRequest" />
+      <wsdl:output message="ns:UpdateAuthorizationResponse" />
     </wsdl:operation>
     <wsdl:operation name="SetCustomerBillingAgreement">
       <wsdl:input message="ns:SetCustomerBillingAgreementRequest" />
@@ -4039,6 +4229,17 @@ Character length and limitations: 20 single-byte characters
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="DoAuthorization">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal" />
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal" />
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAuthorization">
       <wsdlsoap:operation soapAction="" />
       <wsdl:input>
         <wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal" />

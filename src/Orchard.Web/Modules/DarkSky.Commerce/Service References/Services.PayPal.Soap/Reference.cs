@@ -1387,6 +1387,10 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private bool finalPaymentDueDateFieldSpecified;
         
+        private string softDescriptorField;
+        
+        private string softDescriptorCityField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public string ProfileID {
@@ -1591,6 +1595,30 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             }
         }
         
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public string SoftDescriptor {
+            get {
+                return this.softDescriptorField;
+            }
+            set {
+                this.softDescriptorField = value;
+                this.RaisePropertyChanged("SoftDescriptor");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        public string SoftDescriptorCity {
+            get {
+                return this.softDescriptorCityField;
+            }
+            set {
+                this.softDescriptorCityField = value;
+                this.RaisePropertyChanged("SoftDescriptorCity");
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -1755,6 +1783,10 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         private AddressStatusCodeType addressStatusField;
         
         private bool addressStatusFieldSpecified;
+        
+        private AddressNormalizationStatusCodeType addressNormalizationStatusField;
+        
+        private bool addressNormalizationStatusFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -1981,6 +2013,30 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.addressStatusFieldSpecified = value;
                 this.RaisePropertyChanged("AddressStatusSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public AddressNormalizationStatusCodeType AddressNormalizationStatus {
+            get {
+                return this.addressNormalizationStatusField;
+            }
+            set {
+                this.addressNormalizationStatusField = value;
+                this.RaisePropertyChanged("AddressNormalizationStatus");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool AddressNormalizationStatusSpecified {
+            get {
+                return this.addressNormalizationStatusFieldSpecified;
+            }
+            set {
+                this.addressNormalizationStatusFieldSpecified = value;
+                this.RaisePropertyChanged("AddressNormalizationStatusSpecified");
             }
         }
         
@@ -2752,6 +2808,12 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         TL,
+        
+        /// <remarks/>
+        RS,
+        
+        /// <remarks/>
+        ME,
     }
     
     /// <remarks/>
@@ -2784,6 +2846,25 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         Unconfirmed,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public enum AddressNormalizationStatusCodeType {
+        
+        /// <remarks/>
+        None,
+        
+        /// <remarks/>
+        Normalized,
+        
+        /// <remarks/>
+        Unnormalized,
+        
+        /// <remarks/>
+        UserPreferred,
     }
     
     /// <remarks/>
@@ -3211,6 +3292,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string contactPhoneField;
         
+        private WalletItemsType[] walletItemsField;
+        
         private TaxIdDetailsType taxIdDetailsField;
         
         private EnhancedPayerInfoType enhancedPayerInfoField;
@@ -3336,7 +3419,19 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute("WalletItems", Order=8)]
+        public WalletItemsType[] WalletItems {
+            get {
+                return this.walletItemsField;
+            }
+            set {
+                this.walletItemsField = value;
+                this.RaisePropertyChanged("WalletItems");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
         public TaxIdDetailsType TaxIdDetails {
             get {
                 return this.taxIdDetailsField;
@@ -3348,7 +3443,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
         public EnhancedPayerInfoType EnhancedPayerInfo {
             get {
                 return this.enhancedPayerInfoField;
@@ -3468,6 +3563,99 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public partial class WalletItemsType : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private WalletItemType typeField;
+        
+        private bool typeFieldSpecified;
+        
+        private string idField;
+        
+        private string descriptionField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public WalletItemType Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+                this.RaisePropertyChanged("Type");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TypeSpecified {
+            get {
+                return this.typeFieldSpecified;
+            }
+            set {
+                this.typeFieldSpecified = value;
+                this.RaisePropertyChanged("TypeSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+                this.RaisePropertyChanged("Description");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public enum WalletItemType {
+        
+        /// <remarks/>
+        MERCHANT_COUPON,
+        
+        /// <remarks/>
+        LOYALTY_CARD,
+        
+        /// <remarks/>
+        MANUFACTURER_COUPON,
+        
+        /// <remarks/>
+        MERCHANT_CLOSED_LOOP_OFFER,
     }
     
     /// <remarks/>
@@ -3928,11 +4116,25 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private System.DateTime expectedeCheckClearDateField;
         
+        private bool expectedeCheckClearDateFieldSpecified;
+        
         private System.DateTime paymentDateField;
+        
+        private bool paymentDateFieldSpecified;
         
         private BasicAmountType grossAmountField;
         
         private BasicAmountType feeAmountField;
+        
+        private BasicAmountType financingFeeAmountField;
+        
+        private BasicAmountType financingTotalCostField;
+        
+        private BasicAmountType financingMonthlyPaymentField;
+        
+        private string financingTermField;
+        
+        private string isFinancingField;
         
         private BasicAmountType settleAmountField;
         
@@ -3961,6 +4163,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         private string receiptReferenceNumberField;
         
         private POSTransactionCodeType pOSTransactionTypeField;
+        
+        private bool pOSTransactionTypeFieldSpecified;
         
         private string shipAmountField;
         
@@ -3991,6 +4195,10 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         private OfferDetailsType offerDetailsField;
         
         private string binEligibilityField;
+        
+        private string softDescriptorField;
+        
+        private string softDescriptorCityField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -4113,6 +4321,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ExpectedeCheckClearDateSpecified {
+            get {
+                return this.expectedeCheckClearDateFieldSpecified;
+            }
+            set {
+                this.expectedeCheckClearDateFieldSpecified = value;
+                this.RaisePropertyChanged("ExpectedeCheckClearDateSpecified");
+            }
+        }
+        
+        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public System.DateTime PaymentDate {
             get {
@@ -4121,6 +4341,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.paymentDateField = value;
                 this.RaisePropertyChanged("PaymentDate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool PaymentDateSpecified {
+            get {
+                return this.paymentDateFieldSpecified;
+            }
+            set {
+                this.paymentDateFieldSpecified = value;
+                this.RaisePropertyChanged("PaymentDateSpecified");
             }
         }
         
@@ -4150,6 +4382,66 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public BasicAmountType FinancingFeeAmount {
+            get {
+                return this.financingFeeAmountField;
+            }
+            set {
+                this.financingFeeAmountField = value;
+                this.RaisePropertyChanged("FinancingFeeAmount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public BasicAmountType FinancingTotalCost {
+            get {
+                return this.financingTotalCostField;
+            }
+            set {
+                this.financingTotalCostField = value;
+                this.RaisePropertyChanged("FinancingTotalCost");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public BasicAmountType FinancingMonthlyPayment {
+            get {
+                return this.financingMonthlyPaymentField;
+            }
+            set {
+                this.financingMonthlyPaymentField = value;
+                this.RaisePropertyChanged("FinancingMonthlyPayment");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public string FinancingTerm {
+            get {
+                return this.financingTermField;
+            }
+            set {
+                this.financingTermField = value;
+                this.RaisePropertyChanged("FinancingTerm");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public string IsFinancing {
+            get {
+                return this.isFinancingField;
+            }
+            set {
+                this.isFinancingField = value;
+                this.RaisePropertyChanged("IsFinancing");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
         public BasicAmountType SettleAmount {
             get {
                 return this.settleAmountField;
@@ -4161,7 +4453,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
         public BasicAmountType TaxAmount {
             get {
                 return this.taxAmountField;
@@ -4173,7 +4465,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
         public string ExchangeRate {
             get {
                 return this.exchangeRateField;
@@ -4185,7 +4477,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public PaymentStatusCodeType PaymentStatus {
             get {
                 return this.paymentStatusField;
@@ -4197,7 +4489,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
         public PendingStatusCodeType PendingReason {
             get {
                 return this.pendingReasonField;
@@ -4221,7 +4513,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
         public ReversalReasonCodeType ReasonCode {
             get {
                 return this.reasonCodeField;
@@ -4245,7 +4537,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
         public string HoldDecision {
             get {
                 return this.holdDecisionField;
@@ -4257,7 +4549,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
         public string ShippingMethod {
             get {
                 return this.shippingMethodField;
@@ -4269,7 +4561,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
         public string ProtectionEligibility {
             get {
                 return this.protectionEligibilityField;
@@ -4281,7 +4573,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
         public string ProtectionEligibilityType {
             get {
                 return this.protectionEligibilityTypeField;
@@ -4293,7 +4585,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
         public string ReceiptReferenceNumber {
             get {
                 return this.receiptReferenceNumberField;
@@ -4305,7 +4597,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
         public POSTransactionCodeType POSTransactionType {
             get {
                 return this.pOSTransactionTypeField;
@@ -4317,7 +4609,19 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool POSTransactionTypeSpecified {
+            get {
+                return this.pOSTransactionTypeFieldSpecified;
+            }
+            set {
+                this.pOSTransactionTypeFieldSpecified = value;
+                this.RaisePropertyChanged("POSTransactionTypeSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
         public string ShipAmount {
             get {
                 return this.shipAmountField;
@@ -4329,7 +4633,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
         public string ShipHandleAmount {
             get {
                 return this.shipHandleAmountField;
@@ -4341,7 +4645,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
         public string ShipDiscount {
             get {
                 return this.shipDiscountField;
@@ -4353,7 +4657,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
         public string InsuranceAmount {
             get {
                 return this.insuranceAmountField;
@@ -4365,7 +4669,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
         public string Subject {
             get {
                 return this.subjectField;
@@ -4377,7 +4681,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
         public string StoreID {
             get {
                 return this.storeIDField;
@@ -4389,7 +4693,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=34)]
         public string TerminalID {
             get {
                 return this.terminalIDField;
@@ -4401,7 +4705,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=35)]
         public SellerDetailsType SellerDetails {
             get {
                 return this.sellerDetailsField;
@@ -4413,7 +4717,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=36)]
         public string PaymentRequestID {
             get {
                 return this.paymentRequestIDField;
@@ -4425,7 +4729,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=37)]
         public FMFDetailsType FMFDetails {
             get {
                 return this.fMFDetailsField;
@@ -4437,7 +4741,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=38)]
         public EnhancedPaymentInfoType EnhancedPaymentInfo {
             get {
                 return this.enhancedPaymentInfoField;
@@ -4449,7 +4753,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=34)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=39)]
         public ErrorType PaymentError {
             get {
                 return this.paymentErrorField;
@@ -4461,7 +4765,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=35)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=40)]
         public InstrumentDetailsType InstrumentDetails {
             get {
                 return this.instrumentDetailsField;
@@ -4473,7 +4777,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=36)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=41)]
         public OfferDetailsType OfferDetails {
             get {
                 return this.offerDetailsField;
@@ -4485,7 +4789,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=37)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=42)]
         public string BinEligibility {
             get {
                 return this.binEligibilityField;
@@ -4493,6 +4797,30 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.binEligibilityField = value;
                 this.RaisePropertyChanged("BinEligibility");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=43)]
+        public string SoftDescriptor {
+            get {
+                return this.softDescriptorField;
+            }
+            set {
+                this.softDescriptorField = value;
+                this.RaisePropertyChanged("SoftDescriptor");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=44)]
+        public string SoftDescriptorCity {
+            get {
+                return this.softDescriptorCityField;
+            }
+            set {
+                this.softDescriptorCityField = value;
+                this.RaisePropertyChanged("SoftDescriptorCity");
             }
         }
         
@@ -4722,6 +5050,10 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("payment-review")]
         paymentreview,
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("regulatory-review")]
+        regulatoryreview,
     }
     
     /// <remarks/>
@@ -5184,6 +5516,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string instrumentCategoryField;
         
+        private string instrumentIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public string InstrumentCategory {
@@ -5193,6 +5527,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.instrumentCategoryField = value;
                 this.RaisePropertyChanged("InstrumentCategory");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string InstrumentID {
+            get {
+                return this.instrumentIDField;
+            }
+            set {
+                this.instrumentIDField = value;
+                this.RaisePropertyChanged("InstrumentID");
             }
         }
         
@@ -5506,6 +5852,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string msgSubIDField;
         
+        private string partnerFundingSourceIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public string AuthorizationID {
@@ -5539,6 +5887,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.msgSubIDField = value;
                 this.RaisePropertyChanged("MsgSubID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string PartnerFundingSourceID {
+            get {
+                return this.partnerFundingSourceIDField;
+            }
+            set {
+                this.partnerFundingSourceIDField = value;
+                this.RaisePropertyChanged("PartnerFundingSourceID");
             }
         }
         
@@ -5616,6 +5976,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string noteField;
         
+        private string msgSubIDField;
+        
         private string successPageRedirectRequestedField;
         
         private UserSelectedOptionType userSelectedOptionsField;
@@ -5684,6 +6046,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string MsgSubID {
+            get {
+                return this.msgSubIDField;
+            }
+            set {
+                this.msgSubIDField = value;
+                this.RaisePropertyChanged("MsgSubID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
         public string SuccessPageRedirectRequested {
             get {
                 return this.successPageRedirectRequestedField;
@@ -5695,7 +6069,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public UserSelectedOptionType UserSelectedOptions {
             get {
                 return this.userSelectedOptionsField;
@@ -5707,7 +6081,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CoupledPaymentInfo", Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute("CoupledPaymentInfo", Order=8)]
         public CoupledPaymentInfoType[] CoupledPaymentInfo {
             get {
                 return this.coupledPaymentInfoField;
@@ -6292,6 +6666,12 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private RefreshTokenStatusDetailsType refreshTokenStatusDetailsField;
         
+        private PaymentInfoType[] paymentInfoField;
+        
+        private string cartChangeToleranceField;
+        
+        private InstrumentDetailsType instrumentDetailsField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public string Token {
@@ -6592,6 +6972,42 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             }
         }
         
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("PaymentInfo", Order=24)]
+        public PaymentInfoType[] PaymentInfo {
+            get {
+                return this.paymentInfoField;
+            }
+            set {
+                this.paymentInfoField = value;
+                this.RaisePropertyChanged("PaymentInfo");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        public string CartChangeTolerance {
+            get {
+                return this.cartChangeToleranceField;
+            }
+            set {
+                this.cartChangeToleranceField = value;
+                this.RaisePropertyChanged("CartChangeTolerance");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        public InstrumentDetailsType InstrumentDetails {
+            get {
+                return this.instrumentDetailsField;
+            }
+            set {
+                this.instrumentDetailsField = value;
+                this.RaisePropertyChanged("InstrumentDetails");
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -6632,6 +7048,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private AddressType shipToAddressField;
         
+        private string multiShippingField;
+        
         private string fulfillmentReferenceNumberField;
         
         private AddressType fulfillmentAddressField;
@@ -6639,6 +7057,10 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         private PaymentCategoryType paymentCategoryTypeField;
         
         private bool paymentCategoryTypeFieldSpecified;
+        
+        private LocationType locationTypeField;
+        
+        private bool locationTypeFieldSpecified;
         
         private ShippingServiceCodeType shippingMethodField;
         
@@ -6689,6 +7111,14 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         private PaymentReasonType paymentReasonField;
         
         private bool paymentReasonFieldSpecified;
+        
+        private string locationIDField;
+        
+        private DiscountInfoType[] redeemedOffersField;
+        
+        private DiscountInfoType[] cummulativePointsField;
+        
+        private TupleType[][] merchantDataField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -6824,6 +7254,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public string MultiShipping {
+            get {
+                return this.multiShippingField;
+            }
+            set {
+                this.multiShippingField = value;
+                this.RaisePropertyChanged("MultiShipping");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
         public string FulfillmentReferenceNumber {
             get {
                 return this.fulfillmentReferenceNumberField;
@@ -6835,7 +7277,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public AddressType FulfillmentAddress {
             get {
                 return this.fulfillmentAddressField;
@@ -6847,7 +7289,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
         public PaymentCategoryType PaymentCategoryType {
             get {
                 return this.paymentCategoryTypeField;
@@ -6871,7 +7313,31 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public LocationType LocationType {
+            get {
+                return this.locationTypeField;
+            }
+            set {
+                this.locationTypeField = value;
+                this.RaisePropertyChanged("LocationType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool LocationTypeSpecified {
+            get {
+                return this.locationTypeFieldSpecified;
+            }
+            set {
+                this.locationTypeFieldSpecified = value;
+                this.RaisePropertyChanged("LocationTypeSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
         public ShippingServiceCodeType ShippingMethod {
             get {
                 return this.shippingMethodField;
@@ -6895,7 +7361,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
         public System.DateTime ProfileAddressChangeDate {
             get {
                 return this.profileAddressChangeDateField;
@@ -6919,7 +7385,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PaymentDetailsItem", Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute("PaymentDetailsItem", Order=18)]
         public PaymentDetailsItemType[] PaymentDetailsItem {
             get {
                 return this.paymentDetailsItemField;
@@ -6931,7 +7397,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public BasicAmountType InsuranceTotal {
             get {
                 return this.insuranceTotalField;
@@ -6943,7 +7409,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
         public BasicAmountType ShippingDiscount {
             get {
                 return this.shippingDiscountField;
@@ -6955,7 +7421,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
         public string InsuranceOptionOffered {
             get {
                 return this.insuranceOptionOfferedField;
@@ -6967,7 +7433,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
         public AllowedPaymentMethodType AllowedPaymentMethod {
             get {
                 return this.allowedPaymentMethodField;
@@ -6991,7 +7457,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
         public EnhancedPaymentDataType EnhancedPaymentData {
             get {
                 return this.enhancedPaymentDataField;
@@ -7003,7 +7469,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
         public SellerDetailsType SellerDetails {
             get {
                 return this.sellerDetailsField;
@@ -7015,7 +7481,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
         public string NoteText {
             get {
                 return this.noteTextField;
@@ -7027,7 +7493,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
         public string TransactionId {
             get {
                 return this.transactionIdField;
@@ -7039,7 +7505,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
         public PaymentActionCodeType PaymentAction {
             get {
                 return this.paymentActionField;
@@ -7063,7 +7529,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
         public string PaymentRequestID {
             get {
                 return this.paymentRequestIDField;
@@ -7075,7 +7541,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
         public string OrderURL {
             get {
                 return this.orderURLField;
@@ -7087,7 +7553,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
         public string SoftDescriptor {
             get {
                 return this.softDescriptorField;
@@ -7099,7 +7565,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", Order=29)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", Order=31)]
         public string BranchLevel {
             get {
                 return this.branchLevelField;
@@ -7111,7 +7577,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
         public OfferDetailsType OfferDetails {
             get {
                 return this.offerDetailsField;
@@ -7123,7 +7589,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
         public RecurringFlagType Recurring {
             get {
                 return this.recurringField;
@@ -7147,7 +7613,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=34)]
         public PaymentReasonType PaymentReason {
             get {
                 return this.paymentReasonField;
@@ -7170,6 +7636,55 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             }
         }
         
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=35)]
+        public string LocationID {
+            get {
+                return this.locationIDField;
+            }
+            set {
+                this.locationIDField = value;
+                this.RaisePropertyChanged("LocationID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RedeemedOffers", Order=36)]
+        public DiscountInfoType[] RedeemedOffers {
+            get {
+                return this.redeemedOffersField;
+            }
+            set {
+                this.redeemedOffersField = value;
+                this.RaisePropertyChanged("RedeemedOffers");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CummulativePoints", Order=37)]
+        public DiscountInfoType[] CummulativePoints {
+            get {
+                return this.cummulativePointsField;
+            }
+            set {
+                this.cummulativePointsField = value;
+                this.RaisePropertyChanged("CummulativePoints");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=38)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("MerchantDataTuple", typeof(TupleType), IsNullable=false)]
+        public TupleType[][] MerchantData {
+            get {
+                return this.merchantDataField;
+            }
+            set {
+                this.merchantDataField = value;
+                this.RaisePropertyChanged("MerchantData");
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -7188,6 +7703,31 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         InternationalShipping,
+        
+        /// <remarks/>
+        LocalDelivery,
+        
+        /// <remarks/>
+        BOPIS,
+        
+        /// <remarks/>
+        PUDO,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public enum LocationType {
+        
+        /// <remarks/>
+        Consumer,
+        
+        /// <remarks/>
+        Store,
+        
+        /// <remarks/>
+        PickupDropoff,
     }
     
     /// <remarks/>
@@ -7833,6 +8373,201 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public partial class DiscountInfoType : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string nameField;
+        
+        private string descriptionField;
+        
+        private BasicAmountType amountField;
+        
+        private RedeemedOfferType redeemedOfferTypeField;
+        
+        private bool redeemedOfferTypeFieldSpecified;
+        
+        private string redeemedOfferIdField;
+        
+        private decimal pointsAccruedField;
+        
+        private bool pointsAccruedFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+                this.RaisePropertyChanged("Description");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public BasicAmountType Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+                this.RaisePropertyChanged("Amount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public RedeemedOfferType RedeemedOfferType {
+            get {
+                return this.redeemedOfferTypeField;
+            }
+            set {
+                this.redeemedOfferTypeField = value;
+                this.RaisePropertyChanged("RedeemedOfferType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool RedeemedOfferTypeSpecified {
+            get {
+                return this.redeemedOfferTypeFieldSpecified;
+            }
+            set {
+                this.redeemedOfferTypeFieldSpecified = value;
+                this.RaisePropertyChanged("RedeemedOfferTypeSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string RedeemedOfferId {
+            get {
+                return this.redeemedOfferIdField;
+            }
+            set {
+                this.redeemedOfferIdField = value;
+                this.RaisePropertyChanged("RedeemedOfferId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public decimal PointsAccrued {
+            get {
+                return this.pointsAccruedField;
+            }
+            set {
+                this.pointsAccruedField = value;
+                this.RaisePropertyChanged("PointsAccrued");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool PointsAccruedSpecified {
+            get {
+                return this.pointsAccruedFieldSpecified;
+            }
+            set {
+                this.pointsAccruedFieldSpecified = value;
+                this.RaisePropertyChanged("PointsAccruedSpecified");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public enum RedeemedOfferType {
+        
+        /// <remarks/>
+        MERCHANT_COUPON,
+        
+        /// <remarks/>
+        LOYALTY_CARD,
+        
+        /// <remarks/>
+        MANUFACTURER_COUPON,
+        
+        /// <remarks/>
+        RESERVED,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public partial class TupleType : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string keyField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Key {
+            get {
+                return this.keyField;
+            }
+            set {
+                this.keyField = value;
+                this.RaisePropertyChanged("Key");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+                this.RaisePropertyChanged("Value");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
     public partial class AuthorizationResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private AckCodeType statusField;
@@ -7911,6 +8646,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string tokenField;
         
+        private AddressType[] shippingAddressesField;
+        
         private ErrorType[] setDataErrorField;
         
         /// <remarks/>
@@ -7926,7 +8663,19 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SetDataError", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute("ShippingAddresses", Order=1)]
+        public AddressType[] ShippingAddresses {
+            get {
+                return this.shippingAddressesField;
+            }
+            set {
+                this.shippingAddressesField = value;
+                this.RaisePropertyChanged("ShippingAddresses");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("SetDataError", Order=2)]
         public ErrorType[] SetDataError {
             get {
                 return this.setDataErrorField;
@@ -10602,25 +11351,6 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
-    public enum RedeemedOfferType {
-        
-        /// <remarks/>
-        MERCHANT_COUPON,
-        
-        /// <remarks/>
-        LOYALTY_CARD,
-        
-        /// <remarks/>
-        MANUFACTURER_COUPON,
-        
-        /// <remarks/>
-        RESERVED,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
-    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
@@ -11267,6 +11997,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(SetMobileCheckoutResponseType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetMobileStatusResponseType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CreateMobilePaymentResponseType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(UpdateAuthorizationResponseType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DoAuthorizationResponseType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DoUATPAuthorizationResponseType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DoVoidResponseType))]
@@ -11854,6 +12585,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string isActivatedField;
         
+        private string isPasswordSetField;
+        
         private string paymentPendingField;
         
         /// <remarks/>
@@ -11870,6 +12603,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="integer", Order=1)]
+        public string IsPasswordSet {
+            get {
+                return this.isPasswordSetField;
+            }
+            set {
+                this.isPasswordSetField = value;
+                this.RaisePropertyChanged("IsPasswordSet");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", Order=2)]
         public string PaymentPending {
             get {
                 return this.paymentPendingField;
@@ -11888,6 +12633,43 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:api:PayPalAPI")]
     public partial class CreateMobilePaymentResponseType : AbstractResponseType {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:api:PayPalAPI")]
+    public partial class UpdateAuthorizationResponseType : AbstractResponseType {
+        
+        private string transactionIDField;
+        
+        private AuthorizationInfoType authorizationInfoField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string TransactionID {
+            get {
+                return this.transactionIDField;
+            }
+            set {
+                this.transactionIDField = value;
+                this.RaisePropertyChanged("TransactionID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="urn:ebay:apis:eBLBaseComponents", Order=1)]
+        public AuthorizationInfoType AuthorizationInfo {
+            get {
+                return this.authorizationInfoField;
+            }
+            set {
+                this.authorizationInfoField = value;
+                this.RaisePropertyChanged("AuthorizationInfo");
+            }
+        }
     }
     
     /// <remarks/>
@@ -15223,6 +16005,10 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private PaymentDetailsItemType[] paymentDetailsItemField;
         
+        private string softDescriptorField;
+        
+        private string softDescriptorCityField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public string Token {
@@ -15280,6 +16066,30 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.paymentDetailsItemField = value;
                 this.RaisePropertyChanged("PaymentDetailsItem");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string SoftDescriptor {
+            get {
+                return this.softDescriptorField;
+            }
+            set {
+                this.softDescriptorField = value;
+                this.RaisePropertyChanged("SoftDescriptor");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string SoftDescriptorCity {
+            get {
+                return this.softDescriptorCityField;
+            }
+            set {
+                this.softDescriptorCityField = value;
+                this.RaisePropertyChanged("SoftDescriptorCity");
             }
         }
         
@@ -15761,6 +16571,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string softDescriptorField;
         
+        private string softDescriptorCityField;
+        
         private SenderDetailsType senderDetailsField;
         
         private string msgSubIDField;
@@ -15887,6 +16699,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string SoftDescriptorCity {
+            get {
+                return this.softDescriptorCityField;
+            }
+            set {
+                this.softDescriptorCityField = value;
+                this.RaisePropertyChanged("SoftDescriptorCity");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
         public SenderDetailsType SenderDetails {
             get {
                 return this.senderDetailsField;
@@ -15898,7 +16722,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
         public string MsgSubID {
             get {
                 return this.msgSubIDField;
@@ -16833,6 +17657,10 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private bool returnFMFDetailsFieldSpecified;
         
+        private string softDescriptorField;
+        
+        private string softDescriptorCityField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public PaymentActionCodeType PaymentAction {
@@ -16914,6 +17742,30 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.returnFMFDetailsFieldSpecified = value;
                 this.RaisePropertyChanged("ReturnFMFDetailsSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string SoftDescriptor {
+            get {
+                return this.softDescriptorField;
+            }
+            set {
+                this.softDescriptorField = value;
+                this.RaisePropertyChanged("SoftDescriptor");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string SoftDescriptorCity {
+            get {
+                return this.softDescriptorCityField;
+            }
+            set {
+                this.softDescriptorCityField = value;
+                this.RaisePropertyChanged("SoftDescriptorCity");
             }
         }
         
@@ -17447,6 +18299,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string orderURLField;
         
+        private string msgSubIDField;
+        
         private PaymentDetailsType[] paymentDetailsField;
         
         private string promoOverrideFlagField;
@@ -17479,7 +18333,13 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private bool skipBACreationFieldSpecified;
         
+        private string useSessionPaymentDetailsField;
+        
         private CoupledBucketsType[] coupledBucketsField;
+        
+        private string clientIDField;
+        
+        private string productLineField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -17542,7 +18402,19 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PaymentDetails", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string MsgSubID {
+            get {
+                return this.msgSubIDField;
+            }
+            set {
+                this.msgSubIDField = value;
+                this.RaisePropertyChanged("MsgSubID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("PaymentDetails", Order=5)]
         public PaymentDetailsType[] PaymentDetails {
             get {
                 return this.paymentDetailsField;
@@ -17554,7 +18426,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
         public string PromoOverrideFlag {
             get {
                 return this.promoOverrideFlagField;
@@ -17566,7 +18438,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public string PromoCode {
             get {
                 return this.promoCodeField;
@@ -17578,7 +18450,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public EnhancedDataType EnhancedData {
             get {
                 return this.enhancedDataField;
@@ -17590,7 +18462,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
         public string SoftDescriptor {
             get {
                 return this.softDescriptorField;
@@ -17602,7 +18474,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
         public UserSelectedOptionType UserSelectedOptions {
             get {
                 return this.userSelectedOptionsField;
@@ -17614,7 +18486,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
         public string GiftMessage {
             get {
                 return this.giftMessageField;
@@ -17626,7 +18498,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
         public string GiftReceiptEnable {
             get {
                 return this.giftReceiptEnableField;
@@ -17638,7 +18510,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public string GiftWrapName {
             get {
                 return this.giftWrapNameField;
@@ -17650,7 +18522,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
         public BasicAmountType GiftWrapAmount {
             get {
                 return this.giftWrapAmountField;
@@ -17662,7 +18534,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
         public string BuyerMarketingEmail {
             get {
                 return this.buyerMarketingEmailField;
@@ -17674,7 +18546,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
         public string SurveyQuestion {
             get {
                 return this.surveyQuestionField;
@@ -17686,7 +18558,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SurveyChoiceSelected", Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute("SurveyChoiceSelected", Order=17)]
         public string[] SurveyChoiceSelected {
             get {
                 return this.surveyChoiceSelectedField;
@@ -17698,7 +18570,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
         public string ButtonSource {
             get {
                 return this.buttonSourceField;
@@ -17710,7 +18582,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public bool SkipBACreation {
             get {
                 return this.skipBACreationField;
@@ -17734,7 +18606,19 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CoupledBuckets", Order=19)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        public string UseSessionPaymentDetails {
+            get {
+                return this.useSessionPaymentDetailsField;
+            }
+            set {
+                this.useSessionPaymentDetailsField = value;
+                this.RaisePropertyChanged("UseSessionPaymentDetails");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CoupledBuckets", Order=21)]
         public CoupledBucketsType[] CoupledBuckets {
             get {
                 return this.coupledBucketsField;
@@ -17742,6 +18626,30 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.coupledBucketsField = value;
                 this.RaisePropertyChanged("CoupledBuckets");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        public string ClientID {
+            get {
+                return this.clientIDField;
+            }
+            set {
+                this.clientIDField = value;
+                this.RaisePropertyChanged("ClientID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        public string ProductLine {
+            get {
+                return this.productLineField;
+            }
+            set {
+                this.productLineField = value;
+                this.RaisePropertyChanged("ProductLine");
             }
         }
         
@@ -17913,6 +18821,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private IdentificationInfoType identificationInfoField;
         
+        private string riskSessionCorrelationIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public IdentificationInfoType IdentificationInfo {
@@ -17922,6 +18832,18 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.identificationInfoField = value;
                 this.RaisePropertyChanged("IdentificationInfo");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string RiskSessionCorrelationID {
+            get {
+                return this.riskSessionCorrelationIDField;
+            }
+            set {
+                this.riskSessionCorrelationIDField = value;
+                this.RaisePropertyChanged("RiskSessionCorrelationID");
             }
         }
         
@@ -18331,6 +19253,24 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private InfoSharingDirectivesType infoSharingDirectivesField;
         
+        private bool retrieveShippingAddressField;
+        
+        private bool retrieveShippingAddressFieldSpecified;
+        
+        private UserChannelCodeType userChannelField;
+        
+        private bool userChannelFieldSpecified;
+        
+        private bool reqConfirmShippingField;
+        
+        private bool reqConfirmShippingFieldSpecified;
+        
+        private PaymentDetailsType[] paymentDetailsField;
+        
+        private ExternalPartnerTrackingDetailsType externalPartnerTrackingDetailsField;
+        
+        private string uRIField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("BillingApprovalDetails", Order=0)]
         public BillingApprovalDetailsType[] BillingApprovalDetails {
@@ -18364,6 +19304,177 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.infoSharingDirectivesField = value;
                 this.RaisePropertyChanged("InfoSharingDirectives");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public bool RetrieveShippingAddress {
+            get {
+                return this.retrieveShippingAddressField;
+            }
+            set {
+                this.retrieveShippingAddressField = value;
+                this.RaisePropertyChanged("RetrieveShippingAddress");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool RetrieveShippingAddressSpecified {
+            get {
+                return this.retrieveShippingAddressFieldSpecified;
+            }
+            set {
+                this.retrieveShippingAddressFieldSpecified = value;
+                this.RaisePropertyChanged("RetrieveShippingAddressSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public UserChannelCodeType UserChannel {
+            get {
+                return this.userChannelField;
+            }
+            set {
+                this.userChannelField = value;
+                this.RaisePropertyChanged("UserChannel");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool UserChannelSpecified {
+            get {
+                return this.userChannelFieldSpecified;
+            }
+            set {
+                this.userChannelFieldSpecified = value;
+                this.RaisePropertyChanged("UserChannelSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public bool ReqConfirmShipping {
+            get {
+                return this.reqConfirmShippingField;
+            }
+            set {
+                this.reqConfirmShippingField = value;
+                this.RaisePropertyChanged("ReqConfirmShipping");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ReqConfirmShippingSpecified {
+            get {
+                return this.reqConfirmShippingFieldSpecified;
+            }
+            set {
+                this.reqConfirmShippingFieldSpecified = value;
+                this.RaisePropertyChanged("ReqConfirmShippingSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("PaymentDetails", Order=6)]
+        public PaymentDetailsType[] PaymentDetails {
+            get {
+                return this.paymentDetailsField;
+            }
+            set {
+                this.paymentDetailsField = value;
+                this.RaisePropertyChanged("PaymentDetails");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public ExternalPartnerTrackingDetailsType ExternalPartnerTrackingDetails {
+            get {
+                return this.externalPartnerTrackingDetailsField;
+            }
+            set {
+                this.externalPartnerTrackingDetailsField = value;
+                this.RaisePropertyChanged("ExternalPartnerTrackingDetails");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string URI {
+            get {
+                return this.uRIField;
+            }
+            set {
+                this.uRIField = value;
+                this.RaisePropertyChanged("URI");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public enum UserChannelCodeType {
+        
+        /// <remarks/>
+        WEB,
+        
+        /// <remarks/>
+        MOBILE,
+        
+        /// <remarks/>
+        POS,
+        
+        /// <remarks/>
+        KIOSK,
+        
+        /// <remarks/>
+        IHSTB,
+        
+        /// <remarks/>
+        IVR,
+        
+        /// <remarks/>
+        ADMIN,
+        
+        /// <remarks/>
+        CSOPS,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
+    public partial class ExternalPartnerTrackingDetailsType : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string externalPartnerSegmentIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string ExternalPartnerSegmentID {
+            get {
+                return this.externalPartnerSegmentIDField;
+            }
+            set {
+                this.externalPartnerSegmentIDField = value;
+                this.RaisePropertyChanged("ExternalPartnerSegmentID");
             }
         }
         
@@ -18424,38 +19535,6 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.authorizationRequestField = value;
                 this.RaisePropertyChanged("AuthorizationRequest");
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:apis:eBLBaseComponents")]
-    public partial class ExternalPartnerTrackingDetailsType : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string externalPartnerSegmentIDField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string ExternalPartnerSegmentID {
-            get {
-                return this.externalPartnerSegmentIDField;
-            }
-            set {
-                this.externalPartnerSegmentIDField = value;
-                this.RaisePropertyChanged("ExternalPartnerSegmentID");
             }
         }
         
@@ -19132,6 +20211,9 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         /// <remarks/>
         BML,
+        
+        /// <remarks/>
+        Finance,
     }
     
     /// <remarks/>
@@ -23762,6 +24844,7 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetMobileStatusRequestType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CreateMobilePaymentRequestType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DoUATPAuthorizationRequestType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(UpdateAuthorizationRequestType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DoAuthorizationRequestType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DoVoidRequestType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DoReauthorizationRequestType))]
@@ -24451,6 +25534,71 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:api:PayPalAPI")]
+    public partial class UpdateAuthorizationRequestType : AbstractRequestType {
+        
+        private string transactionIDField;
+        
+        private AddressType shipToAddressField;
+        
+        private string iPAddressField;
+        
+        private string shipToStoreField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string TransactionID {
+            get {
+                return this.transactionIDField;
+            }
+            set {
+                this.transactionIDField = value;
+                this.RaisePropertyChanged("TransactionID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="urn:ebay:apis:eBLBaseComponents", Order=1)]
+        public AddressType ShipToAddress {
+            get {
+                return this.shipToAddressField;
+            }
+            set {
+                this.shipToAddressField = value;
+                this.RaisePropertyChanged("ShipToAddress");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string IPAddress {
+            get {
+                return this.iPAddressField;
+            }
+            set {
+                this.iPAddressField = value;
+                this.RaisePropertyChanged("IPAddress");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string ShipToStore {
+            get {
+                return this.shipToStoreField;
+            }
+            set {
+                this.shipToStoreField = value;
+                this.RaisePropertyChanged("ShipToStore");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:ebay:api:PayPalAPI")]
     public partial class DoAuthorizationRequestType : AbstractRequestType {
         
         private string transactionIDField;
@@ -24461,7 +25609,31 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private BasicAmountType amountField;
         
+        private AddressType shipToAddressField;
+        
+        private PaymentDetailsItemType[] paymentDetailsItemField;
+        
+        private BasicAmountType itemTotalField;
+        
+        private BasicAmountType shippingTotalField;
+        
+        private BasicAmountType handlingTotalField;
+        
+        private BasicAmountType taxTotalField;
+        
+        private BasicAmountType insuranceTotalField;
+        
+        private BasicAmountType shippingDiscountField;
+        
+        private string orderDescriptionField;
+        
+        private string customField;
+        
         private string msgSubIDField;
+        
+        private string iPAddressField;
+        
+        private string shipToStoreField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -24512,7 +25684,127 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="urn:ebay:apis:eBLBaseComponents", Order=3)]
+        public AddressType ShipToAddress {
+            get {
+                return this.shipToAddressField;
+            }
+            set {
+                this.shipToAddressField = value;
+                this.RaisePropertyChanged("ShipToAddress");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("PaymentDetailsItem", Namespace="urn:ebay:apis:eBLBaseComponents", Order=4)]
+        public PaymentDetailsItemType[] PaymentDetailsItem {
+            get {
+                return this.paymentDetailsItemField;
+            }
+            set {
+                this.paymentDetailsItemField = value;
+                this.RaisePropertyChanged("PaymentDetailsItem");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public BasicAmountType ItemTotal {
+            get {
+                return this.itemTotalField;
+            }
+            set {
+                this.itemTotalField = value;
+                this.RaisePropertyChanged("ItemTotal");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public BasicAmountType ShippingTotal {
+            get {
+                return this.shippingTotalField;
+            }
+            set {
+                this.shippingTotalField = value;
+                this.RaisePropertyChanged("ShippingTotal");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public BasicAmountType HandlingTotal {
+            get {
+                return this.handlingTotalField;
+            }
+            set {
+                this.handlingTotalField = value;
+                this.RaisePropertyChanged("HandlingTotal");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public BasicAmountType TaxTotal {
+            get {
+                return this.taxTotalField;
+            }
+            set {
+                this.taxTotalField = value;
+                this.RaisePropertyChanged("TaxTotal");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public BasicAmountType InsuranceTotal {
+            get {
+                return this.insuranceTotalField;
+            }
+            set {
+                this.insuranceTotalField = value;
+                this.RaisePropertyChanged("InsuranceTotal");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public BasicAmountType ShippingDiscount {
+            get {
+                return this.shippingDiscountField;
+            }
+            set {
+                this.shippingDiscountField = value;
+                this.RaisePropertyChanged("ShippingDiscount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public string OrderDescription {
+            get {
+                return this.orderDescriptionField;
+            }
+            set {
+                this.orderDescriptionField = value;
+                this.RaisePropertyChanged("OrderDescription");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public string Custom {
+            get {
+                return this.customField;
+            }
+            set {
+                this.customField = value;
+                this.RaisePropertyChanged("Custom");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public string MsgSubID {
             get {
                 return this.msgSubIDField;
@@ -24520,6 +25812,30 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.msgSubIDField = value;
                 this.RaisePropertyChanged("MsgSubID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public string IPAddress {
+            get {
+                return this.iPAddressField;
+            }
+            set {
+                this.iPAddressField = value;
+                this.RaisePropertyChanged("IPAddress");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public string ShipToStore {
+            get {
+                return this.shipToStoreField;
+            }
+            set {
+                this.shipToStoreField = value;
+                this.RaisePropertyChanged("ShipToStore");
             }
         }
     }
@@ -24652,6 +25968,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private string msgSubIDField;
         
+        private TupleType[] merchantDataField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public string AuthorizationID {
@@ -24757,6 +26075,19 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             set {
                 this.msgSubIDField = value;
                 this.RaisePropertyChanged("MsgSubID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Namespace="urn:ebay:apis:eBLBaseComponents", Order=9)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("MerchantDataTuple", IsNullable=false)]
+        public TupleType[] MerchantData {
+            get {
+                return this.merchantDataField;
+            }
+            set {
+                this.merchantDataField = value;
+                this.RaisePropertyChanged("MerchantData");
             }
         }
     }
@@ -31087,6 +32418,17 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AbstractResponseType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AbstractRequestType))]
+        DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponse UpdateAuthorization(DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="", ReplyAction="*")]
+        System.IAsyncResult BeginUpdateAuthorization(DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationRequest request, System.AsyncCallback callback, object asyncState);
+        
+        DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponse EndUpdateAuthorization(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AbstractResponseType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AbstractRequestType))]
         DarkSky.Commerce.Services.PayPal.Soap.SetCustomerBillingAgreementResponse SetCustomerBillingAgreement(DarkSky.Commerce.Services.PayPal.Soap.SetCustomerBillingAgreementRequest request);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="", ReplyAction="*")]
@@ -32529,6 +33871,78 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:ebay:api:PayPalAPI")]
+    public partial class UpdateAuthorizationReq : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private UpdateAuthorizationRequestType updateAuthorizationRequestField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public UpdateAuthorizationRequestType UpdateAuthorizationRequest {
+            get {
+                return this.updateAuthorizationRequestField;
+            }
+            set {
+                this.updateAuthorizationRequestField = value;
+                this.RaisePropertyChanged("UpdateAuthorizationRequest");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateAuthorizationRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="urn:ebay:api:PayPalAPI")]
+        public DarkSky.Commerce.Services.PayPal.Soap.CustomSecurityHeaderType RequesterCredentials;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:ebay:api:PayPalAPI", Order=0)]
+        public DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationReq UpdateAuthorizationReq;
+        
+        public UpdateAuthorizationRequest() {
+        }
+        
+        public UpdateAuthorizationRequest(DarkSky.Commerce.Services.PayPal.Soap.CustomSecurityHeaderType RequesterCredentials, DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationReq UpdateAuthorizationReq) {
+            this.RequesterCredentials = RequesterCredentials;
+            this.UpdateAuthorizationReq = UpdateAuthorizationReq;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateAuthorizationResponse {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="urn:ebay:api:PayPalAPI")]
+        public DarkSky.Commerce.Services.PayPal.Soap.CustomSecurityHeaderType RequesterCredentials;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateAuthorizationResponse", Namespace="urn:ebay:api:PayPalAPI", Order=0)]
+        public DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponseType UpdateAuthorizationResponse1;
+        
+        public UpdateAuthorizationResponse() {
+        }
+        
+        public UpdateAuthorizationResponse(DarkSky.Commerce.Services.PayPal.Soap.CustomSecurityHeaderType RequesterCredentials, DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponseType UpdateAuthorizationResponse1) {
+            this.RequesterCredentials = RequesterCredentials;
+            this.UpdateAuthorizationResponse1 = UpdateAuthorizationResponse1;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:ebay:api:PayPalAPI")]
     public partial class SetCustomerBillingAgreementReq : object, System.ComponentModel.INotifyPropertyChanged {
         
         private SetCustomerBillingAgreementRequestType setCustomerBillingAgreementRequestField;
@@ -33807,6 +35221,25 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateAuthorizationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateAuthorizationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponse Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SetCustomerBillingAgreementCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -34164,6 +35597,12 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         
         private System.Threading.SendOrPostCallback onDoAuthorizationCompletedDelegate;
         
+        private BeginOperationDelegate onBeginUpdateAuthorizationDelegate;
+        
+        private EndOperationDelegate onEndUpdateAuthorizationDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateAuthorizationCompletedDelegate;
+        
         private BeginOperationDelegate onBeginSetCustomerBillingAgreementDelegate;
         
         private EndOperationDelegate onEndSetCustomerBillingAgreementDelegate;
@@ -34296,6 +35735,8 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
         public event System.EventHandler<DoVoidCompletedEventArgs> DoVoidCompleted;
         
         public event System.EventHandler<DoAuthorizationCompletedEventArgs> DoAuthorizationCompleted;
+        
+        public event System.EventHandler<UpdateAuthorizationCompletedEventArgs> UpdateAuthorizationCompleted;
         
         public event System.EventHandler<SetCustomerBillingAgreementCompletedEventArgs> SetCustomerBillingAgreementCompleted;
         
@@ -35221,6 +36662,56 @@ namespace DarkSky.Commerce.Services.PayPal.Soap {
             }
             base.InvokeAsync(this.onBeginDoAuthorizationDelegate, new object[] {
                         request}, this.onEndDoAuthorizationDelegate, this.onDoAuthorizationCompletedDelegate, userState);
+        }
+        
+        public DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponse UpdateAuthorization(DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationRequest request) {
+            return base.Channel.UpdateAuthorization(request);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateAuthorization(DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateAuthorization(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponse EndUpdateAuthorization(System.IAsyncResult result) {
+            return base.Channel.EndUpdateAuthorization(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateAuthorization(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationRequest request = ((DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationRequest)(inValues[0]));
+            return this.BeginUpdateAuthorization(request, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateAuthorization(System.IAsyncResult result) {
+            DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponse retVal = this.EndUpdateAuthorization(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateAuthorizationCompleted(object state) {
+            if ((this.UpdateAuthorizationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateAuthorizationCompleted(this, new UpdateAuthorizationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateAuthorizationAsync(DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationRequest request) {
+            this.UpdateAuthorizationAsync(request, null);
+        }
+        
+        public void UpdateAuthorizationAsync(DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationRequest request, object userState) {
+            if ((this.onBeginUpdateAuthorizationDelegate == null)) {
+                this.onBeginUpdateAuthorizationDelegate = new BeginOperationDelegate(this.OnBeginUpdateAuthorization);
+            }
+            if ((this.onEndUpdateAuthorizationDelegate == null)) {
+                this.onEndUpdateAuthorizationDelegate = new EndOperationDelegate(this.OnEndUpdateAuthorization);
+            }
+            if ((this.onUpdateAuthorizationCompletedDelegate == null)) {
+                this.onUpdateAuthorizationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateAuthorizationCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateAuthorizationDelegate, new object[] {
+                        request}, this.onEndUpdateAuthorizationDelegate, this.onUpdateAuthorizationCompletedDelegate, userState);
         }
         
         public DarkSky.Commerce.Services.PayPal.Soap.SetCustomerBillingAgreementResponse SetCustomerBillingAgreement(DarkSky.Commerce.Services.PayPal.Soap.SetCustomerBillingAgreementRequest request) {

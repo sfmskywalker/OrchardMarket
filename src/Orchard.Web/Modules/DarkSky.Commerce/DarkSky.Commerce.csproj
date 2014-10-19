@@ -73,8 +73,8 @@
     <Content Include="Content\Images\button-creditcard.png" />
     <Content Include="Content\Images\button-google.png" />
     <Content Include="Placement.info" />
-    <Content Include="Service References\Services.PayPal.Soap\configuration91.svcinfo" />
-    <Content Include="Service References\Services.PayPal.Soap\configuration.svcinfo" />
+    <None Include="Service References\Services.PayPal.Soap\configuration91.svcinfo" />
+    <None Include="Service References\Services.PayPal.Soap\configuration.svcinfo" />
     <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.AddressVerifyResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -243,10 +243,13 @@
     <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.UpdateRecurringPaymentsProfileResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\Services.PayPal.Soap\Reference.svcmap">
+    <Content Include="Service References\Services.PayPal.Soap\DarkSky.Commerce.Services.PayPal.Soap.UpdateAuthorizationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\Services.PayPal.Soap\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\Web.config" />
@@ -407,16 +410,16 @@
     <WCFMetadataStorage Include="Service References\Services.PayPal.Soap\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service References\Services.PayPal.Soap\CoreComponentTypes.xsd">
+    <None Include="Service References\Services.PayPal.Soap\CoreComponentTypes.xsd">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Service References\Services.PayPal.Soap\eBLBaseComponents.xsd">
+    </None>
+    <None Include="Service References\Services.PayPal.Soap\eBLBaseComponents.xsd">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Service References\Services.PayPal.Soap\EnhancedDataTypes.xsd">
+    </None>
+    <None Include="Service References\Services.PayPal.Soap\EnhancedDataTypes.xsd">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Service References\Services.PayPal.Soap\PayPalSvc.wsdl" />
+    </None>
+    <None Include="Service References\Services.PayPal.Soap\PayPalSvc.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Transaction\Cancel.cshtml" />
